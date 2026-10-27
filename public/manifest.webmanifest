@@ -1,0 +1,23 @@
+{
+  "name": "Му'аллим Сани — Арабский язык",
+  "short_name": "Му'аллим Сани",
+  "description": "Интерактивный самоучитель арабского языка и правил Таджвида по книге Му'аллим Сани",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#064e3b",
+  "theme_color": "#059669",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/quran-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
