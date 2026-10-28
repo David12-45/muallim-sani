@@ -28,9 +28,10 @@ export default function App() {
   // Sync Arabic font scale
   useEffect(() => {
     const applyScale = (scale) => {
-      document.documentElement.classList.remove('scale-arabic-115', 'scale-arabic-130');
+      document.documentElement.classList.remove('scale-arabic-115', 'scale-arabic-130', 'scale-arabic-150');
       if (scale === '115') document.documentElement.classList.add('scale-arabic-115');
       if (scale === '130') document.documentElement.classList.add('scale-arabic-130');
+      if (scale === '150') document.documentElement.classList.add('scale-arabic-150');
     };
     applyScale(storageService.getArabicScale());
 

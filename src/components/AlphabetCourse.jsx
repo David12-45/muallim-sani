@@ -151,29 +151,29 @@ function LearnStep({ ids, onDone }) {
               4 формы написания в слове (← справа налево)
             </p>
             <div className="grid grid-cols-4 gap-1.5 p-2 rounded-2xl bg-slate-50 dark:bg-slate-900/60 border border-slate-100 dark:border-slate-700" dir="rtl">
-              <div className="p-1.5 rounded-xl bg-white dark:bg-slate-800 text-center shadow-xs">
-                <span className="font-arabic text-2xl font-bold text-emerald-600 dark:text-emerald-400">
+              <div className="p-2 rounded-xl bg-white dark:bg-slate-800 text-center shadow-xs">
+                <span className="font-arabic text-3xl sm:text-4xl font-bold text-emerald-600 dark:text-emerald-400 leading-tight">
                   {l.forms.initial}
                 </span>
-                <p className="text-[9px] text-slate-400 mt-1" dir="ltr">В начале</p>
+                <p className="text-[10px] font-bold text-slate-400 mt-1" dir="ltr">В начале</p>
               </div>
-              <div className="p-1.5 rounded-xl bg-white dark:bg-slate-800 text-center shadow-xs">
-                <span className="font-arabic text-2xl font-bold text-emerald-600 dark:text-emerald-400">
+              <div className="p-2 rounded-xl bg-white dark:bg-slate-800 text-center shadow-xs">
+                <span className="font-arabic text-3xl sm:text-4xl font-bold text-emerald-600 dark:text-emerald-400 leading-tight">
                   {l.forms.medial}
                 </span>
-                <p className="text-[9px] text-slate-400 mt-1" dir="ltr">В середине</p>
+                <p className="text-[10px] font-bold text-slate-400 mt-1" dir="ltr">В середине</p>
               </div>
-              <div className="p-1.5 rounded-xl bg-white dark:bg-slate-800 text-center shadow-xs">
-                <span className="font-arabic text-2xl font-bold text-emerald-600 dark:text-emerald-400">
+              <div className="p-2 rounded-xl bg-white dark:bg-slate-800 text-center shadow-xs">
+                <span className="font-arabic text-3xl sm:text-4xl font-bold text-emerald-600 dark:text-emerald-400 leading-tight">
                   {l.forms.final}
                 </span>
-                <p className="text-[9px] text-slate-400 mt-1" dir="ltr">В конце</p>
+                <p className="text-[10px] font-bold text-slate-400 mt-1" dir="ltr">В конце</p>
               </div>
-              <div className="p-1.5 rounded-xl bg-white dark:bg-slate-800 text-center shadow-xs">
-                <span className="font-arabic text-2xl font-bold text-emerald-600 dark:text-emerald-400">
+              <div className="p-2 rounded-xl bg-white dark:bg-slate-800 text-center shadow-xs">
+                <span className="font-arabic text-3xl sm:text-4xl font-bold text-emerald-600 dark:text-emerald-400 leading-tight">
                   {l.forms.isolated}
                 </span>
-                <p className="text-[9px] text-slate-400 mt-1" dir="ltr">Отдельно</p>
+                <p className="text-[10px] font-bold text-slate-400 mt-1" dir="ltr">Отдельно</p>
               </div>
             </div>
           </div>

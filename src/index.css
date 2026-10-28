@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-  --arabic-font-scale: 1;
+  --arabic-font-scale: 1.25;
   --in-oklab: ;
   --in-oklch: ;
 }
@@ -116,18 +116,38 @@
 }
 
 html.scale-arabic-115 {
-  --arabic-font-scale: 1.15;
+  --arabic-font-scale: 1.45;
 }
 
 html.scale-arabic-130 {
-  --arabic-font-scale: 1.3;
+  --arabic-font-scale: 1.7;
+}
+
+html.scale-arabic-150 {
+  --arabic-font-scale: 2.0;
+}
+
+@media (max-width: 640px) {
+  :root {
+    --arabic-font-scale: 1.35;
+  }
+  html.scale-arabic-115 {
+    --arabic-font-scale: 1.55;
+  }
+  html.scale-arabic-130 {
+    --arabic-font-scale: 1.8;
+  }
+  html.scale-arabic-150 {
+    --arabic-font-scale: 2.15;
+  }
 }
 
 .font-arabic {
   font-family: 'Scheherazade New', 'Noto Naskh Arabic', 'Amiri', 'Traditional Arabic', serif;
-  font-size: calc(1em * var(--arabic-font-scale, 1));
+  font-size: calc(1em * var(--arabic-font-scale, 1.25));
   font-feature-settings: "liga" 0, "dlig" 0;
   font-variant-ligatures: no-common-ligatures;
+  line-height: 1.95;
 }
 
 /* Custom Arabic typography styles */

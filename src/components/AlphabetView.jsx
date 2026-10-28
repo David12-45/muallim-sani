@@ -370,20 +370,20 @@ export default function AlphabetView() {
                               <div className="w-full mt-2 pt-2 border-t border-slate-100 dark:border-slate-800/80">
                                 <div className="grid grid-cols-4 gap-1 text-center bg-slate-50 dark:bg-slate-850 p-1.5 rounded-xl border border-slate-100 dark:border-slate-800" dir="rtl">
                                   <div className="flex flex-col items-center">
-                                    <span className="font-arabic text-lg font-bold text-emerald-600 dark:text-emerald-400">{letter.forms.initial}</span>
-                                    <span className="text-[8px] text-slate-400" dir="ltr">В нач.</span>
+                                    <span className="font-arabic text-2xl sm:text-3xl font-bold text-emerald-600 dark:text-emerald-400">{letter.forms.initial}</span>
+                                    <span className="text-[9px] font-bold text-slate-400" dir="ltr">В нач.</span>
                                   </div>
                                   <div className="flex flex-col items-center">
-                                    <span className="font-arabic text-lg font-bold text-emerald-600 dark:text-emerald-400">{letter.forms.medial}</span>
-                                    <span className="text-[8px] text-slate-400" dir="ltr">В сер.</span>
+                                    <span className="font-arabic text-2xl sm:text-3xl font-bold text-emerald-600 dark:text-emerald-400">{letter.forms.medial}</span>
+                                    <span className="text-[9px] font-bold text-slate-400" dir="ltr">В сер.</span>
                                   </div>
                                   <div className="flex flex-col items-center">
-                                    <span className="font-arabic text-lg font-bold text-emerald-600 dark:text-emerald-400">{letter.forms.final}</span>
-                                    <span className="text-[8px] text-slate-400" dir="ltr">В конце</span>
+                                    <span className="font-arabic text-2xl sm:text-3xl font-bold text-emerald-600 dark:text-emerald-400">{letter.forms.final}</span>
+                                    <span className="text-[9px] font-bold text-slate-400" dir="ltr">В конце</span>
                                   </div>
                                   <div className="flex flex-col items-center">
-                                    <span className="font-arabic text-lg font-bold text-emerald-600 dark:text-emerald-400">{letter.forms.isolated}</span>
-                                    <span className="text-[8px] text-slate-400" dir="ltr">Отдельн.</span>
+                                    <span className="font-arabic text-2xl sm:text-3xl font-bold text-emerald-600 dark:text-emerald-400">{letter.forms.isolated}</span>
+                                    <span className="text-[9px] font-bold text-slate-400" dir="ltr">Отдельн.</span>
                                   </div>
                                 </div>
                               </div>

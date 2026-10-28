@@ -170,7 +170,7 @@ export default function FatihaView({ embedded = false }) {
                     <span
                       key={w.id}
                       onClick={() => handleWordClick(w)}
-                      className={`font-arabic text-3xl sm:text-4xl font-bold cursor-pointer px-2 py-1 rounded-xl transition-all select-none ${
+                      className={`font-arabic text-4xl sm:text-5xl font-bold leading-[2.2] cursor-pointer px-2.5 py-1.5 rounded-xl transition-all select-none ${
                         isWordActive
                           ? 'bg-emerald-600 text-white scale-110 shadow-md'
                           : 'text-slate-900 dark:text-slate-100 hover:text-emerald-600 dark:hover:text-emerald-400 hover:bg-slate-100 dark:hover:bg-slate-700'
