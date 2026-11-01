@@ -4,10 +4,7 @@ import { ALL_WORDS } from '../data/book';
 import { storageService } from '../services/storage';
 import { transcribeArabic } from '../services/transcribe';
 import { soundFx } from '../services/soundFx';
-import SpaceDefenderGame from './arcade/SpaceDefenderGame';
-import ArabicNinjaGame from './arcade/ArabicNinjaGame';
-import BossBattleGame from './arcade/BossBattleGame';
-import DesertRunnerGame from './arcade/DesertRunnerGame';
+import LearningGamesHub from './games/LearningGames';
 import LevelProgressBar from './arcade/LevelProgressBar';
 import {
   getUserKnowledgeProgress,
@@ -46,9 +43,8 @@ export default function QuizView() {
   // Выбранный уровень знаний (по умолчанию определяется по прогрессу пользователя)
   const [currentLevel, setCurrentLevel] = useState(() => getUserKnowledgeProgress().currentLevel);
 
-  // Главный переключатель аркадных игр:
-  // 'space' | 'ninja' | 'boss' | 'runner' | 'classic_hub'
-  const [activeArcade, setActiveArcade] = useState('space');
+  // Главный переключатель: 'learn' (обучающие игры) | 'classic_hub' (викторины)
+  const [activeArcade, setActiveArcade] = useState('learn');
 
   // Подрежимы для классических тренажёров: 'classic' | 'forms' | 'blitz' | 'pairs'
   const [gameMode, setGameMode] = useState('classic');
@@ -411,43 +407,19 @@ export default function QuizView() {
 
   const ARCADE_CARDS = [
     {
-      id: 'space',
-      title: 'Звёздный Защитник',
-      genre: 'Космический шутер 60 FPS',
-      icon: Rocket,
-      badge: 'ХИТ 🚀',
+      id: 'learn',
+      title: 'Обучающие игры',
+      genre: '6 игр: звуки, точки, огласовки, слова, таджвид',
+      icon: Brain,
+      badge: 'УЧЁБА 📖',
       color: 'from-emerald-600 to-teal-700'
     },
     {
-      id: 'ninja',
-      title: 'Арабский Ниндзя',
-      genre: 'Экшен-слайсер катаной',
-      icon: Sword,
-      badge: 'ЭКШЕН ⚔️',
-      color: 'from-amber-500 to-rose-600'
-    },
-    {
-      id: 'boss',
-      title: 'Битва со Стражами',
-      genre: 'RPG-Арена • 4 Босса',
-      icon: Swords,
-      badge: 'RPG 👑',
-      color: 'from-purple-600 to-indigo-700'
-    },
-    {
-      id: 'runner',
-      title: 'Караван Пустыни',
-      genre: 'Раннер в 3 полосы',
-      icon: Compass,
-      badge: 'СКОРОСТЬ 🏇',
-      color: 'from-teal-500 to-cyan-700'
-    },
-    {
       id: 'classic_hub',
-      title: 'Блиц и Мемори',
-      genre: '4 викторины на память',
-      icon: Brain,
-      badge: 'КЛАССИКА 🧠',
+      title: 'Викторины',
+      genre: 'Выживание, формы букв, блиц, пары',
+      icon: Layers,
+      badge: 'ПРОВЕРКА 🧠',
       color: 'from-slate-700 to-slate-900'
     }
   ];
@@ -463,10 +435,10 @@ export default function QuizView() {
           <div>
             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-extrabold bg-amber-400/20 text-amber-300 border border-amber-400/30 mb-2">
               <Gamepad2 className="w-3.5 h-3.5" />
-              Игровая Аркада • Метод «Му'аллим Сани»
+              Тренажёр • Метод «Му'аллим Сани»
             </span>
             <h1 className="text-2xl sm:text-3xl font-black tracking-tight">
-              Выберите игру для тренировки
+              Учитесь играя
             </h1>
           </div>
           <p className="text-xs text-emerald-200/80 max-w-xs">
@@ -474,8 +446,8 @@ export default function QuizView() {
           </p>
         </div>
 
-        {/* 5 Game Selector Cards */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2.5">
+        {/* Game Selector */}
+        <div className="grid grid-cols-2 gap-2.5">
           {ARCADE_CARDS.map((card) => {
             const Icon = card.icon;
             const isSelected = activeArcade === card.id;
@@ -517,10 +489,7 @@ export default function QuizView() {
       </div>
 
       {/* 2. ACTIVE ARCADE GAME DISPLAY (ADAPTED TO USER KNOWLEDGE LEVEL) */}
-      {activeArcade === 'space' && <SpaceDefenderGame level={currentLevel} />}
-      {activeArcade === 'ninja' && <ArabicNinjaGame level={currentLevel} />}
-      {activeArcade === 'boss' && <BossBattleGame level={currentLevel} />}
-      {activeArcade === 'runner' && <DesertRunnerGame level={currentLevel} />}
+      {activeArcade === 'learn' && <LearningGamesHub level={currentLevel} />}
 
       {/* 3. CLASSIC TRAINERS HUB */}
       {activeArcade === 'classic_hub' && (
