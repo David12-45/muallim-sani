@@ -5,6 +5,7 @@ import LessonDetail from './components/LessonDetail';
 import AlphabetView from './components/AlphabetView';
 import FatihaView from './components/FatihaView';
 import QuizView from './components/QuizView';
+import DailyWorkoutModal from './components/DailyWorkoutModal';
 import { ALL_LESSONS } from './data/book';
 import { storageService } from './services/storage';
 
@@ -13,6 +14,13 @@ export default function App() {
   const [selectedLesson, setSelectedLesson] = useState(null);
   const [darkMode, setDarkMode] = useState(() => storageService.getTheme() === 'dark');
   const [progressPercent, setProgressPercent] = useState(0);
+  const [isDailyWorkoutOpen, setIsDailyWorkoutOpen] = useState(false);
+
+  useEffect(() => {
+    const handleOpen = () => setIsDailyWorkoutOpen(true);
+    window.addEventListener('muallim-open-daily-workout', handleOpen);
+    return () => window.removeEventListener('muallim-open-daily-workout', handleOpen);
+  }, []);
 
   // Sync dark mode class
   useEffect(() => {
@@ -109,6 +117,7 @@ export default function App() {
         progressPercent={progressPercent}
         darkMode={darkMode}
         setDarkMode={setDarkMode}
+        onOpenDailyWorkout={() => setIsDailyWorkoutOpen(true)}
       />
 
       {/* Main Content Area */}
@@ -131,6 +140,7 @@ export default function App() {
                   setActiveTab('trainer');
                   window.scrollTo({ top: 0, behavior: 'smooth' });
                 }}
+                onOpenDailyWorkout={() => setIsDailyWorkoutOpen(true)}
               />
             )}
             {activeTab === 'alphabet' && <AlphabetView />}
@@ -139,6 +149,12 @@ export default function App() {
           </>
         )}
       </main>
+
+      {/* Daily Workout & Streak Modal */}
+      <DailyWorkoutModal
+        isOpen={isDailyWorkoutOpen}
+        onClose={() => setIsDailyWorkoutOpen(false)}
+      />
 
       {/* Modern Footer */}
       <footer className="mt-auto border-t border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 py-8 text-center text-xs text-slate-500 dark:text-slate-400">

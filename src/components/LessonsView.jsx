@@ -34,7 +34,7 @@ const MODULE_SHORT_TITLES = {
   m7: '7. Аль-Фатиха'
 };
 
-export default function LessonsView({ onSelectLesson, onOpenArcade }) {
+export default function LessonsView({ onSelectLesson, onOpenArcade, onOpenDailyWorkout }) {
   const [viewMode, setViewMode] = useState('roadmap'); // 'roadmap' | 'game' | 'list'
   const [selectedModuleId, setSelectedModuleId] = useState('all'); // 'all' | 'mod-1' | 'mod-2' | 'mod-3' | 'mod-4'
   const [searchQuery, setSearchQuery] = useState('');
@@ -512,7 +512,11 @@ export default function LessonsView({ onSelectLesson, onOpenArcade }) {
 
       {/* 3. LESSONS CONTENT: ROADMAP vs MODULE SECTIONS */}
       {viewMode === 'roadmap' && !searchQuery.trim() && selectedModuleId === 'all' ? (
-        <LessonsRoadmap onSelectLesson={onSelectLesson} onOpenArcade={onOpenArcade} />
+        <LessonsRoadmap
+          onSelectLesson={onSelectLesson}
+          onOpenArcade={onOpenArcade}
+          onOpenDailyWorkout={onOpenDailyWorkout}
+        />
       ) : filteredModules.length === 0 ? (
         <div className="bg-white dark:bg-slate-800 rounded-3xl p-10 text-center border border-slate-200 dark:border-slate-700">
           <p className="text-slate-500 dark:text-slate-400 text-sm">

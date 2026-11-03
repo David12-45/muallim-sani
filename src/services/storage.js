@@ -13,7 +13,11 @@ export const PLAYER_RANKS = [
 ];
 
 function getTodayStr() {
-  return new Date().toISOString().slice(0, 10);
+  const d = new Date();
+  const year = d.getFullYear();
+  const month = String(d.getMonth() + 1).padStart(2, '0');
+  const day = String(d.getDate()).padStart(2, '0');
+  return `${year}-${month}-${day}`;
 }
 
 export const storageService = {
@@ -21,24 +25,34 @@ export const storageService = {
     try {
       const raw = localStorage.getItem(PROGRESS_KEY);
       const parsed = raw ? JSON.parse(raw) : {};
+      const today = getTodayStr();
       return {
         completedLessons: parsed.completedLessons || {},
         completedQuizzes: parsed.completedQuizzes || {},
         lessonStars: parsed.lessonStars || {}, // { [lessonId]: 1 | 2 | 3 }
         xp: typeof parsed.xp === 'number' ? parsed.xp : 0,
         streak: typeof parsed.streak === 'number' ? parsed.streak : 1,
-        lastActiveDate: parsed.lastActiveDate || getTodayStr(),
-        wordsListened: typeof parsed.wordsListened === 'number' ? parsed.wordsListened : 0
+        lastActiveDate: parsed.lastActiveDate || today,
+        streakHistory: Array.isArray(parsed.streakHistory) ? parsed.streakHistory : [today],
+        dailyWorkouts: parsed.dailyWorkouts || {}, // { [YYYY-MM-DD]: { completedAt, score, total } }
+        wordsListened: typeof parsed.wordsListened === 'number' ? parsed.wordsListened : 0,
+        wordsListenedToday: parsed.wordsListenedToday && parsed.wordsListenedToday.date === today
+          ? parsed.wordsListenedToday.count
+          : 0
       };
     } catch {
+      const today = getTodayStr();
       return {
         completedLessons: {},
         completedQuizzes: {},
         lessonStars: {},
         xp: 0,
         streak: 1,
-        lastActiveDate: getTodayStr(),
-        wordsListened: 0
+        lastActiveDate: today,
+        streakHistory: [today],
+        dailyWorkouts: {},
+        wordsListened: 0,
+        wordsListenedToday: 0
       };
     }
   },
@@ -46,6 +60,10 @@ export const storageService = {
   saveProgress(progress) {
     try {
       const today = getTodayStr();
+      if (!progress.streakHistory) progress.streakHistory = [];
+      if (!progress.streakHistory.includes(today)) {
+        progress.streakHistory.push(today);
+      }
       if (progress.lastActiveDate !== today) {
         const last = new Date(progress.lastActiveDate);
         const now = new Date(today);
@@ -76,11 +94,93 @@ export const storageService = {
 
   incrementWordsListened() {
     const progress = this.getProgress();
+    const today = getTodayStr();
     progress.wordsListened = (progress.wordsListened || 0) + 1;
+    progress.wordsListenedToday = (progress.wordsListenedToday || 0) + 1;
     progress.xp = (progress.xp || 0) + 2;
+    progress.wordsListenedTodayData = { date: today, count: progress.wordsListenedToday };
     this.saveProgress(progress);
     if (typeof window !== 'undefined') {
       window.dispatchEvent(new CustomEvent('muallim-xp-updated', { detail: { xp: progress.xp, added: 2 } }));
+      window.dispatchEvent(new CustomEvent('muallim-daily-quest-updated', { detail: { progress } }));
+    }
+    return progress;
+  },
+
+  getDailyQuestStatus() {
+    const progress = this.getProgress();
+    const today = getTodayStr();
+    const isWorkoutCompleted = !!(progress.dailyWorkouts && progress.dailyWorkouts[today]);
+    const wordsListenedToday = progress.wordsListenedToday || 0;
+    const wordsTarget = 5;
+    const isWordsGoalDone = wordsListenedToday >= wordsTarget;
+
+    // Дни текущей недели с понедельника по воскресенье
+    const now = new Date();
+    const currentDayOfWeek = now.getDay() === 0 ? 7 : now.getDay();
+    const monday = new Date(now);
+    monday.setDate(now.getDate() - (currentDayOfWeek - 1));
+
+    const dayLabels = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'];
+    const weekDays = [];
+
+    for (let i = 0; i < 7; i++) {
+      const d = new Date(monday);
+      d.setDate(monday.getDate() + i);
+      const year = d.getFullYear();
+      const month = String(d.getMonth() + 1).padStart(2, '0');
+      const day = String(d.getDate()).padStart(2, '0');
+      const dateStr = `${year}-${month}-${day}`;
+      const isToday = dateStr === today;
+      const isDone = (progress.dailyWorkouts && progress.dailyWorkouts[dateStr]) ||
+                     (progress.streakHistory && progress.streakHistory.includes(dateStr));
+
+      weekDays.push({
+        dayName: dayLabels[i],
+        dayNum: d.getDate(),
+        dateStr,
+        isToday,
+        isDone: !!isDone
+      });
+    }
+
+    return {
+      todayStr: today,
+      streak: progress.streak || 1,
+      isWorkoutCompleted,
+      workoutDetails: progress.dailyWorkouts ? progress.dailyWorkouts[today] : null,
+      wordsListenedToday,
+      wordsTarget,
+      isWordsGoalDone,
+      allDone: isWorkoutCompleted && isWordsGoalDone,
+      weekDays
+    };
+  },
+
+  completeDailyWorkout(score = 5, total = 5) {
+    const progress = this.getProgress();
+    const today = getTodayStr();
+    if (!progress.dailyWorkouts) progress.dailyWorkouts = {};
+    const alreadyDone = !!progress.dailyWorkouts[today];
+
+    progress.dailyWorkouts[today] = {
+      completedAt: new Date().toISOString(),
+      score,
+      total
+    };
+
+    if (!progress.streakHistory) progress.streakHistory = [];
+    if (!progress.streakHistory.includes(today)) {
+      progress.streakHistory.push(today);
+    }
+
+    const bonusXp = alreadyDone ? 10 : 50;
+    progress.xp = (progress.xp || 0) + bonusXp;
+    this.saveProgress(progress);
+
+    if (typeof window !== 'undefined') {
+      window.dispatchEvent(new CustomEvent('muallim-xp-updated', { detail: { xp: progress.xp, added: bonusXp } }));
+      window.dispatchEvent(new CustomEvent('muallim-daily-quest-completed', { detail: { today, bonusXp } }));
     }
     return progress;
   },

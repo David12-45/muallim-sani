@@ -1,6 +1,7 @@
 import React from 'react';
 import { MODULES } from '../data/book';
 import { storageService } from '../services/storage';
+import DailyQuestCard from './DailyQuestCard';
 import {
   CheckCircle2,
   Play,
@@ -64,8 +65,13 @@ const CHAPTER_THEMES = {
   }
 };
 
-export default function LessonsRoadmap({ onSelectLesson, onOpenArcade }) {
+export default function LessonsRoadmap({ onSelectLesson, onOpenArcade, onOpenDailyWorkout }) {
   const progress = storageService.getProgress();
+
+  const handleOpenWorkout = () => {
+    if (onOpenDailyWorkout) onOpenDailyWorkout();
+    else window.dispatchEvent(new CustomEvent('muallim-open-daily-workout'));
+  };
 
   // Находим глобальный следующий незавершённый урок
   let currentTargetId = null;
@@ -91,7 +97,10 @@ export default function LessonsRoadmap({ onSelectLesson, onOpenArcade }) {
   };
 
   return (
-    <div className="max-w-3xl mx-auto py-2 space-y-14">
+    <div className="max-w-3xl mx-auto py-2 space-y-10">
+      {/* Daily Quest & Streak Banner */}
+      <DailyQuestCard onOpenWorkout={handleOpenWorkout} />
+
       {MODULES.map((chapter) => {
         const theme = CHAPTER_THEMES[chapter.number] || CHAPTER_THEMES[1];
         const ChapterIcon = theme.icon;

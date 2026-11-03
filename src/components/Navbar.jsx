@@ -14,7 +14,7 @@ import {
   Settings
 } from 'lucide-react';
 
-export default function Navbar({ activeTab, setActiveTab, darkMode, setDarkMode }) {
+export default function Navbar({ activeTab, setActiveTab, darkMode, setDarkMode, onOpenDailyWorkout }) {
   const [rankInfo, setRankInfo] = useState(() => storageService.getPlayerRankInfo());
   const [xpPop, setXpPop] = useState(null);
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
@@ -97,35 +97,68 @@ export default function Navbar({ activeTab, setActiveTab, darkMode, setDarkMode 
             {/* Game Stats & Controls Bar */}
             <div className="flex items-center gap-2 shrink-0 relative">
               {/* Unified Stats Pill for desktop */}
-              <button
-                onClick={() => setIsSettingsOpen(true)}
-                className="hidden sm:flex items-center gap-2.5 px-3.5 py-2 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 hover:border-emerald-400 dark:hover:border-emerald-500/60 text-xs font-extrabold transition-all shadow-xs active:scale-95"
-                title="Ваш прогресс и уровень"
+              <div
+                className="hidden sm:flex items-center gap-2.5 px-3.5 py-2 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 text-xs font-extrabold shadow-xs"
               >
-                <div className="flex items-center gap-1 text-orange-500">
-                  <Flame className="w-4 h-4 fill-current" />
+                <button
+                  type="button"
+                  onClick={() => {
+                    if (onOpenDailyWorkout) onOpenDailyWorkout();
+                    else window.dispatchEvent(new CustomEvent('muallim-open-daily-workout'));
+                  }}
+                  className="flex items-center gap-1 text-orange-500 hover:text-orange-600 hover:scale-105 active:scale-95 transition-all cursor-pointer"
+                  title="Задание дня и ударный режим"
+                >
+                  <Flame className="w-4 h-4 fill-current animate-pulse" />
                   <span>{rankInfo.streak}</span>
-                </div>
+                </button>
                 <span className="w-px h-3.5 bg-slate-200 dark:bg-slate-700" />
-                <div className="flex items-center gap-1 text-amber-500">
+                <button
+                  type="button"
+                  onClick={() => setIsSettingsOpen(true)}
+                  className="flex items-center gap-1 text-amber-500 hover:text-amber-600 hover:scale-105 active:scale-95 transition-all cursor-pointer"
+                  title="Всего звёзд"
+                >
                   <Star className="w-4 h-4 fill-current" />
                   <span>{rankInfo.totalStars}</span>
-                </div>
+                </button>
                 <span className="w-px h-3.5 bg-slate-200 dark:bg-slate-700" />
-                <div className="flex items-center gap-1 text-emerald-600 dark:text-emerald-400">
+                <button
+                  type="button"
+                  onClick={() => setIsSettingsOpen(true)}
+                  className="flex items-center gap-1 text-emerald-600 dark:text-emerald-400 hover:scale-105 active:scale-95 transition-all cursor-pointer"
+                  title="Ваш ранг и опыт (XP)"
+                >
                   <Zap className="w-4 h-4 fill-current" />
                   <span>{rankInfo.xp} XP</span>
-                </div>
-              </button>
+                </button>
+              </div>
 
-              {/* Mobile compact stats */}
-              <button
-                onClick={() => setIsSettingsOpen(true)}
-                className="flex sm:hidden items-center gap-1.5 text-xs font-extrabold px-2.5 py-1.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 shadow-xs"
-              >
-                <span className="text-amber-500 flex items-center gap-0.5">⭐ {rankInfo.totalStars}</span>
-                <span className="text-emerald-600 dark:text-emerald-400">⚡ {rankInfo.xp}</span>
-              </button>
+              {/* Mobile compact stats: Flame button + Stars/XP button */}
+              <div className="flex sm:hidden items-center gap-1.5">
+                <button
+                  type="button"
+                  onClick={() => {
+                    if (onOpenDailyWorkout) onOpenDailyWorkout();
+                    else window.dispatchEvent(new CustomEvent('muallim-open-daily-workout'));
+                  }}
+                  className="flex items-center gap-1 text-xs font-black px-2.5 py-1.5 rounded-xl bg-orange-50 dark:bg-orange-950/50 text-orange-600 dark:text-orange-400 border border-orange-200/60 dark:border-orange-800/60 shadow-xs active:scale-95"
+                  title="Задание дня и ударный режим"
+                >
+                  <Flame className="w-3.5 h-3.5 fill-current animate-pulse" />
+                  <span>{rankInfo.streak}</span>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => setIsSettingsOpen(true)}
+                  className="flex items-center gap-1.5 text-xs font-extrabold px-2.5 py-1.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 shadow-xs active:scale-95"
+                  title="Профиль и прогресс"
+                >
+                  <span className="text-amber-500 flex items-center gap-0.5">⭐ {rankInfo.totalStars}</span>
+                  <span className="text-emerald-600 dark:text-emerald-400">⚡ {rankInfo.xp}</span>
+                </button>
+              </div>
 
               {/* Floating +XP Animation */}
               {xpPop && (
