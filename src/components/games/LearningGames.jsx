@@ -1,6 +1,6 @@
 // Шесть обучающих игр по методике «Му'аллим Сани»: каждая тренирует конкретный навык чтения
 import React, { useState } from 'react';
-import { Ear, CircleDot, BookOpen, Puzzle, Layers, ListOrdered, RefreshCw, Volume2 } from 'lucide-react';
+import { Ear, CircleDot, BookOpen, Puzzle, Layers, ListOrdered, RefreshCw, Volume2, Mic, Link2 } from 'lucide-react';
 import { ALPHABET_DATA } from '../../data/alphabet';
 import { ALL_WORDS } from '../../data/book';
 import { getLettersForLevel, getWordsForLevel } from '../../data/gameLevels';
@@ -8,6 +8,8 @@ import { audioService } from '../../services/audio';
 import { soundFx } from '../../services/soundFx';
 import { srs } from '../../services/srs';
 import { RoundGame, SequenceGame } from './GameEngines';
+import VoiceTrainerGame from './VoiceTrainerGame';
+import LetterConnectorGame from './LetterConnectorGame';
 import {
   shuffle, pick, uniq, iso, LETTER_BY_CHAR, ALPHABET_CHARS, lookalikes, soundAlikes, soundTip,
   DOTS, dotsLabel, ALL_DOT_LABELS, RASM, CONS, SUN_LETTERS, HEAVY_LETTERS, QALQALA_LETTERS,
@@ -395,6 +397,8 @@ function OrderGame({ onExit }) {
 
 /* ХАБ ОБУЧАЮЩИХ ИГР */
 const GAMES = [
+  { id: 'voice', title: 'Тренажёр речи 🎙️', skill: 'Проверка произношения через микрофон', icon: Mic, color: 'from-violet-600 to-indigo-600', Comp: VoiceTrainerGame },
+  { id: 'connector', title: 'Мастер соединений 🔗', skill: '4 позиции и 6 несоединяющихся букв', icon: Link2, color: 'from-amber-600 to-emerald-600', Comp: LetterConnectorGame },
   { id: 'audio', title: 'Услышь и найди', skill: 'Различать на слух похожие звуки', icon: Ear, color: 'from-emerald-500 to-teal-600', Comp: AudioGame },
   { id: 'dots', title: 'Точки решают', skill: 'Буквы с одинаковым остовом', icon: CircleDot, color: 'from-sky-500 to-indigo-600', Comp: DotsGame },
   { id: 'harakat', title: 'Прочитай слог', skill: 'Фатха, кясра, дамма, сукун, танвин', icon: BookOpen, color: 'from-amber-500 to-orange-600', Comp: HarakatGame },

@@ -1,12 +1,46 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { analyzeArabicWord } from '../services/wordAnalyzer';
 import { audioService } from '../services/audio';
-import { Sparkles, X, Volume2 } from 'lucide-react';
+import { soundFx } from '../services/soundFx';
+import { speechService } from '../services/speech';
+import { stats } from '../services/storage';
+import { Sparkles, X, Volume2, Mic, MicOff } from 'lucide-react';
 
 export default function WordBreakdownPanel({ word, onClose }) {
+  const [isListening, setIsListening] = useState(false);
+  const [speechFeedback, setSpeechFeedback] = useState(null);
+
   if (!word) return null;
 
   const analysis = analyzeArabicWord(word);
+
+  const handleVoiceCheck = () => {
+    if (isListening) {
+      speechService.stopListening();
+      setIsListening(false);
+      return;
+    }
+    setSpeechFeedback(null);
+    speechService.startListening({
+      targetText: analysis.word,
+      onStart: () => setIsListening(true),
+      onResult: (res) => {
+        setIsListening(false);
+        setSpeechFeedback(res);
+        if (res.isMatch) {
+          soundFx.playCorrect();
+          stats.addXp(5);
+        } else {
+          soundFx.playWrong();
+        }
+      },
+      onError: (err) => {
+        setIsListening(false);
+        setSpeechFeedback({ isMatch: false, error: err.message });
+      },
+      onEnd: () => setIsListening(false)
+    });
+  };
 
   return (
     <div className="mb-6 rounded-3xl bg-gradient-to-br from-emerald-50/90 via-white to-teal-50/60 dark:from-slate-800 dark:via-slate-800/95 dark:to-emerald-950/30 border-2 border-emerald-500/40 dark:border-emerald-600/40 p-5 sm:p-6 shadow-xl shadow-emerald-900/5 animate-fadeIn">
@@ -34,6 +68,39 @@ export default function WordBreakdownPanel({ word, onClose }) {
             <p className="text-xs text-slate-500 dark:text-slate-400">
               Букв в слове: <strong>{analysis.letters.length}</strong> (нажмите на букву ниже для её реального звучания)
             </p>
+            <div className="flex flex-wrap items-center gap-2 mt-2">
+              <button
+                onClick={handleVoiceCheck}
+                className={`px-3 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-all active:scale-95 ${
+                  isListening
+                    ? 'bg-rose-500 text-white animate-pulse'
+                    : speechFeedback?.isMatch
+                    ? 'bg-emerald-100 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-700'
+                    : 'bg-white dark:bg-slate-700 hover:bg-slate-100 border border-slate-200 dark:border-slate-600 text-slate-700 dark:text-slate-200 shadow-sm'
+                }`}
+                title="Проверить произношение слова через микрофон"
+              >
+                {isListening ? (
+                  <MicOff className="w-3.5 h-3.5 animate-bounce" />
+                ) : (
+                  <Mic className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
+                )}
+                <span>
+                  {isListening
+                    ? 'Слушаю... говорите'
+                    : speechFeedback
+                    ? speechFeedback.isMatch
+                      ? `Верно (${Math.round(speechFeedback.ratio * 100)}%)`
+                      : 'Не совпало, ещё раз'
+                    : 'Сказать в микрофон'}
+                </span>
+              </button>
+              {speechFeedback && !isListening && (
+                <span className="text-[11px] text-slate-500 dark:text-slate-400">
+                  {speechFeedback.transcript ? `Вы сказали: «${speechFeedback.transcript}»` : speechFeedback.error || ''}
+                </span>
+              )}
+            </div>
           </div>
         </div>
 

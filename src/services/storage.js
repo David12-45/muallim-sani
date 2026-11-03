@@ -317,3 +317,5 @@ export const storageService = {
     }
   }
 };
+
+export const stats = storageService;
