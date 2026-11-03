@@ -96,9 +96,7 @@ export default function LessonDetail({ lesson, onBack, onPrevLesson, onNextLesso
     setActiveWordKey(key);
     const clean = String(text || '').replace(/[()=ـ]/g, '').trim();
     if (clean) {
-      if (audioService.hasLetterAudio(clean)) {
-        audioService.playLetter(clean);
-      }
+      audioService.speakArabic(clean);
       storageService.incrementWordsListened();
       if (openBreakdown) {
         setSelectedWordForAnalysis(clean);
@@ -123,12 +121,14 @@ export default function LessonDetail({ lesson, onBack, onPrevLesson, onNextLesso
       const key = `row-${rIdx}-${wIdx}`;
       setActiveWordKey(key);
       const clean = String(word || '').replace(/[()=ـ]/g, '').trim();
-      if (clean && audioService.hasLetterAudio(clean)) {
-        audioService.playLetter(clean);
-      }
-      rowTimerRef.current = setTimeout(() => {
-        playStep(wIdx + 1);
-      }, 1350);
+      const goNext = (delay) => {
+        rowTimerRef.current = setTimeout(() => {
+          playStep(wIdx + 1);
+        }, delay);
+      };
+      // Ждём окончания озвучки слова, затем короткая пауза; без озвучки — прежний темп
+      const started = clean && audioService.speakArabic(clean, () => goNext(350));
+      if (!started) goNext(1350);
     };
 
     playStep(0);

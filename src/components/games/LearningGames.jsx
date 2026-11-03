@@ -11,7 +11,8 @@ import { RoundGame, SequenceGame } from './GameEngines';
 import {
   shuffle, pick, uniq, iso, LETTER_BY_CHAR, ALPHABET_CHARS, lookalikes, soundAlikes, soundTip,
   DOTS, dotsLabel, ALL_DOT_LABELS, RASM, CONS, SUN_LETTERS, HEAVY_LETTERS, QALQALA_LETTERS,
-  NON_CONNECTING, THROAT_LETTERS, LIP_LETTERS, pickWeighted, parseWord
+  NON_CONNECTING, THROAT_LETTERS, LIP_LETTERS, pickWeighted, parseWord,
+  HARAKAT, TANWIN, syllableBasic, syllableSukun, syllableTanwin
 } from './gameData';
 
 const BigLetter = ({ children, className = '' }) => (
@@ -147,17 +148,6 @@ function DotsGame({ level, onExit }) {
 }
 
 /* 3. ПРОЧИТАЙ СЛОГ — огласовки (харакаты) */
-const HARAKAT = [
-  { id: 'fatha', mark: '\u064E', v: 'а', name: 'фатха (черта сверху)' },
-  { id: 'kasra', mark: '\u0650', v: 'и', name: 'кясра (черта снизу)' },
-  { id: 'damma', mark: '\u064F', v: 'у', name: 'дамма (запятая сверху)' }
-];
-const TANWIN = [
-  { mark: '\u064B', v: 'ан', name: 'танвин-фатха (две черты сверху)', alif: true },
-  { mark: '\u064D', v: 'ин', name: 'танвин-кясра (две черты снизу)' },
-  { mark: '\u064C', v: 'ун', name: 'танвин-дамма (две запятые сверху)' }
-];
-
 function HarakatGame({ level, onExit }) {
   const advanced = level && level.category && level.category !== 'alphabet';
   const makeRound = (prev) => {
@@ -173,18 +163,18 @@ function HarakatGame({ level, onExit }) {
     let text; let correct; let smart; let explanation;
     if (kind === 'basic') {
       const h = pick(HARAKAT);
-      text = c + h.mark;
+      text = syllableBasic(c, h);
       correct = cons + h.v;
       smart = [...HARAKAT.map((x) => cons + x.v), CONS[other] + h.v];
       explanation = `${c} + ${h.name} = [${correct}]. Фатха даёт звук «а», кясра — «и», дамма — «у».`;
     } else if (kind === 'sukun') {
-      text = 'اَ' + c + '\u0652';
+      text = syllableSukun(c);
       correct = 'а' + cons;
       smart = [cons + 'а', 'а' + CONS[other], cons + 'у', 'а' + cons + 'а'];
       explanation = `Сукун (кружок ْ) означает, что у буквы нет гласного: ${text} читается [${correct}].`;
     } else {
       const t = pick(TANWIN);
-      text = c + t.mark + (t.alif ? 'ا' : '');
+      text = syllableTanwin(c, t);
       correct = cons + t.v;
       smart = [...TANWIN.map((x) => cons + x.v), cons + t.v[0]];
       explanation = `${t.name} добавляет звук «н» в конце: ${text} = [${correct}].${t.alif ? ' Алиф после танвин-фатхи не читается.' : ''}`;
@@ -197,6 +187,7 @@ function HarakatGame({ level, onExit }) {
       options: options.map((o) => ({ key: o, label: `[${o}]` })),
       correct,
       letter: target,
+      revealAudio: text,
       explanation
     };
   };
@@ -233,6 +224,7 @@ function WordGame({ level, onExit }) {
       display: <span className="font-arabic text-5xl sm:text-6xl font-bold text-slate-900 dark:text-white leading-relaxed" dir="rtl">{w}</span>,
       target: chars,
       pool,
+      doneAudio: w,
       letterOf: (c) => LETTER_BY_CHAR[c],
       explanation: `${w} = ${chars.map((c) => `${c} (${nameOf(c)})`).join(' → ')}. Внутри слова буквы меняют форму, но остов и точки остаются.`
     };

@@ -108,6 +108,33 @@ export const CONS = {
   'ه': 'һ', 'و': 'в', 'ي': 'й'
 };
 
+// Огласовки (харакаты) и танвины
+export const HARAKAT = [
+  { id: 'fatha', mark: '\u064E', v: 'а', name: 'фатха (черта сверху)' },
+  { id: 'kasra', mark: '\u0650', v: 'и', name: 'кясра (черта снизу)' },
+  { id: 'damma', mark: '\u064F', v: 'у', name: 'дамма (запятая сверху)' }
+];
+export const TANWIN = [
+  { mark: '\u064B', v: 'ан', name: 'танвин-фатха (две черты сверху)', alif: true },
+  { mark: '\u064D', v: 'ин', name: 'танвин-кясра (две черты снизу)' },
+  { mark: '\u064C', v: 'ун', name: 'танвин-дамма (две запятые сверху)' }
+];
+
+export const syllableBasic = (c, h) => c + h.mark;
+export const syllableSukun = (c) => 'اَ' + c + '\u0652';
+export const syllableTanwin = (c, t) => c + t.mark + (t.alif ? 'ا' : '');
+
+// Все слоги, которые встречаются в игре «Прочитай слог» (для генерации озвучки)
+export function allSyllables() {
+  const out = [];
+  Object.keys(CONS).forEach((c) => {
+    HARAKAT.forEach((h) => out.push(syllableBasic(c, h)));
+    TANWIN.forEach((t) => out.push(syllableTanwin(c, t)));
+    out.push(syllableSukun(c));
+  });
+  return out;
+}
+
 // Списки правил из легенды алфавита
 const badge = (id) => (BADGE_DEFINITIONS.find((b) => b.id === id)?.letters || []).map((c) => c.replace(/ـ/g, ''));
 export const SUN_LETTERS = badge('sun');

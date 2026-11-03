@@ -1,5 +1,29 @@
-// Сервис воспроизведения реальных студийных MP3-записей 29 арабских букв и суры Аль-Фатиха
+// Сервис воспроизведения реальных студийных MP3-записей 29 арабских букв и суры Аль-Фатиха,
+// а также заранее сгенерированной озвучки слов и слогов (public/audio/tts/<id>.mp3)
 // (без синтезатора речи браузера)
+import { TTS_IDS } from '../data/ttsManifest';
+
+const TTS_SET = new Set(TTS_IDS);
+
+// Нормализация текста для поиска озвучки (должна совпадать с scripts/generate_tts.py)
+export function ttsKey(text) {
+  return String(text || '')
+    .normalize('NFC')
+    .replace(/[()=ـ\u0640]/g, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+// FNV-1a 32 бита → 8 hex-символов
+export function ttsId(text) {
+  const s = ttsKey(text);
+  let h = 0x811c9dc5;
+  for (let i = 0; i < s.length; i++) {
+    h ^= s.charCodeAt(i);
+    h = Math.imul(h, 16777619) >>> 0;
+  }
+  return h.toString(16).padStart(8, '0');
+}
 
 const LETTER_TO_MP3 = {
   'ا': '/audio/letters/01.mp3',
@@ -86,14 +110,54 @@ class AudioService {
     return !!LETTER_TO_MP3[clean];
   }
 
-  // Синтезатор для слов отключён; если передана одиночная буква — играет студийный MP3
-  speakArabic(text) {
+  // Есть ли озвучка: отдельная буква (студийный MP3) или слово/слог (сгенерированный MP3)
+  hasAudio(text) {
+    return this.hasLetterAudio(text) || TTS_SET.has(ttsId(text));
+  }
+
+  // Воспроизвести слово/слог; onEnd вызывается по окончании (или сразу, если озвучки нет)
+  playText(text, onEnd) {
+    const id = ttsId(text);
+    if (!TTS_SET.has(id)) {
+      if (onEnd) onEnd(false);
+      return false;
+    }
+    if (this.currentAudio) {
+      this.currentAudio.pause();
+      this.currentAudio = null;
+    }
+    const audio = new Audio(`/audio/tts/${id}.mp3`);
+    this.currentAudio = audio;
+    let finished = false;
+    const done = (ok) => {
+      if (finished) return;
+      finished = true;
+      if (onEnd) onEnd(ok);
+    };
+    audio.onended = () => done(true);
+    audio.onerror = () => done(false);
+    audio.play().catch(() => done(false));
+    return true;
+  }
+
+  // Слово или слог: если это одиночная буква — студийная запись буквы, иначе озвучка слова
+  speakArabic(text, onEnd) {
     const clean = String(text || '')
       .replace(/[\u064B-\u065F\u0670\u06D6-\u06ED()=ـ\s]/g, '')
       .trim();
+    // Буква без огласовок — студийный MP3 буквы
+    if (LETTER_TO_MP3[clean] && ttsKey(text).replace(/\s/g, '') === clean) {
+      this.playLetter(clean);
+      if (onEnd) setTimeout(() => onEnd(true), 900);
+      return true;
+    }
+    if (this.playText(text, onEnd)) return true;
     if (LETTER_TO_MP3[clean]) {
       this.playLetter(clean);
+      if (onEnd) setTimeout(() => onEnd(true), 900);
+      return true;
     }
+    return false;
   }
 
   // Воспроизведение официального аудио чтения аята суры Аль-Фатиха (Мишари Рашид аль-Афаси)

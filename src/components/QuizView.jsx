@@ -4,6 +4,7 @@ import { ALL_WORDS } from '../data/book';
 import { storageService } from '../services/storage';
 import { transcribeArabic } from '../services/transcribe';
 import { soundFx } from '../services/soundFx';
+import { audioService } from '../services/audio';
 import LearningGamesHub from './games/LearningGames';
 import LevelProgressBar from './arcade/LevelProgressBar';
 import {
@@ -27,7 +28,8 @@ import {
   Sword,
   Swords,
   Compass,
-  Brain
+  Brain,
+  Volume2
 } from 'lucide-react';
 
 function shuffle(arr) {
@@ -373,6 +375,7 @@ export default function QuizView() {
 
     if (!selectedCard) {
       soundFx.playTap();
+      if (card.isArabic) audioService.speakArabic(card.text);
       setSelectedCard(card);
       return;
     }
@@ -386,6 +389,8 @@ export default function QuizView() {
 
     if (selectedCard.pairId === card.pairId) {
       soundFx.playSuccess();
+      const arText = card.isArabic ? card.text : selectedCard.text;
+      if (arText) audioService.speakArabic(arText);
       const nextMatched = [...matchedPairIds, card.pairId];
       setMatchedPairIds(nextMatched);
       setSelectedCard(null);
@@ -673,15 +678,31 @@ export default function QuizView() {
 
               <div className="flex flex-col items-center justify-center p-5 bg-slate-50 dark:bg-slate-900/60 rounded-2xl border border-slate-100 dark:border-slate-700/60 mb-5">
                 {currentQ.displayLetter && (
-                  <span className="font-arabic text-5xl sm:text-6xl font-bold text-emerald-600 dark:text-emerald-400" dir="rtl">
-                    {currentQ.displayLetter}
-                  </span>
+                  <button
+                    type="button"
+                    onClick={() => audioService.playLetter(currentQ.displayLetter)}
+                    className="inline-flex items-center gap-2.5 px-4 py-2 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:border-emerald-500 shadow-sm transition-all active:scale-95 cursor-pointer"
+                    title="Послушать произношение буквы"
+                  >
+                    <span className="font-arabic text-5xl sm:text-6xl font-bold text-emerald-600 dark:text-emerald-400" dir="rtl">
+                      {currentQ.displayLetter}
+                    </span>
+                    <Volume2 className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
+                  </button>
                 )}
 
                 {currentQ.displayWord && (
-                  <span className="font-arabic text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white leading-relaxed" dir="rtl">
-                    {currentQ.displayWord}
-                  </span>
+                  <button
+                    type="button"
+                    onClick={() => audioService.speakArabic(currentQ.displayWord)}
+                    className="inline-flex items-center gap-2.5 px-4 py-2 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:border-emerald-500 shadow-sm transition-all active:scale-95 cursor-pointer"
+                    title="Послушать произношение слова"
+                  >
+                    <span className="font-arabic text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white leading-relaxed" dir="rtl">
+                      {currentQ.displayWord}
+                    </span>
+                    <Volume2 className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
+                  </button>
                 )}
               </div>
 

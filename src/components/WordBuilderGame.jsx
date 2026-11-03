@@ -3,6 +3,7 @@ import { splitIntoClusters, analyzeArabicWord } from '../services/wordAnalyzer';
 import { transcribeArabic } from '../services/transcribe';
 import { storageService } from '../services/storage';
 import { soundFx } from '../services/soundFx';
+import { audioService } from '../services/audio';
 import confetti from 'canvas-confetti';
 import {
   Puzzle,
@@ -11,7 +12,8 @@ import {
   CheckCircle2,
   ArrowRight,
   Zap,
-  Star
+  Star,
+  Volume2
 } from 'lucide-react';
 
 function shuffle(arr) {
@@ -143,6 +145,7 @@ export default function WordBuilderGame({ lesson, onCompleteGame }) {
 
       if (nextPlaced.length === targetLetters.length) {
         setRoundWon(true);
+        setTimeout(() => audioService.speakArabic(currentWord), 400);
       }
     } else {
       soundFx.playError();
@@ -316,6 +319,13 @@ export default function WordBuilderGame({ lesson, onCompleteGame }) {
                     {currentWord} <span className="text-sm font-mono text-slate-600 dark:text-slate-300" dir="ltr">[{targetTranscription}]</span>
                   </p>
                 </div>
+                <button
+                  onClick={() => audioService.speakArabic(currentWord)}
+                  className="p-2.5 rounded-xl bg-white dark:bg-slate-900 border border-emerald-300 dark:border-emerald-700 text-emerald-700 dark:text-emerald-300 active:scale-95 hover:bg-emerald-100 transition-colors shrink-0"
+                  title="Прослушать слово ещё раз"
+                >
+                  <Volume2 className="w-5 h-5" />
+                </button>
               </div>
 
               <button

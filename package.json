@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "tts:collect": "node scripts/collect_tts_texts.mjs",
+    "tts:generate": "python scripts/generate_tts.py"
   },
   "dependencies": {
     "canvas-confetti": "^1.9.4",

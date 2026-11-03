@@ -13,11 +13,16 @@ export default function WordBreakdownPanel({ word, onClose }) {
       {/* Header Row: Selected Word & Transcription */}
       <div className="flex flex-wrap items-center justify-between gap-4 pb-4 border-b border-emerald-200/70 dark:border-slate-700">
         <div className="flex items-center gap-4">
-          <div className="px-5 py-3 rounded-2xl bg-emerald-600 text-white shadow-lg shadow-emerald-600/30 flex items-center justify-center">
+          <button
+            onClick={() => audioService.speakArabic(analysis.word)}
+            className="px-5 py-3 rounded-2xl bg-emerald-600 hover:bg-emerald-700 text-white shadow-lg shadow-emerald-600/30 flex items-center justify-center gap-2.5 transition-all active:scale-95 group cursor-pointer"
+            title="Послушать произношение всего слова"
+          >
             <span className="font-arabic text-4xl sm:text-5xl font-bold leading-relaxed" dir="rtl">
               {analysis.word}
             </span>
-          </div>
+            <Volume2 className="w-5 h-5 text-emerald-200 group-hover:scale-110 transition-transform shrink-0" />
+          </button>
 
           <div>
             <span className="text-xs font-bold uppercase tracking-wider text-emerald-700 dark:text-emerald-400">

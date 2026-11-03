@@ -147,6 +147,9 @@ export function RoundGame({ title, skill, makeRound, totalRounds = 10, maxHearts
     answeredCount.current += 1;
     const correct = opt.key === round.correct;
     recordAnswer(round.letter, correct);
+    if (round.revealAudio) {
+      setTimeout(() => audioService.speakArabic(round.revealAudio), 350);
+    }
     if (correct) {
       soundFx.playSuccess();
       setScore((s) => s + 1);
@@ -238,6 +241,14 @@ export function RoundGame({ title, skill, makeRound, totalRounds = 10, maxHearts
             {isCorrect ? '✅ Верно!' : '❌ Не совсем'}
           </p>
           <p className="text-xs sm:text-sm text-slate-700 dark:text-slate-300">{round.explanation}</p>
+          {round.revealAudio && audioService.hasAudio(round.revealAudio) && (
+            <button
+              onClick={() => audioService.speakArabic(round.revealAudio)}
+              className="mt-2 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white dark:bg-slate-900 border border-emerald-300 dark:border-emerald-700 text-emerald-700 dark:text-emerald-300 text-xs font-bold active:scale-95"
+            >
+              <Volume2 className="w-4 h-4" /> Послушать ещё раз
+            </button>
+          )}
           {wrongTip && (
             <p className="mt-2 text-xs sm:text-sm text-amber-800 dark:text-amber-300 flex gap-1.5">
               <Lightbulb className="w-4 h-4 shrink-0 mt-0.5" /> <span>{wrongTip}</span>
@@ -306,6 +317,7 @@ export function SequenceGame({ title, skill, makeRound, totalRounds = 8, maxHear
       if (nextPos >= round.target.length) {
         played.current += 1;
         soundFx.playSuccess();
+        if (round.doneAudio) setTimeout(() => audioService.speakArabic(round.doneAudio), 700);
         storageService.addXp(10);
         if (roundErrors === 0) setScore((s) => s + 1);
         round.target.forEach((c) => recordAnswer(round.letterOf?.(c), roundErrors === 0));
@@ -410,6 +422,14 @@ export function SequenceGame({ title, skill, makeRound, totalRounds = 8, maxHear
             {roundErrors === 0 ? 'Без единой ошибки!' : `Собрано (ошибок: ${roundErrors})`}
           </p>
           <p className="text-xs sm:text-sm text-slate-700 dark:text-slate-300">{round.explanation}</p>
+          {round.doneAudio && audioService.hasAudio(round.doneAudio) && (
+            <button
+              onClick={() => audioService.speakArabic(round.doneAudio)}
+              className="mt-2 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white dark:bg-slate-900 border border-emerald-300 dark:border-emerald-700 text-emerald-700 dark:text-emerald-300 text-xs font-bold active:scale-95"
+            >
+              <Volume2 className="w-4 h-4" /> Послушать слово
+            </button>
+          )}
           <button
             onClick={next}
             className="mt-3 w-full py-3 rounded-2xl bg-emerald-600 hover:bg-emerald-700 text-white font-black text-sm shadow-md active:scale-95"
