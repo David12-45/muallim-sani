@@ -52,7 +52,7 @@ export default function WordBreakdownPanel({ word, onClose }) {
             className="px-5 py-3 rounded-2xl bg-emerald-600 hover:bg-emerald-700 text-white shadow-lg shadow-emerald-600/30 flex items-center justify-center gap-2.5 transition-all active:scale-95 group cursor-pointer"
             title="Послушать произношение всего слова"
           >
-            <span className="font-arabic text-4xl sm:text-5xl font-bold leading-relaxed" dir="rtl">
+            <span className="font-arabic text-5xl sm:text-6xl font-bold leading-relaxed" dir="rtl">
               {analysis.word}
             </span>
             <Volume2 className="w-5 h-5 text-emerald-200 group-hover:scale-110 transition-transform shrink-0" />
@@ -149,7 +149,7 @@ export default function WordBreakdownPanel({ word, onClose }) {
                 {/* Center: Positional Form in Word */}
                 <div className="my-2 flex items-center justify-center">
                   <span
-                    className={`font-arabic text-4xl font-bold leading-relaxed ${
+                    className={`font-arabic text-5xl sm:text-6xl font-bold leading-relaxed ${
                       ruleMeta ? ruleMeta.textClass : 'text-slate-900 dark:text-white'
                     }`}
                   >

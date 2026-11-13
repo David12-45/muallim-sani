@@ -280,7 +280,7 @@ export default function LessonDetail({ lesson, onBack, onPrevLesson, onNextLesso
                       className="px-3.5 py-2.5 rounded-xl flex flex-col items-center min-w-[80px] sm:min-w-[92px] bg-white dark:bg-slate-900 hover:bg-emerald-50/70 dark:hover:bg-emerald-950/40 border border-b-4 border-slate-200 dark:border-slate-700 hover:border-emerald-500 active:translate-y-0.5 transition-all shadow-xs group cursor-pointer"
                       title={`${posLabel}: нажмите, чтобы послушать звучание`}
                     >
-                      <span className="font-arabic text-4xl sm:text-5xl font-bold leading-relaxed text-slate-900 dark:text-emerald-200 group-hover:scale-110 transition-transform">
+                      <span className="font-arabic text-5xl sm:text-6xl font-bold leading-relaxed text-slate-900 dark:text-emerald-200 group-hover:scale-110 transition-transform">
                         {hf}
                       </span>
                       <div className="flex items-center gap-1 text-[11px] font-mono font-bold text-emerald-700 dark:text-emerald-400 mt-0.5" dir="ltr">
@@ -453,7 +453,7 @@ export default function LessonDetail({ lesson, onBack, onPrevLesson, onNextLesso
                                 : 'hover:bg-white dark:hover:bg-slate-800 text-slate-900 dark:text-slate-100'
                             }`}
                           >
-                            <span className="font-arabic text-4xl sm:text-5xl font-bold leading-relaxed">
+                            <span className="font-arabic text-5xl sm:text-6xl font-bold leading-relaxed">
                               <TajweedWordText word={a} highlightTajweed={highlightTajweed} isActive={isActA} />
                             </span>
                             {showTranscription && (
@@ -475,7 +475,7 @@ export default function LessonDetail({ lesson, onBack, onPrevLesson, onNextLesso
                                 : 'hover:bg-white dark:hover:bg-slate-800 text-slate-900 dark:text-slate-100'
                             }`}
                           >
-                            <span className="font-arabic text-4xl sm:text-5xl font-bold leading-relaxed">
+                            <span className="font-arabic text-5xl sm:text-6xl font-bold leading-relaxed">
                               <TajweedWordText word={b} highlightTajweed={highlightTajweed} isActive={isActB} />
                             </span>
                             {showTranscription && (
@@ -536,7 +536,7 @@ export default function LessonDetail({ lesson, onBack, onPrevLesson, onNextLesso
                           return (
                             <div
                               key={wIdx}
-                              className={`group relative p-3.5 sm:p-4 rounded-2xl border border-b-4 transition-all flex flex-col items-center justify-between min-w-[96px] sm:min-w-[110px] select-none ${
+                              className={`group relative p-4 sm:p-5 rounded-2xl border border-b-4 transition-all flex flex-col items-center justify-between min-w-[115px] sm:min-w-[135px] select-none ${
                                 isActive
                                   ? 'bg-emerald-50 dark:bg-emerald-950/70 border-emerald-600 shadow-lg ring-2 ring-emerald-500/25 scale-105'
                                   : 'bg-white dark:bg-slate-900 border-stone-200/90 dark:border-slate-800 hover:border-emerald-400 dark:hover:border-emerald-600 hover:-translate-y-0.5 shadow-xs'
@@ -568,7 +568,7 @@ export default function LessonDetail({ lesson, onBack, onPrevLesson, onNextLesso
                                 title="Нажмите для подробного побуквенного разбора"
                               >
                                 {/* Full Arabic Word: Authentic Textbook Naskh with generous size */}
-                                <span className="font-arabic text-4xl sm:text-5xl md:text-6xl font-bold leading-[2.1] tracking-wide my-1 select-text">
+                                <span className="font-arabic text-5xl sm:text-6xl md:text-7xl font-bold leading-[2.0] tracking-wide my-1.5 select-text">
                                   <TajweedWordText word={word} highlightTajweed={highlightTajweed} isActive={isActive} />
                                 </span>
 

@@ -161,11 +161,12 @@ export default function SettingsModal({ onClose, darkMode, setDarkMode }) {
               <Type className="w-4 h-4 text-emerald-600" />
               <span>Размер арабского текста</span>
             </label>
-            <div className="grid grid-cols-3 gap-2">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
               {[
                 { id: '100', label: 'Обычный', sample: 'text-2xl', sub: '100%' },
                 { id: '115', label: 'Крупный', sample: 'text-3xl', sub: '115%' },
-                { id: '130', label: 'Максимум', sample: 'text-4xl', sub: '130%' }
+                { id: '130', label: 'Большой', sample: 'text-4xl', sub: '130%' },
+                { id: '150', label: 'Огромный', sample: 'text-5xl', sub: '150%' }
               ].map(opt => (
                 <button
                   key={opt.id}

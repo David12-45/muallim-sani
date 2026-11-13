@@ -241,13 +241,13 @@ export default function BookPagesView({ initialPage = 2, onSelectLesson }) {
                               <button
                                 key={wIdx}
                                 onClick={() => handleSelectWord(w)}
-                                className={`px-3 py-1.5 rounded-xl border transition-all flex flex-col items-center min-w-[60px] ${
+                                className={`px-3.5 py-2 rounded-xl border transition-all flex flex-col items-center min-w-[85px] sm:min-w-[100px] ${
                                   isAct
                                     ? 'bg-emerald-600 text-white border-emerald-600 shadow-md scale-105'
                                     : 'bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 border-stone-200 dark:border-slate-700 hover:border-emerald-500'
                                 }`}
                               >
-                                <span className="font-arabic text-2xl sm:text-3xl font-bold leading-relaxed">
+                                <span className="font-arabic text-4xl sm:text-5xl font-bold leading-relaxed">
                                   <TajweedWordText word={w} highlightTajweed={highlightTajweed} isActive={isAct} />
                                 </span>
                                 {tr && (
