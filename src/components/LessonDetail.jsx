@@ -10,6 +10,7 @@ import WordBuilderGame from './WordBuilderGame';
 import LessonMiniExam from './LessonMiniExam';
 import TajweedWordText from './TajweedWordText';
 import AlphabetCourse from './AlphabetCourse';
+import RuleVisualGuide from './RuleVisualGuide';
 import confetti from 'canvas-confetti';
 import {
   ArrowLeft,
@@ -147,60 +148,27 @@ export default function LessonDetail({ lesson, onBack, onPrevLesson, onNextLesso
 
   return (
     <div className="max-w-5xl mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-6 pb-32 md:pb-24 space-y-5">
-      {/* 1. TOP BAR: Back Navigation + Module Info + Controls + Stars */}
-      <div className="flex flex-wrap items-center justify-between gap-2.5">
-        <div className="flex items-center gap-2">
-          <button
-            onClick={onBack}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 text-xs sm:text-sm font-extrabold text-slate-700 dark:text-slate-200 hover:border-emerald-500 active:scale-95 transition-all shadow-xs"
-          >
-            <ArrowLeft className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
-            <span>К карте курса</span>
-          </button>
+      {/* 1. TOP BAR: Back Navigation + Stars + Clean Controls */}
+      <div className="space-y-2.5">
+        <div className="flex items-center justify-between gap-2">
+          <div className="flex items-center gap-2">
+            <button
+              onClick={onBack}
+              className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 text-xs sm:text-sm font-extrabold text-slate-700 dark:text-slate-200 hover:border-emerald-500 active:scale-95 transition-all shadow-xs"
+            >
+              <ArrowLeft className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+              <span>К урокам</span>
+            </button>
 
-          {lesson.moduleTitle && (
-            <span className="hidden md:inline-flex text-xs font-extrabold px-3 py-1.5 rounded-2xl bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 border border-emerald-200/80 dark:border-emerald-800/80">
-              Глава {lesson.moduleNumber}: {lesson.moduleTitle}
-            </span>
-          )}
-        </div>
-
-        {/* Right Controls & Stars */}
-        <div className="flex flex-wrap items-center gap-2">
-          {/* Tajweed Toggle */}
-          <button
-            onClick={() => setHighlightTajweed(!highlightTajweed)}
-            className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-2xl text-xs font-extrabold border shrink-0 transition-all active:scale-95 ${
-              highlightTajweed
-                ? 'bg-purple-50 dark:bg-purple-950/60 text-purple-800 dark:text-purple-200 border-purple-300 dark:border-purple-700 shadow-xs'
-                : 'bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-800'
-            }`}
-          >
-            <Palette className="w-3.5 h-3.5 text-purple-600 dark:text-purple-400" />
-            <span>{highlightTajweed ? 'Таджвид: Вкл' : 'Таджвид: Выкл'}</span>
-          </button>
-
-          {/* Transcription Toggle */}
-          <button
-            onClick={() => setShowTranscription(!showTranscription)}
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-2xl text-xs font-extrabold bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800 shrink-0 transition-all active:scale-95 shadow-xs"
-          >
-            {showTranscription ? <EyeOff className="w-3.5 h-3.5 text-emerald-600" /> : <Eye className="w-3.5 h-3.5 text-emerald-600" />}
-            <span>{showTranscription ? 'Скрыть подсказки' : 'Показать подсказки'}</span>
-          </button>
-
-          {/* Quick Font Size Toggle */}
-          <button
-            onClick={handleNextScale}
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-2xl text-xs font-extrabold bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800 shrink-0 transition-all active:scale-95 shadow-xs hover:border-emerald-500"
-            title="Переключить размер арабского шрифта"
-          >
-            <span className="font-serif font-black text-xs text-emerald-600 dark:text-emerald-400">A+</span>
-            <span>Шрифт: {scaleLabels[scale] || 'Обычный'}</span>
-          </button>
+            {lesson.moduleTitle && (
+              <span className="hidden md:inline-flex text-xs font-extrabold px-3 py-1.5 rounded-2xl bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 border border-emerald-200/80 dark:border-emerald-800/80">
+                Глава {lesson.moduleNumber}: {lesson.moduleTitle}
+              </span>
+            )}
+          </div>
 
           {/* Stars Pill */}
-          <div className="flex items-center gap-1 px-3 py-1.5 rounded-2xl bg-amber-50 dark:bg-amber-950/60 border border-amber-200 dark:border-amber-800 shadow-xs">
+          <div className="flex items-center gap-1 px-3 py-1.5 rounded-2xl bg-amber-50 dark:bg-amber-950/60 border border-amber-200 dark:border-amber-800 shadow-xs shrink-0">
             {[1, 2, 3].map(s => (
               <Star
                 key={s}
@@ -213,6 +181,38 @@ export default function LessonDetail({ lesson, onBack, onPrevLesson, onNextLesso
               {stars}/3
             </span>
           </div>
+        </div>
+
+        {/* Compact Reading Controls */}
+        <div className="flex flex-wrap items-center gap-2">
+          <button
+            onClick={handleNextScale}
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-extrabold bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800 shrink-0 transition-all active:scale-95 shadow-xs hover:border-emerald-500"
+            title="Переключить размер арабского шрифта"
+          >
+            <span className="font-serif font-black text-xs text-emerald-600 dark:text-emerald-400">A+</span>
+            <span>Шрифт: {scaleLabels[scale] || 'Обычный'}</span>
+          </button>
+
+          <button
+            onClick={() => setShowTranscription(!showTranscription)}
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-extrabold bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800 shrink-0 transition-all active:scale-95 shadow-xs"
+          >
+            {showTranscription ? <EyeOff className="w-3.5 h-3.5 text-emerald-600" /> : <Eye className="w-3.5 h-3.5 text-emerald-600" />}
+            <span>{showTranscription ? 'Скрыть чтение' : 'Показать чтение'}</span>
+          </button>
+
+          <button
+            onClick={() => setHighlightTajweed(!highlightTajweed)}
+            className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-extrabold border shrink-0 transition-all active:scale-95 ${
+              highlightTajweed
+                ? 'bg-purple-50 dark:bg-purple-950/60 text-purple-800 dark:text-purple-200 border-purple-300 dark:border-purple-700 shadow-xs'
+                : 'bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-800'
+            }`}
+          >
+            <Palette className="w-3.5 h-3.5 text-purple-600 dark:text-purple-400" />
+            <span>{highlightTajweed ? 'Цвета правил' : 'Без цветов'}</span>
+          </button>
         </div>
       </div>
 
@@ -386,6 +386,9 @@ export default function LessonDetail({ lesson, onBack, onPrevLesson, onNextLesso
       {/* TAB 1: READ */}
       {lessonTab === 'read' && (
         <>
+          {/* Visual Rule Cheat-Sheet for Beginners */}
+          <RuleVisualGuide lessonId={lesson.id} />
+
           {/* Letter-by-Letter Breakdown Panel */}
           {selectedWordForAnalysis && (
             <WordBreakdownPanel
@@ -406,13 +409,13 @@ export default function LessonDetail({ lesson, onBack, onPrevLesson, onNextLesso
                     Практика чтения слов (справа налево ←)
                   </h2>
                   <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5 pretty-copy">
-                    Нажмите на любое слово для живого аудиопроизношения и подробного побуквенного разбора (+2 XP).
+                    Нажмите на любое слово, чтобы услышать чтение и увидеть разбор по буквам.
                   </p>
                 </div>
               </div>
 
-              {/* Tajweed Legend */}
-              {highlightTajweed && (
+              {/* Tajweed Legend (shown only from Chapter 5+ so beginners aren't overwhelmed) */}
+              {highlightTajweed && lesson.moduleNumber >= 5 && (
                 <div className="p-3 rounded-2xl bg-slate-50/90 dark:bg-slate-950/60 border border-slate-200/70 dark:border-slate-800 flex flex-wrap items-center gap-1.5 text-[11px]">
                   <span className="font-extrabold text-slate-500 dark:text-slate-400 mr-1">Цвета таджвида:</span>
                   {Object.values(TAJWEED_RULES_META).map(rule => (

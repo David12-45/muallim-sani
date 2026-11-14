@@ -97,7 +97,7 @@ export default function LessonsRoadmap({ onSelectLesson, onOpenArcade, onOpenDai
   };
 
   return (
-    <div className="max-w-3xl mx-auto py-2 space-y-10">
+    <div className="max-w-3xl mx-auto py-2 space-y-10 overflow-x-hidden">
       {/* Daily Quest & Streak Banner */}
       <DailyQuestCard onOpenWorkout={handleOpenWorkout} />
 

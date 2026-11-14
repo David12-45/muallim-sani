@@ -36,38 +36,38 @@ export default function Navbar({ activeTab, setActiveTab, darkMode, setDarkMode,
   }, [activeTab]);
 
   const navItems = [
-    { id: 'lessons', label: 'Карта курса', shortLabel: 'Курс', icon: Map },
-    { id: 'alphabet', label: 'Алфавит (Алифба)', shortLabel: 'Алифба', icon: LayoutGrid },
-    { id: 'trainer', label: 'Игровая Аркада', shortLabel: 'Аркада', icon: Gamepad2 },
+    { id: 'lessons', label: 'Уроки', shortLabel: 'Уроки', icon: Map },
+    { id: 'alphabet', label: 'Алфавит', shortLabel: 'Алфавит', icon: LayoutGrid },
+    { id: 'trainer', label: 'Игры', shortLabel: 'Игры', icon: Gamepad2 },
     { id: 'fatiha', label: 'Сура Аль-Фатиха', shortLabel: 'Фатиха', icon: Sparkles }
   ];
 
   return (
     <>
       {/* Top Header Bar */}
-      <header className="sticky top-0 z-40 bg-white/80 dark:bg-[#070D1F]/80 backdrop-blur-2xl border-b border-slate-200/70 dark:border-slate-800/80 transition-colors">
+      <header className="sticky top-0 z-40 bg-white/85 dark:bg-[#070D1F]/85 backdrop-blur-2xl border-b border-slate-200/70 dark:border-slate-800/80 transition-colors">
         <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16 sm:h-18 gap-3">
+          <div className="flex items-center justify-between h-14 sm:h-16 gap-2">
             {/* Logo & Brand */}
             <div
               onClick={() => setActiveTab('lessons')}
-              className="flex items-center gap-3 cursor-pointer group shrink-0 select-none"
+              className="flex items-center gap-2.5 sm:gap-3 cursor-pointer group min-w-0 select-none"
             >
-              <div className="relative w-11 h-11 rounded-2xl bg-gradient-to-tr from-emerald-700 via-emerald-600 to-teal-400 flex items-center justify-center text-white shadow-lg shadow-emerald-600/25 ring-2 ring-amber-400/30 group-hover:scale-105 group-hover:rotate-2 transition-all">
-                <span className="font-arabic text-2xl font-bold leading-none drop-shadow-xs">م</span>
-                <span className="absolute -top-1 -right-1 w-3 h-3 rounded-full bg-amber-400 ring-2 ring-white dark:ring-[#070D1F]" />
+              <div className="relative w-9 h-9 sm:w-11 sm:h-11 rounded-xl sm:rounded-2xl bg-gradient-to-tr from-emerald-700 via-emerald-600 to-teal-400 flex items-center justify-center text-white shadow-md shadow-emerald-600/25 ring-2 ring-amber-400/30 group-hover:scale-105 transition-all shrink-0">
+                <span className="font-arabic text-xl sm:text-2xl font-bold leading-none drop-shadow-xs">م</span>
+                <span className="absolute -top-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-amber-400 ring-2 ring-white dark:ring-[#070D1F]" />
               </div>
-              <div>
+              <div className="min-w-0">
                 <div className="flex items-center gap-2">
-                  <span className="font-black text-base sm:text-lg text-slate-900 dark:text-white tracking-tight">
+                  <span className="font-black text-base sm:text-lg text-slate-900 dark:text-white tracking-tight truncate">
                     Му'аллим
                   </span>
-                  <span className="text-[10px] font-extrabold px-2.5 py-0.5 rounded-full bg-gradient-to-r from-emerald-500/15 to-teal-500/15 dark:from-emerald-500/20 dark:to-teal-500/20 text-emerald-800 dark:text-emerald-300 border border-emerald-500/25">
+                  <span className="hidden sm:inline-flex text-[10px] font-extrabold px-2.5 py-0.5 rounded-full bg-gradient-to-r from-emerald-500/15 to-teal-500/15 dark:from-emerald-500/20 dark:to-teal-500/20 text-emerald-800 dark:text-emerald-300 border border-emerald-500/25 shrink-0">
                     Ур. {rankInfo.currentRank.level} {rankInfo.currentRank.icon}
                   </span>
                 </div>
                 <p className="text-[11px] text-slate-500 dark:text-slate-400 font-medium hidden sm:block">
-                  Интерактивная академия арабского языка
+                  Обучение арабскому чтению
                 </p>
               </div>
             </div>
@@ -95,7 +95,7 @@ export default function Navbar({ activeTab, setActiveTab, darkMode, setDarkMode,
             </nav>
 
             {/* Game Stats & Controls Bar */}
-            <div className="flex items-center gap-2 shrink-0 relative">
+            <div className="flex items-center gap-1.5 sm:gap-2 shrink-0 relative">
               {/* Unified Stats Pill for desktop */}
               <div
                 className="hidden sm:flex items-center gap-2.5 px-3.5 py-2 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 text-xs font-extrabold shadow-xs"
@@ -134,35 +134,23 @@ export default function Navbar({ activeTab, setActiveTab, darkMode, setDarkMode,
                 </button>
               </div>
 
-              {/* Mobile compact stats: Flame button + Stars/XP button */}
-              <div className="flex sm:hidden items-center gap-1.5">
-                <button
-                  type="button"
-                  onClick={() => {
-                    if (onOpenDailyWorkout) onOpenDailyWorkout();
-                    else window.dispatchEvent(new CustomEvent('muallim-open-daily-workout'));
-                  }}
-                  className="flex items-center gap-1 text-xs font-black px-2.5 py-1.5 rounded-xl bg-orange-50 dark:bg-orange-950/50 text-orange-600 dark:text-orange-400 border border-orange-200/60 dark:border-orange-800/60 shadow-xs active:scale-95"
-                  title="Задание дня и ударный режим"
-                >
-                  <Flame className="w-3.5 h-3.5 fill-current animate-pulse" />
-                  <span>{rankInfo.streak}</span>
-                </button>
-
-                <button
-                  type="button"
-                  onClick={() => setIsSettingsOpen(true)}
-                  className="flex items-center gap-1.5 text-xs font-extrabold px-2.5 py-1.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 shadow-xs active:scale-95"
-                  title="Профиль и прогресс"
-                >
-                  <span className="text-amber-500 flex items-center gap-0.5">⭐ {rankInfo.totalStars}</span>
-                  <span className="text-emerald-600 dark:text-emerald-400">⚡ {rankInfo.xp}</span>
-                </button>
-              </div>
+              {/* Mobile compact streak pill (keeps header uncluttered on iPhone 11) */}
+              <button
+                type="button"
+                onClick={() => {
+                  if (onOpenDailyWorkout) onOpenDailyWorkout();
+                  else window.dispatchEvent(new CustomEvent('muallim-open-daily-workout'));
+                }}
+                className="flex sm:hidden items-center gap-1 text-xs font-black px-2.5 py-2 rounded-xl bg-orange-50 dark:bg-orange-950/50 text-orange-600 dark:text-orange-400 border border-orange-200/60 dark:border-orange-800/60 shadow-xs active:scale-95 shrink-0"
+                title="Задание дня и ударный режим"
+              >
+                <Flame className="w-3.5 h-3.5 fill-current" />
+                <span>{rankInfo.streak}</span>
+              </button>
 
               {/* Floating +XP Animation */}
               {xpPop && (
-                <span className="absolute -bottom-8 right-10 px-3 py-1 rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 text-white text-xs font-black shadow-lg shadow-emerald-500/30 animate-bounce pointer-events-none">
+                <span className="absolute -bottom-8 right-6 px-3 py-1 rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 text-white text-xs font-black shadow-lg shadow-emerald-500/30 animate-bounce pointer-events-none">
                   {xpPop}
                 </span>
               )}
@@ -171,8 +159,8 @@ export default function Navbar({ activeTab, setActiveTab, darkMode, setDarkMode,
               <button
                 onClick={() => setDarkMode(!darkMode)}
                 aria-label="Переключить тему"
-                className="p-2.5 rounded-2xl bg-slate-100/80 dark:bg-slate-900 text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100 border border-slate-200/70 dark:border-slate-800 hover:border-emerald-400 transition active:scale-90"
-                title="Переключить тему"
+                className="p-2 sm:p-2.5 rounded-xl sm:rounded-2xl bg-slate-100/90 dark:bg-slate-900 text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-slate-100 border border-slate-200/80 dark:border-slate-800 hover:border-emerald-400 transition active:scale-90 shrink-0"
+                title={darkMode ? 'Светлая тема' : 'Тёмная тема'}
               >
                 {darkMode ? <Sun className="w-4 h-4 sm:w-5 sm:h-5 text-amber-400" /> : <Moon className="w-4 h-4 sm:w-5 sm:h-5" />}
               </button>
@@ -181,7 +169,7 @@ export default function Navbar({ activeTab, setActiveTab, darkMode, setDarkMode,
               <button
                 onClick={() => setIsSettingsOpen(true)}
                 aria-label="Настройки и профиль"
-                className="p-2.5 rounded-2xl bg-slate-100/80 dark:bg-slate-900 text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100 border border-slate-200/70 dark:border-slate-800 hover:border-emerald-400 transition active:scale-90"
+                className="p-2 sm:p-2.5 rounded-xl sm:rounded-2xl bg-slate-100/90 dark:bg-slate-900 text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-slate-100 border border-slate-200/80 dark:border-slate-800 hover:border-emerald-400 transition active:scale-90 shrink-0"
                 title="Настройки шрифта и профиль"
               >
                 <Settings className="w-4 h-4 sm:w-5 sm:h-5" />
@@ -201,7 +189,7 @@ export default function Navbar({ activeTab, setActiveTab, darkMode, setDarkMode,
       )}
 
       {/* Mobile Floating Bottom Dock Navigation (< md) */}
-      <nav className="md:hidden fixed bottom-3 left-3 right-3 z-50 max-w-md mx-auto glass-dock rounded-3xl shadow-2xl border border-slate-200/90 dark:border-slate-800 p-1.5">
+      <nav className="md:hidden fixed bottom-[max(0.75rem,env(safe-area-inset-bottom))] left-3 right-3 z-50 max-w-md mx-auto glass-dock rounded-3xl shadow-2xl border border-slate-200/90 dark:border-slate-800 p-1.5">
         <div className="grid grid-cols-4 gap-1">
           {navItems.map(item => {
             const Icon = item.icon;
