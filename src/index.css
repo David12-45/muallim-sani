@@ -109,12 +109,23 @@
 }
 
 .glass-dock {
-  background: rgba(255, 255, 255, 0.92);
+  background: rgba(255, 255, 255, 0.94);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
 }
 .dark .glass-dock {
-  background: rgba(15, 23, 42, 0.92);
+  background: rgba(15, 23, 42, 0.94);
+}
+
+/* Safe area helpers for iPhone 11 / iOS notch and home indicator */
+.safe-top-header {
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-left: env(safe-area-inset-left, 0px);
+  padding-right: env(safe-area-inset-right, 0px);
+}
+
+.safe-bottom-dock {
+  bottom: max(0.75rem, env(safe-area-inset-bottom, 0.75rem));
 }
 
 html.scale-arabic-115 {

@@ -1,6 +1,7 @@
 import React, { useState, useMemo, useRef } from 'react';
 import { MODULES, ALL_LESSONS } from '../data/book';
 import { storageService } from '../services/storage';
+import { audioService } from '../services/audio';
 import {
   BookOpen,
   CheckCircle,
@@ -9,23 +10,100 @@ import {
   Play,
   Search,
   X,
-  ArrowRight
+  ArrowRight,
+  Volume2,
+  Sparkles
 } from 'lucide-react';
-import LessonsRoadmap from './LessonsRoadmap';
 
 const MODULE_SHORT_TITLES = {
   m1: '1. Алфавит',
-  m2: '2. Огласовки',
+  m2: '2. А, И, У и буквы',
   m3: '3. Мадд (тянем)',
   m4: '4. Ташдид и Танвин',
-  m5: '5. Хамза и буквы',
+  m5: '5. Хамза и знаки',
   m6: '6. Таджвид',
   m7: '7. Аль-Фатиха'
 };
 
-export default function LessonsView({ onSelectLesson, onOpenArcade, onOpenDailyWorkout }) {
+// Метод «От простого к сложному» (Закон Галла + Каида Нурания + Му'аллим Сани):
+// Вся система арабских знаков чтения, показанная на ОДНОЙ букве Б (ب)
+const SEVEN_CORE_SIGNS = [
+  {
+    id: 'fatha',
+    lessonId: 'alif',
+    arabic: 'بَ',
+    audio: 'بَ',
+    sound: 'БА',
+    name: 'Фатха',
+    meaning: 'Чёрточка сверху = звук «А»',
+    color: 'border-emerald-300 dark:border-emerald-800 bg-emerald-50/70 dark:bg-emerald-950/30'
+  },
+  {
+    id: 'kasra',
+    lessonId: 'alif',
+    arabic: 'بِ',
+    audio: 'بِ',
+    sound: 'БИ',
+    name: 'Кясра',
+    meaning: 'Чёрточка снизу = звук «И»',
+    color: 'border-sky-300 dark:border-sky-800 bg-sky-50/70 dark:bg-sky-950/30'
+  },
+  {
+    id: 'damma',
+    lessonId: 'alif',
+    arabic: 'بُ',
+    audio: 'بُ',
+    sound: 'БУ',
+    name: 'Дамма',
+    meaning: 'Запятая сверху = звук «У»',
+    color: 'border-amber-300 dark:border-amber-800 bg-amber-50/70 dark:bg-amber-950/30'
+  },
+  {
+    id: 'sukun',
+    lessonId: 'ra',
+    arabic: 'اَبْ',
+    audio: 'اَبْ',
+    sound: 'АБ',
+    name: 'Сукун ( ْ )',
+    meaning: 'Кружок сверху = стоп (без гласной)',
+    color: 'border-slate-300 dark:border-slate-700 bg-slate-100/80 dark:bg-slate-800/60'
+  },
+  {
+    id: 'madd',
+    lessonId: 'madd-alif',
+    arabic: 'بَا',
+    audio: 'بَا',
+    sound: 'БА-А',
+    name: 'Мадд (тянем)',
+    meaning: 'Пустая буква после гласной = тянем 2 счёта',
+    color: 'border-purple-300 dark:border-purple-800 bg-purple-50/70 dark:bg-purple-950/30'
+  },
+  {
+    id: 'tashdid',
+    lessonId: 'tashdid',
+    arabic: 'رَبَّ',
+    audio: 'رَبَّ',
+    sound: 'РАБ-БА',
+    name: 'Ташдид ( ّ )',
+    meaning: 'Значок «w» = двойная буква с нажимом',
+    color: 'border-rose-300 dark:border-rose-800 bg-rose-50/70 dark:bg-rose-950/30'
+  },
+  {
+    id: 'tanwin',
+    lessonId: 'tanwin',
+    arabic: 'بٌ',
+    audio: 'بٌ',
+    sound: 'БУН',
+    name: 'Танвин ( ً ٍ ٌ )',
+    meaning: 'Двойной значок = добавляем «+Н» в конце',
+    color: 'border-teal-300 dark:border-teal-800 bg-teal-50/70 dark:bg-teal-950/30'
+  }
+];
+
+export default function LessonsView({ onSelectLesson }) {
   const [selectedModuleId, setSelectedModuleId] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
+  const [showCheatSheet, setShowCheatSheet] = useState(true);
   const moduleScrollRef = useRef(null);
 
   const progress = storageService.getProgress();
@@ -62,6 +140,11 @@ export default function LessonsView({ onSelectLesson, onOpenArcade, onOpenDailyW
       .filter(m => m.lessons.length > 0);
   }, [selectedModuleId, searchQuery]);
 
+  const handleOpenRuleLesson = (lessonId) => {
+    const target = ALL_LESSONS.find(l => l.id === lessonId);
+    if (target) onSelectLesson(target);
+  };
+
   return (
     <div className="max-w-5xl mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-6 pb-28 md:pb-12 space-y-5">
       {/* 1. CLEAN HERO CARD FOR BEGINNERS */}
@@ -71,18 +154,18 @@ export default function LessonsView({ onSelectLesson, onOpenArcade, onOpenDailyW
         </div>
 
         <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-5">
-          <div className="space-y-3 max-w-xl">
+          <div className="space-y-2.5 max-w-xl">
             <h1 className="text-xl sm:text-3xl font-black tracking-tight leading-tight">
-              Му'аллим Сани — шаг за шагом
+              Му'аллим Сани — просто и понятно
             </h1>
-            <p className="text-xs sm:text-sm text-emerald-100/90 leading-relaxed pretty-copy">
-              От первой буквы до чтения Корана. Нажимайте на любой урок, слушайте озвучку и читайте слова справа налево.
+            <p className="text-xs sm:text-sm text-emerald-100/95 leading-relaxed pretty-copy">
+              Никаких сложных терминов: слушайте студийную озвучку, нажимайте на слова и идите шаг за шагом от первой буквы до суры «Аль-Фатиха».
             </p>
 
             {/* Progress bar */}
             <div className="pt-1 space-y-1.5 max-w-sm">
               <div className="flex items-center justify-between text-xs font-bold text-emerald-100">
-                <span>Ваш прогресс: {completedCount} из {totalLessons} уроков</span>
+                <span>Пройдено: {completedCount} из {totalLessons} уроков</span>
                 <span className="text-amber-300 font-black">{percent}%</span>
               </div>
               <div className="w-full h-2.5 bg-emerald-950/75 rounded-full overflow-hidden border border-white/20">
@@ -98,7 +181,7 @@ export default function LessonsView({ onSelectLesson, onOpenArcade, onOpenDailyW
           {nextUnfinishedLesson && (
             <button
               onClick={() => onSelectLesson(nextUnfinishedLesson)}
-              className="w-full md:w-auto shrink-0 inline-flex items-center justify-between md:justify-center gap-3 px-5 py-3.5 rounded-2xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-black text-sm shadow-lg shadow-amber-500/25 active:scale-95 transition-all group"
+              className="w-full md:w-auto shrink-0 inline-flex items-center justify-between md:justify-center gap-3 px-5 py-3.5 rounded-2xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-black text-sm shadow-lg shadow-amber-500/25 active:scale-95 transition-all group cursor-pointer"
             >
               <div className="flex items-center gap-3 min-w-0">
                 <div className="w-8 h-8 rounded-xl bg-slate-950 text-amber-400 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
@@ -106,7 +189,7 @@ export default function LessonsView({ onSelectLesson, onOpenArcade, onOpenDailyW
                 </div>
                 <div className="text-left min-w-0">
                   <div className="text-[10px] uppercase font-bold text-slate-800 tracking-wider">
-                    {completedCount === 0 ? 'Начать с первого шага' : 'Продолжить обучение'}
+                    {completedCount === 0 ? 'Начать с 1-го шага' : 'Продолжить обучение'}
                   </div>
                   <div className="text-xs sm:text-sm font-extrabold truncate max-w-[220px]">
                     {nextUnfinishedLesson.title}
@@ -119,7 +202,81 @@ export default function LessonsView({ onSelectLesson, onOpenArcade, onOpenDailyW
         </div>
       </div>
 
-      {/* 2. SIMPLE CHAPTER SELECTOR & SEARCH */}
+      {/* 2. GALL'S LAW / KISS CHEAT SHEET: ALL 7 ARABIC SIGNS ON ONE LETTER (ب) */}
+      <div className="rounded-3xl bg-white dark:bg-slate-800/95 border-2 border-emerald-200/80 dark:border-slate-700 p-4 sm:p-5 shadow-sm">
+        <div className="flex items-center justify-between gap-2">
+          <div className="flex items-center gap-2.5 min-w-0">
+            <div className="w-9 h-9 rounded-xl bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300 flex items-center justify-center shrink-0">
+              <Sparkles className="w-5 h-5" />
+            </div>
+            <div>
+              <h2 className="text-sm sm:text-base font-black text-slate-900 dark:text-white leading-tight">
+                Шпаргалка новичка: все 7 знаков чтения за 30 секунд
+              </h2>
+              <p className="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400">
+                Нажмите на любую карточку, чтобы услышать, как работают Фатха, Кясра, Дамма, Сукун, Мадд, Ташдид и Танвин на примере буквы «Б» (ب)
+              </p>
+            </div>
+          </div>
+
+          <button
+            type="button"
+            onClick={() => setShowCheatSheet(v => !v)}
+            className="px-3 py-1.5 rounded-xl text-xs font-extrabold bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-600 shrink-0 cursor-pointer"
+          >
+            {showCheatSheet ? 'Свернуть' : 'Показать'}
+          </button>
+        </div>
+
+        {showCheatSheet && (
+          <div className="mt-4 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-2.5">
+            {SEVEN_CORE_SIGNS.map((sign, index) => (
+              <div
+                key={sign.id}
+                className={`rounded-2xl border-2 p-3 flex flex-col justify-between transition-all ${sign.color}`}
+              >
+                <button
+                  type="button"
+                  onClick={() => audioService.speakArabic(sign.audio)}
+                  className="w-full text-center group cursor-pointer active:scale-95 transition-transform"
+                  title="Нажмите, чтобы прослушать"
+                >
+                  <div className="flex items-center justify-between text-[10px] font-black text-slate-500 dark:text-slate-400 mb-1">
+                    <span>Шаг {index + 1}</span>
+                    <Volume2 className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
+                  </div>
+
+                  <div className="py-2 rounded-xl bg-white/90 dark:bg-slate-900/90 border border-slate-200/60 dark:border-slate-700 shadow-xs">
+                    <span className="font-arabic text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white leading-normal" dir="rtl">
+                      {sign.arabic}
+                    </span>
+                  </div>
+
+                  <div className="mt-2 text-xs font-black text-emerald-700 dark:text-emerald-300">
+                    «{sign.sound}»
+                  </div>
+                  <div className="text-xs font-extrabold text-slate-900 dark:text-white mt-0.5">
+                    {sign.name}
+                  </div>
+                  <p className="text-[11px] text-slate-600 dark:text-slate-300 leading-snug mt-1">
+                    {sign.meaning}
+                  </p>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => handleOpenRuleLesson(sign.lessonId)}
+                  className="mt-2.5 w-full py-1 rounded-lg bg-white/80 dark:bg-slate-900/70 hover:bg-emerald-600 hover:text-white text-[10px] font-extrabold text-slate-700 dark:text-slate-300 border border-slate-200/70 dark:border-slate-700 transition-colors cursor-pointer"
+                >
+                  Открыть урок →
+                </button>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+
+      {/* 3. SIMPLE CHAPTER SELECTOR & SEARCH */}
       <div className="space-y-2.5">
         <div
           ref={moduleScrollRef}
@@ -130,13 +287,13 @@ export default function LessonsView({ onSelectLesson, onOpenArcade, onOpenDailyW
               setSelectedModuleId('all');
               e.currentTarget.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
             }}
-            className={`px-3.5 py-2 rounded-xl text-xs sm:text-sm font-extrabold whitespace-nowrap shrink-0 transition-all active:scale-95 ${
+            className={`px-3.5 py-2 rounded-xl text-xs sm:text-sm font-extrabold whitespace-nowrap shrink-0 transition-all active:scale-95 cursor-pointer ${
               selectedModuleId === 'all'
                 ? 'bg-emerald-600 text-white shadow-md shadow-emerald-600/20'
                 : 'bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:border-emerald-400'
             }`}
           >
-            Все уроки
+            Все главы (58 уроков)
           </button>
 
           {MODULES.map((mod) => {
@@ -148,7 +305,7 @@ export default function LessonsView({ onSelectLesson, onOpenArcade, onOpenDailyW
                   setSelectedModuleId(mod.id);
                   e.currentTarget.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
                 }}
-                className={`px-3.5 py-2 rounded-xl text-xs sm:text-sm font-extrabold whitespace-nowrap shrink-0 transition-all active:scale-95 ${
+                className={`px-3.5 py-2 rounded-xl text-xs sm:text-sm font-extrabold whitespace-nowrap shrink-0 transition-all active:scale-95 cursor-pointer ${
                   isSelected
                     ? 'bg-emerald-600 text-white shadow-md shadow-emerald-600/20'
                     : 'bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:border-emerald-400'
@@ -167,7 +324,7 @@ export default function LessonsView({ onSelectLesson, onOpenArcade, onOpenDailyW
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Найти тему: мадд, ташдид, танвин, сукун..."
+            placeholder="Быстрый поиск темы: фатха, сукун, мадд, ташдид, танвин..."
             className="w-full pl-9 pr-8 py-2.5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-xs sm:text-sm text-slate-800 dark:text-slate-200 focus:outline-none focus:ring-2 focus:ring-emerald-500"
           />
           {searchQuery && (
@@ -182,14 +339,8 @@ export default function LessonsView({ onSelectLesson, onOpenArcade, onOpenDailyW
         </div>
       </div>
 
-      {/* 3. LESSONS CONTENT: ROADMAP (default) OR FILTERED CARDS */}
-      {!searchQuery.trim() && selectedModuleId === 'all' ? (
-        <LessonsRoadmap
-          onSelectLesson={onSelectLesson}
-          onOpenArcade={onOpenArcade}
-          onOpenDailyWorkout={onOpenDailyWorkout}
-        />
-      ) : filteredModules.length === 0 ? (
+      {/* 4. CLEAN CHAPTER-BY-CHAPTER LESSONS GRID (KISS & OCCAM'S RAZOR) */}
+      {filteredModules.length === 0 ? (
         <div className="bg-white dark:bg-slate-800 rounded-3xl p-10 text-center border border-slate-200 dark:border-slate-700">
           <p className="text-slate-500 dark:text-slate-400 text-sm">
             Уроков по запросу «{searchQuery}» не найдено.
@@ -224,13 +375,13 @@ export default function LessonsView({ onSelectLesson, onOpenArcade, onOpenDailyW
                   <div className="min-w-0">
                     <div className="flex flex-wrap items-center gap-2">
                       <h3 className="text-base sm:text-lg font-black text-slate-900 dark:text-white">
-                        {module.title}
+                        Глава {module.number}. {module.title}
                       </h3>
                       <span className="text-[11px] font-bold px-2 py-0.5 rounded-full bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300">
-                        {moduleCompleted}/{module.lessons.length}
+                        {moduleCompleted} из {module.lessons.length}
                       </span>
                     </div>
-                    <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
+                    <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mt-0.5">
                       {module.description}
                     </p>
                   </div>
@@ -248,7 +399,7 @@ export default function LessonsView({ onSelectLesson, onOpenArcade, onOpenDailyW
                       <button
                         key={lesson.id}
                         onClick={() => onSelectLesson(lesson)}
-                        className={`relative p-3.5 rounded-2xl border-b-4 text-left flex flex-col justify-between transition-all active:scale-95 select-none ${
+                        className={`relative p-3.5 rounded-2xl border-b-4 text-left flex flex-col justify-between transition-all active:scale-95 select-none cursor-pointer ${
                           isCurrentTarget
                             ? 'bg-gradient-to-b from-amber-50 to-white dark:from-amber-950/40 dark:to-slate-800 border-2 border-b-4 border-amber-400 shadow-lg ring-2 ring-amber-400/25'
                             : isDone
@@ -296,6 +447,11 @@ export default function LessonsView({ onSelectLesson, onOpenArcade, onOpenDailyW
                           <h4 className="text-xs font-black text-slate-900 dark:text-white line-clamp-2 leading-snug">
                             {lesson.title.replace(/^Урок\s+\d+:\s*/, '')}
                           </h4>
+                          {lesson.hint && (
+                            <p className="text-[10px] text-slate-500 dark:text-slate-400 line-clamp-2 mt-1 leading-tight">
+                              {lesson.hint}
+                            </p>
+                          )}
                           <div className="mt-2 flex items-center justify-between">
                             {isCurrentTarget ? (
                               <span className="text-[10px] font-black text-amber-700 dark:text-amber-400 flex items-center gap-1">

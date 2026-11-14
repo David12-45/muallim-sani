@@ -1,5 +1,5 @@
 // Service Worker для Му'аллим Сани: полная оффлайн работа и кеширование аудио
-const STATIC_CACHE = 'muallim-static-v3';
+const STATIC_CACHE = 'muallim-static-v4';
 const AUDIO_CACHE = 'muallim-audio-v1';
 const FONT_CACHE = 'muallim-fonts-v1';
 

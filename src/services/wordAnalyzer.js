@@ -36,52 +36,52 @@ const NON_CONNECTING_RIGHT = new Set([
 // 5 букв Калькаля (ق ط ب ج د)
 const QALQALAH_LETTERS = new Set(['ق', 'ط', 'ب', 'ج', 'د']);
 
-// Цветовая схема правил Таджвида
+// Цветовая схема правил Таджвида (по принципу KISS — простыми словами для новичка)
 export const TAJWEED_RULES_META = {
   madd: {
     id: 'madd',
-    label: 'Мадд (удлинение гласной)',
-    shortLabel: 'Мадд (2–4 счёта)',
+    label: 'Мадд — тянем гласную в 2 раза дольше',
+    shortLabel: 'Мадд (тянем)',
     textClass: 'text-sky-600 dark:text-sky-400',
     bgClass: 'bg-sky-50 dark:bg-sky-950/60 border-sky-200 dark:border-sky-800',
     badgeClass: 'bg-sky-100 text-sky-800 dark:bg-sky-900/70 dark:text-sky-200',
-    description: 'Долгий гласный звук (тянется на 2 счёта, а со знаком волны ٓ перед хамзой — на 4–5 счётов).'
+    description: 'Пустая буква Алиф (ا), Йа (ي) или Вав (و) заставляет тянуть предыдущий звук «а / и / у» в два раза дольше (как «ба-а»).'
   },
   tashdid: {
     id: 'tashdid',
-    label: 'Ташдид (удвоение согласной)',
-    shortLabel: 'Ташдид (ّ)',
+    label: 'Ташдид ( ّ ) — удвоение буквы',
+    shortLabel: 'Ташдид (x2)',
     textClass: 'text-purple-600 dark:text-purple-400',
     bgClass: 'bg-purple-50 dark:bg-purple-950/60 border-purple-200 dark:border-purple-800',
     badgeClass: 'bg-purple-100 text-purple-800 dark:bg-purple-900/70 dark:text-purple-200',
-    description: 'Буква со знаком шадда ( ّ ) произносится удвоенно с задержкой голоса (как две буквы: первая с сукуном, вторая с огласовкой).'
+    description: 'Значок « ّ » над буквой означает, что мы читаем её дважды с нажимом (как «нн» в слове «ванна»).'
   },
   tanwin: {
     id: 'tanwin',
-    label: 'Танвин (нунация -ан/-ин/-ун)',
-    shortLabel: 'Танвин (ً ٍ ٌ)',
+    label: 'Танвин ( ً ٍ ٌ ) — добавляем «Н» в конце',
+    shortLabel: 'Танвин (+Н)',
     textClass: 'text-amber-600 dark:text-amber-400',
     bgClass: 'bg-amber-50 dark:bg-amber-950/60 border-amber-200 dark:border-amber-800',
     badgeClass: 'bg-amber-100 text-amber-800 dark:bg-amber-900/70 dark:text-amber-200',
-    description: 'Двойная огласовка на конце слова, добавляющая немой звук «н» (-ан, -ин, -ун).'
+    description: 'Двойная чёрточка или двойная запятая в конце слова просто добавляет звук «н»: получается «-ан», «-ин» или «-ун».'
   },
   qalqalah: {
     id: 'qalqalah',
-    label: 'Калькаля (сотрясение звука)',
-    shortLabel: 'Калькаля (ق ط ب ج د)',
+    label: 'Калькаля — звонкий отскок звука',
+    shortLabel: 'Калькаля (отскок)',
     textClass: 'text-rose-600 dark:text-rose-400',
     bgClass: 'bg-rose-50 dark:bg-rose-950/60 border-rose-200 dark:border-rose-800',
     badgeClass: 'bg-rose-100 text-rose-800 dark:bg-rose-900/70 dark:text-rose-200',
-    description: 'Буква из пятёрки «Кутб Джад» (ق ط ب ج د) с сукуном произносится с лёгким упругим отскоком (сотрясением).'
+    description: 'Одна из 5 букв (ق ط ب ج د) с кружком-сукуном произносится звонко и упруго, чтобы звук не проглотился.'
   },
   silent: {
     id: 'silent',
-    label: 'Нечитаемая / ассимилируемая буква',
+    label: 'Немая буква (не читается)',
     shortLabel: 'Не читается',
     textClass: 'text-slate-400 dark:text-slate-500',
     bgClass: 'bg-slate-100 dark:bg-slate-800/80 border-slate-300 dark:border-slate-700',
     badgeClass: 'bg-slate-200 text-slate-700 dark:bg-slate-700 dark:text-slate-300',
-    description: 'Эта буква пишется по правилам орфографии (или входит в солнечный артикль Аль), но сама вслух не произносится.'
+    description: 'Эта буква пишется только по правилам правописания — вслух её произносить не нужно.'
   }
 };
 
@@ -224,20 +224,20 @@ export function analyzeArabicWord(rawWord) {
     // Кластер с Zero-Width Joiner (\u200D) по краям соединения, чтобы цветные <span> не рвали вязь в браузере
     const joinedCluster = `${connectsFromRight ? '\u200D' : ''}${rawCluster}${connectsToLeft ? '\u200D' : ''}`;
 
-    // Описание огласовки
+    // Описание огласовки простыми словами для новичка
     const markDescriptions = [];
-    if (hasShadda) markDescriptions.push('Ташдид ( ّ — удвоение)');
-    if (hasMaddah) markDescriptions.push('Мадда ( ٓ — долгое протягивание)');
-    if (hasFatha) markDescriptions.push('Фатха ( َ — звук «а»)');
-    if (hasKasra) markDescriptions.push('Кясра ( ِ — звук «и»)');
-    if (hasDamma) markDescriptions.push('Дамма ( ُ — звук «у»)');
-    if (hasDaggerAlif) markDescriptions.push('Вертикальная фатха ( ٰ — долгий «а̄»)');
-    if (hasSubAlef) markDescriptions.push('Вертикальная кясра ( ٖ — долгий «ӣ»)');
-    if (hasInvDamma) markDescriptions.push('Перевёрнутая дамма ( ٗ — долгий «ӯ»)');
-    if (hasFathatan) markDescriptions.push('Танвин фатха ( ً — окончание «-ан»)');
-    if (hasKasratan) markDescriptions.push('Танвин кясра ( ٍ — окончание «-ин»)');
-    if (hasDammatan) markDescriptions.push('Танвин дамма ( ٌ — окончание «-ун»)');
-    if (hasSukun) markDescriptions.push('Сукун ( ْ — без гласной)');
+    if (hasShadda) markDescriptions.push('Ташдид ( ّ = удвоение буквы x2)');
+    if (hasMaddah) markDescriptions.push('Волна Мадд ( ٓ = тянем долго)');
+    if (hasFatha) markDescriptions.push('Фатха (чёрточка сверху = звук «А»)');
+    if (hasKasra) markDescriptions.push('Кясра (чёрточка снизу = звук «И»)');
+    if (hasDamma) markDescriptions.push('Дамма (запятая сверху = звук «У»)');
+    if (hasDaggerAlif) markDescriptions.push('Маленький алиф ( ٰ = тянем «А-А»)');
+    if (hasSubAlef) markDescriptions.push('Маленькая йа ( ٖ = тянем «И-И»)');
+    if (hasInvDamma) markDescriptions.push('Перевёрнутая дамма ( ٗ = тянем «У-У»)');
+    if (hasFathatan) markDescriptions.push('Танвин (две чёрточки сверху = «-АН»)');
+    if (hasKasratan) markDescriptions.push('Танвин (две чёрточки снизу = «-ИН»)');
+    if (hasDammatan) markDescriptions.push('Танвин (две запятые сверху = «-УН»)');
+    if (hasSukun) markDescriptions.push('Сукун (кружок = стоп, без гласной)');
 
     // Определяем правило Таджвида для этой буквы
     let tajweedRule = null;
@@ -259,9 +259,11 @@ export function analyzeArabicWord(rawWord) {
     if (isTanwinAlifSupport || isSilentPluralAlif || isSunLam || isSilentWawUlu) {
       tajweedRule = 'silent';
       if (isSunLam) {
-        markDescriptions.push('Солнечная ассимиляция (Идгам шамсийя — Лям не читается)');
+        markDescriptions.push('Солнечная буква после «Аль»: «Л» пропускается');
+      } else if (isTanwinAlifSupport) {
+        markDescriptions.push('Немая подпорка для «-ан» (не читается)');
       } else {
-        markDescriptions.push('Пишется, но не читается');
+        markDescriptions.push('Немая буква (не читается)');
       }
     } else if (hasShadda) {
       tajweedRule = 'tashdid';
@@ -280,7 +282,7 @@ export function analyzeArabicWord(rawWord) {
     ) {
       tajweedRule = 'madd';
       if (markDescriptions.length === 0) {
-        markDescriptions.push('Буква продления Мадд (тянет предыдущую гласную на 2 счёта)');
+        markDescriptions.push('Буква Мадд — тянет предыдущий звук в 2 раза дольше');
       }
     }
 
