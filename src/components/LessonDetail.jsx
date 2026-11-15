@@ -271,9 +271,8 @@ export default function LessonDetail({ lesson, onBack, onPrevLesson, onNextLesso
                       key={idx}
                       type="button"
                       onClick={() => {
-                        if (audioService.hasLetterAudio(cleanHf)) {
-                          audioService.playLetter(cleanHf);
-                        } else if (lesson.letter) {
+                        const played = audioService.speakArabic(cleanHf);
+                        if (!played && lesson.letter) {
                           audioService.playLetter(lesson.letter);
                         }
                       }}

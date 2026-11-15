@@ -1,6 +1,6 @@
 // Общие данные и помощники для обучающих игр «Му'аллим Сани»
-import { ALPHABET_DATA, SPECIAL_LETTERS, BADGE_DEFINITIONS } from '../../data/alphabet';
-import { srs } from '../../services/srs';
+import { ALPHABET_DATA, SPECIAL_LETTERS, BADGE_DEFINITIONS } from '../../data/alphabet.js';
+import { srs } from '../../services/srs.js';
 
 export function shuffle(arr) {
   const copy = [...arr];

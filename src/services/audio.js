@@ -1,7 +1,7 @@
 // Сервис воспроизведения реальных студийных MP3-записей 29 арабских букв и суры Аль-Фатиха,
 // а также заранее сгенерированной озвучки слов и слогов (public/audio/tts/<id>.mp3)
 // (без синтезатора речи браузера)
-import { TTS_IDS } from '../data/ttsManifest';
+import { TTS_IDS } from '../data/ttsManifest.js';
 
 const TTS_SET = new Set(TTS_IDS);
 
@@ -157,6 +157,24 @@ class AudioService {
       if (onEnd) setTimeout(() => onEnd(true), 900);
       return true;
     }
+    // Резервный синтез речи браузера (если текст не попал в предгенерированный словарь)
+    if (typeof window !== 'undefined' && 'speechSynthesis' in window && ttsKey(text)) {
+      try {
+        window.speechSynthesis.cancel();
+        const utter = new SpeechSynthesisUtterance(ttsKey(text));
+        utter.lang = 'ar-SA';
+        utter.rate = 0.8;
+        if (onEnd) {
+          utter.onend = () => onEnd(true);
+          utter.onerror = () => onEnd(false);
+        }
+        window.speechSynthesis.speak(utter);
+        return true;
+      } catch {
+        // ignore speechSynthesis errors
+      }
+    }
+    if (onEnd) onEnd(false);
     return false;
   }
 
