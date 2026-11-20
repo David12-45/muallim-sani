@@ -99,13 +99,7 @@ export default function App() {
   };
 
   return (
-    <div className="relative min-h-screen flex flex-col bg-[#F8FAFC] dark:bg-[#070D1F] transition-colors pb-24 md:pb-0 overflow-x-hidden">
-      {/* Subtle Ambient Background Orbs */}
-      <div className="pointer-events-none fixed inset-0 overflow-hidden z-0">
-        <div className="absolute -top-40 left-1/4 w-[500px] h-[500px] rounded-full bg-emerald-400/10 dark:bg-emerald-500/5 blur-3xl" />
-        <div className="absolute top-1/3 -right-40 w-[450px] h-[450px] rounded-full bg-amber-400/10 dark:bg-amber-500/5 blur-3xl" />
-      </div>
-
+    <div className="relative min-h-screen flex flex-col bg-[#F5F7F6] dark:bg-[#0B1110] transition-colors pb-24 md:pb-0 overflow-x-hidden">
       {/* Top & Mobile Bottom Navigation */}
       <Navbar
         activeTab={selectedLesson ? 'lessons' : activeTab}
@@ -156,22 +150,17 @@ export default function App() {
         onClose={() => setIsDailyWorkoutOpen(false)}
       />
 
-      {/* Modern Footer */}
-      <footer className="mt-auto border-t border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 py-8 text-center text-xs text-slate-500 dark:text-slate-400">
-        <div className="max-w-4xl mx-auto px-4 space-y-2">
-          <div className="flex items-center justify-center gap-2">
-            <div className="w-6 h-6 rounded-lg bg-emerald-600 flex items-center justify-center text-white font-arabic text-sm font-bold">
+      {/* Footer */}
+      <footer className="mt-auto border-t border-slate-200 dark:border-slate-800 py-8 text-slate-500 dark:text-slate-400">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-6 md:pb-0">
+          <div className="flex items-center gap-2.5">
+            <div className="w-7 h-7 rounded-lg bg-emerald-700 flex items-center justify-center text-white font-arabic text-base leading-none">
               م
             </div>
-            <span className="font-extrabold text-sm text-slate-800 dark:text-slate-200">
-              Му'аллим • Интерактивная платформа арабского чтения
-            </span>
+            <span className="font-semibold text-sm text-slate-800 dark:text-slate-200">Му'аллим Сани</span>
           </div>
-          <p className="leading-relaxed max-w-2xl mx-auto">
-            Обучение построено по проверенной классической методике «Му'аллим Сани» Ахмадхади Максуди в современном интерактивном формате.
-          </p>
-          <p className="text-[11px] text-slate-400 dark:text-slate-500">
-            41 интерактивный урок • Карта приключений • 4 игровых тренажёра • Студийные MP3 • Цветовой таджвид
+          <p className="text-xs leading-relaxed max-w-md sm:text-right">
+            Классическая методика Ахмадхади Максуди в интерактивном формате: 41 урок, студийное аудио, цветовой таджвид и тренажёры.
           </p>
         </div>
       </footer>
