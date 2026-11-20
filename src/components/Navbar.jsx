@@ -36,26 +36,32 @@ export default function Navbar({ activeTab, setActiveTab, darkMode, setDarkMode 
   return (
     <>
       {/* Top Header Bar — adapted for iPhone 11 notch & rounded corners */}
-      <header className="sticky top-0 z-40 safe-top-header bg-white/95 dark:bg-[#070D1F]/95 backdrop-blur-xl border-b border-slate-200/80 dark:border-slate-800 transition-colors">
+      <header className="sticky top-0 z-40 safe-top-header bg-[#F6F3EA]/90 dark:bg-[#0A120E]/90 backdrop-blur-xl border-b border-ink-200/70 dark:border-ink-800/80 transition-colors">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-14 sm:h-16 gap-2">
-            {/* Logo & Brand */}
+            {/* Logo & Brand — медальон-арка с буквой م */}
             <div
               onClick={() => setActiveTab('lessons')}
               className="flex items-center gap-2.5 cursor-pointer group min-w-0 select-none"
             >
-              <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-tr from-emerald-700 via-emerald-600 to-teal-500 flex items-center justify-center text-white shadow-md shadow-emerald-600/20 shrink-0">
-                <span className="font-arabic text-xl sm:text-2xl font-bold leading-none">م</span>
+              <div className="relative w-9 h-9 sm:w-10 sm:h-10 shrink-0">
+                <div className="absolute inset-0 rounded-t-full rounded-b-[10px] bg-gradient-to-b from-emerald-700 via-emerald-800 to-emerald-950 shadow-md shadow-emerald-900/30 ring-1 ring-gold-400/50" />
+                <span className="absolute inset-0 flex items-center justify-center font-arabic text-xl sm:text-2xl font-bold leading-none text-gold-200">
+                  م
+                </span>
               </div>
               <div className="min-w-0">
-                <span className="font-black text-base sm:text-lg text-slate-900 dark:text-white tracking-tight block truncate">
+                <span className="font-display font-semibold text-sm sm:text-base text-ink-900 dark:text-ink-50 tracking-tight block truncate">
                   Му'аллим Сани
+                </span>
+                <span className="hidden sm:block text-[10px] font-bold uppercase tracking-kicker text-gold-600 dark:text-gold-400">
+                  Учись читать с нуля
                 </span>
               </div>
             </div>
 
             {/* Desktop Navigation Tabs */}
-            <nav className="hidden md:flex items-center p-1 rounded-2xl bg-slate-100 dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800">
+            <nav className="hidden md:flex items-center p-1 rounded-2xl bg-ink-100/80 dark:bg-ink-900/80 border border-ink-200/80 dark:border-ink-800">
               {navItems.map(item => {
                 const Icon = item.icon;
                 const isActive = activeTab === item.id;
@@ -65,11 +71,11 @@ export default function Navbar({ activeTab, setActiveTab, darkMode, setDarkMode 
                     onClick={() => setActiveTab(item.id)}
                     className={`px-4 py-2 rounded-xl text-xs font-extrabold transition-all flex items-center gap-2 whitespace-nowrap active:scale-95 ${
                       isActive
-                        ? 'bg-emerald-600 text-white shadow-sm'
-                        : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                        ? 'bg-emerald-800 text-white shadow-sm shadow-emerald-900/30'
+                        : 'text-ink-600 dark:text-ink-400 hover:text-ink-900 dark:hover:text-white'
                     }`}
                   >
-                    <Icon className={`w-4 h-4 shrink-0 ${isActive ? 'text-amber-300' : ''}`} />
+                    <Icon className={`w-4 h-4 shrink-0 ${isActive ? 'text-gold-300' : ''}`} />
                     <span>{item.label}</span>
                   </button>
                 );
@@ -88,7 +94,7 @@ export default function Navbar({ activeTab, setActiveTab, darkMode, setDarkMode 
               <button
                 onClick={() => setDarkMode(!darkMode)}
                 aria-label="Переключить тему"
-                className="h-10 px-3 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 border border-slate-200/90 dark:border-slate-700 hover:border-emerald-500 flex items-center justify-center gap-1.5 text-xs font-extrabold transition active:scale-95 shrink-0"
+                className="h-10 px-3 rounded-xl bg-ink-100 dark:bg-ink-800 text-ink-700 dark:text-ink-200 border border-ink-200/90 dark:border-ink-700 hover:border-gold-500 flex items-center justify-center gap-1.5 text-xs font-extrabold transition active:scale-95 shrink-0"
                 title={darkMode ? 'Переключить на светлую тему' : 'Переключить на тёмную тему'}
               >
                 {darkMode ? (
@@ -108,7 +114,7 @@ export default function Navbar({ activeTab, setActiveTab, darkMode, setDarkMode 
               <button
                 onClick={() => setIsSettingsOpen(true)}
                 aria-label="Настройки шрифта"
-                className="w-10 h-10 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 border border-slate-200/90 dark:border-slate-700 hover:border-emerald-500 flex items-center justify-center transition active:scale-95 shrink-0"
+                className="w-10 h-10 rounded-xl bg-ink-100 dark:bg-ink-800 text-ink-700 dark:text-ink-200 border border-ink-200/90 dark:border-ink-700 hover:border-gold-500 flex items-center justify-center transition active:scale-95 shrink-0"
                 title="Размер шрифта и настройки"
               >
                 <Settings className="w-4 h-4" />
@@ -128,7 +134,7 @@ export default function Navbar({ activeTab, setActiveTab, darkMode, setDarkMode 
       )}
 
       {/* Mobile Bottom Navigation (< md) */}
-      <nav className="md:hidden fixed safe-bottom-dock left-3 right-3 z-50 max-w-md mx-auto glass-dock rounded-2xl shadow-xl border border-slate-200/90 dark:border-slate-800 p-1.5">
+      <nav className="md:hidden fixed safe-bottom-dock left-3 right-3 z-50 max-w-md mx-auto glass-dock rounded-2xl shadow-xl border border-ink-200/90 dark:border-ink-800 p-1.5">
         <div className="grid grid-cols-4 gap-1">
           {navItems.map(item => {
             const Icon = item.icon;
@@ -139,11 +145,11 @@ export default function Navbar({ activeTab, setActiveTab, darkMode, setDarkMode 
                 onClick={() => setActiveTab(item.id)}
                 className={`flex flex-col items-center justify-center py-2 px-1 rounded-xl transition-all active:scale-95 ${
                   isActive
-                    ? 'bg-emerald-600 text-white shadow-sm font-black'
-                    : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white font-bold'
+                    ? 'bg-emerald-800 text-white shadow-sm font-black'
+                    : 'text-ink-600 dark:text-ink-400 hover:text-ink-900 dark:hover:text-white font-bold'
                 }`}
               >
-                <Icon className={`w-5 h-5 mb-0.5 ${isActive ? 'text-amber-300' : ''}`} />
+                <Icon className={`w-5 h-5 mb-0.5 ${isActive ? 'text-gold-300' : ''}`} />
                 <span className="text-[11px] leading-tight">
                   {item.shortLabel}
                 </span>

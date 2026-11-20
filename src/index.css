@@ -6,6 +6,14 @@
   --arabic-zoom: 1;
   --in-oklab: ;
   --in-oklch: ;
+  /* Палитра «пергамент / изумрудная ночь» */
+  --paper: #F6F3EA;
+  --paper-deep: #EDE9DB;
+  --night: #0A120E;
+  --night-raise: #111D17;
+  --gold: #C79538;
+  --gold-bright: #E0C274;
+  --emerald-soft: #3BAD8B;
 }
 
 @supports (background: linear-gradient(in oklab, white, black)) {
@@ -23,16 +31,58 @@
   }
 
   body {
-    @apply bg-[#F8FAFC] text-slate-900 antialiased dark:bg-[#070D1F] dark:text-slate-100;
+    @apply text-ink-900 dark:text-ink-100 antialiased;
+    background-color: var(--paper);
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
     overflow-x: hidden;
+  }
+
+  .dark body {
+    background-color: var(--night);
+  }
+
+  /* Тонкая геометрическая текстура на всём фоне страницы */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.5;
+    background-image: var(--pattern-stars);
+    background-size: 56px 56px;
+  }
+
+  .dark body::before {
+    opacity: 0.35;
+  }
+
+  /* Видимый фокус для клавиатурной навигации */
+  *:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  ::selection {
+    background: rgba(199, 149, 56, 0.28);
+    color: inherit;
   }
 
   /* Improve text layout and legibility for short headings */
   h1, h2, h3, h4 {
     text-wrap: balance;
   }
+}
+
+/* Восьмиконечная звезда — исламский геометрический орнамент (SVG) */
+:root {
+  --pattern-stars: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56'%3E%3Cg fill='none' stroke='%230E4A3B' stroke-opacity='0.10'%3E%3Cpath d='M28 8l4.6 10.4L43 14.4l-4 10.4L48 28l-9 3.2 4 10.4-10.4-4L28 48l-4.6-10.4L13 41.6l4-10.4L8 28l9-3.2-4-10.4 10.4 4z'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+.dark {
+  --pattern-stars: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56'%3E%3Cg fill='none' stroke='%233BAD8B' stroke-opacity='0.13'%3E%3Cpath d='M28 8l4.6 10.4L43 14.4l-4 10.4L48 28l-9 3.2 4 10.4-10.4-4L28 48l-4.6-10.4L13 41.6l4-10.4L8 28l9-3.2-4-10.4 10.4 4z'/%3E%3C/g%3E%3C/svg%3E");
 }
 
 /* Multi-line body copy orphan prevention */
@@ -56,37 +106,58 @@
   mask-image: linear-gradient(to right, transparent 0%, black 10%);
 }
 
-/* Perceptual Oklab Gradients & Depth Surfaces */
+/* Главный герой: глубокий изумруд с золотым свечением и аркой-нишей */
 .hero-mesh-gradient {
   background:
-    radial-gradient(circle at 88% 18%, rgba(251, 191, 36, 0.22) 0%, transparent 45%),
-    radial-gradient(circle at 12% 85%, rgba(16, 185, 129, 0.28) 0%, transparent 50%),
-    linear-gradient(135deg var(--in-oklab), #064e3b 0%, #0f766e 48%, #0f172a 100%);
+    radial-gradient(ellipse 65% 90% at 88% 12%, rgba(224, 194, 116, 0.22) 0%, transparent 55%),
+    radial-gradient(ellipse 55% 70% at 8% 92%, rgba(58, 173, 139, 0.25) 0%, transparent 55%),
+    linear-gradient(148deg var(--in-oklab), #0E4A3B 0%, #0C322A 46%, #081F1A 100%);
+}
+
+/* Золотая михрабная арка-ниша для декоративных панелей */
+.arch-panel {
+  position: relative;
+}
+
+.arch-panel::after {
+  content: "";
+  position: absolute;
+  top: -1px;
+  right: -1px;
+  width: 38%;
+  height: 102%;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 100% 65% at 50% 0%, rgba(224, 194, 116, 0.16), transparent 70%);
+  border-left: 1px solid rgba(224, 194, 116, 0.22);
+  border-radius: 0 0 0 100% 100%;
+  -webkit-mask-image: radial-gradient(ellipse 90% 70% at 50% 0%, black 55%, transparent 76%);
+  mask-image: radial-gradient(ellipse 90% 70% at 50% 0%, black 55%, transparent 76%);
 }
 
 .premium-card {
   box-shadow:
-    0 1px 2px rgba(15, 23, 42, 0.04),
-    0 8px 24px -4px rgba(15, 23, 42, 0.06),
-    inset 0 1px 0 0 rgba(255, 255, 255, 0.6);
+    0 1px 2px rgba(15, 18, 16, 0.05),
+    0 10px 28px -6px rgba(15, 18, 16, 0.10),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.55);
 }
 
 .dark .premium-card {
   box-shadow:
-    0 4px 20px -2px rgba(0, 0, 0, 0.4),
-    inset 0 1px 0 0 rgba(255, 255, 255, 0.07);
+    0 4px 22px -2px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 0 rgba(224, 194, 116, 0.08);
 }
 
-/* Subtle decorative dot pattern built with CSS gradients */
+/* Рельефная точечная сетка для дорожек уроков */
 .pattern-dots {
-  --dot-space: 22px;
-  --dot-radius: 1px;
-  background-image: radial-gradient(circle, rgba(16, 185, 129, 0.16) var(--dot-radius), transparent calc(var(--dot-radius) + 0.5px));
+  --dot-space: 24px;
+  --dot-radius: 1.2px;
+  background-image: radial-gradient(circle, rgba(14, 74, 59, 0.18) var(--dot-radius), transparent calc(var(--dot-radius) + 0.6px));
   background-size: var(--dot-space) var(--dot-space);
 }
 
 .dark .pattern-dots {
-  background-image: radial-gradient(circle, rgba(52, 211, 153, 0.1) var(--dot-radius), transparent calc(var(--dot-radius) + 0.5px));
+  background-image: radial-gradient(circle, rgba(58, 173, 139, 0.16) var(--dot-radius), transparent calc(var(--dot-radius) + 0.6px));
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */
@@ -100,21 +171,21 @@
 
 /* Glassmorphism helpers */
 .glass-panel {
-  background: rgba(255, 255, 255, 0.85);
+  background: rgba(246, 243, 234, 0.88);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
 }
 .dark .glass-panel {
-  background: rgba(15, 23, 42, 0.85);
+  background: rgba(10, 18, 14, 0.85);
 }
 
 .glass-dock {
-  background: rgba(255, 255, 255, 0.94);
+  background: rgba(246, 243, 234, 0.94);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
 }
 .dark .glass-dock {
-  background: rgba(15, 23, 42, 0.94);
+  background: rgba(15, 25, 20, 0.94);
 }
 
 /* Safe area helpers for iPhone 11 / iOS notch and home indicator */
@@ -165,37 +236,53 @@ html.scale-arabic-150 {
 
 /* Tajweed highlighting classes */
 .tajweed-ghunnah {
-  color: #10b981;
+  color: #178F6F;
 }
 
 .tajweed-madd {
-  color: #ef4444;
+  color: #C2410C;
 }
 
 .tajweed-qalqalah {
-  color: #3b82f6;
+  color: #1D6FA5;
 }
 
 .tajweed-ikhfa {
-  color: #f59e0b;
+  color: #C79538;
 }
 
 .tajweed-idgham {
-  color: #8b5cf6;
+  color: #7C3AED;
 }
 
 /* Custom scrollbars */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 10px;
+  height: 10px;
 }
 ::-webkit-scrollbar-track {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(148, 163, 184, 0.4);
+  background: rgba(14, 74, 59, 0.28);
   border-radius: 9999px;
+  border: 2px solid transparent;
+  background-clip: content-box;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(100, 116, 139, 0.6);
+  background: rgba(199, 149, 56, 0.55);
+  background-clip: content-box;
+  border: 2px solid transparent;
+}
+
+/* Уважение к настройке reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  html {
+    scroll-behavior: auto;
+  }
 }

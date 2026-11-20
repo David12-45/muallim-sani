@@ -15,53 +15,53 @@ import {
 
 const CHAPTER_THEMES = {
   1: {
-    gradient: 'from-emerald-700 via-emerald-600 to-teal-600',
+    gradient: 'from-emerald-800 via-emerald-700 to-emerald-600',
     accent: 'emerald',
     icon: Sparkles,
     badgeBg: 'bg-emerald-400/20 text-emerald-100 border-emerald-300/30',
     ringColor: 'ring-emerald-500/30'
   },
   2: {
-    gradient: 'from-teal-700 via-teal-600 to-cyan-600',
+    gradient: 'from-emerald-900 via-emerald-800 to-teal-700',
     accent: 'teal',
     icon: Play,
     badgeBg: 'bg-teal-400/20 text-teal-100 border-teal-300/30',
     ringColor: 'ring-teal-500/30'
   },
   3: {
-    gradient: 'from-sky-700 via-blue-600 to-indigo-600',
+    gradient: 'from-teal-800 via-emerald-700 to-emerald-600',
     accent: 'sky',
     icon: Zap,
-    badgeBg: 'bg-sky-400/20 text-sky-100 border-sky-300/30',
-    ringColor: 'ring-sky-500/30'
+    badgeBg: 'bg-gold-300/20 text-gold-100 border-gold-300/30',
+    ringColor: 'ring-gold-500/30'
   },
   4: {
-    gradient: 'from-violet-700 via-purple-600 to-indigo-700',
+    gradient: 'from-emerald-950 via-emerald-900 to-emerald-700',
     accent: 'purple',
     icon: Award,
-    badgeBg: 'bg-purple-400/20 text-purple-100 border-purple-300/30',
-    ringColor: 'ring-purple-500/30'
+    badgeBg: 'bg-emerald-300/20 text-emerald-100 border-emerald-300/30',
+    ringColor: 'ring-emerald-500/30'
   },
   5: {
-    gradient: 'from-amber-600 via-orange-600 to-amber-700',
+    gradient: 'from-gold-700 via-gold-600 to-emerald-800',
     accent: 'amber',
     icon: Crown,
-    badgeBg: 'bg-amber-300/20 text-amber-100 border-amber-200/30',
-    ringColor: 'ring-amber-500/30'
+    badgeBg: 'bg-gold-300/20 text-gold-100 border-gold-200/30',
+    ringColor: 'ring-gold-500/30'
   },
   6: {
-    gradient: 'from-rose-600 via-pink-600 to-rose-700',
+    gradient: 'from-emerald-800 via-teal-800 to-emerald-950',
     accent: 'rose',
     icon: Trophy,
-    badgeBg: 'bg-rose-300/20 text-rose-100 border-rose-200/30',
-    ringColor: 'ring-rose-500/30'
+    badgeBg: 'bg-gold-300/20 text-gold-100 border-gold-200/30',
+    ringColor: 'ring-gold-500/30'
   },
   7: {
-    gradient: 'from-amber-500 via-emerald-600 to-teal-800',
+    gradient: 'from-gold-600 via-gold-700 to-emerald-900',
     accent: 'gold',
     icon: Sparkles,
-    badgeBg: 'bg-amber-300/25 text-amber-100 border-amber-200/40',
-    ringColor: 'ring-amber-400/40'
+    badgeBg: 'bg-gold-300/25 text-gold-100 border-gold-200/40',
+    ringColor: 'ring-gold-400/40'
   }
 };
 

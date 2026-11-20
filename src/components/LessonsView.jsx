@@ -147,30 +147,40 @@ export default function LessonsView({ onSelectLesson }) {
 
   return (
     <div className="max-w-5xl mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-6 pb-28 md:pb-12 space-y-5">
-      {/* 1. CLEAN HERO CARD FOR BEGINNERS */}
-      <div className="relative overflow-hidden rounded-3xl hero-mesh-gradient text-white p-5 sm:p-7 shadow-xl shadow-emerald-950/20 border border-white/15">
-        <div className="absolute -right-6 -top-8 opacity-10 pointer-events-none select-none">
-          <span className="font-arabic text-[150px] font-bold leading-none">اقرأ</span>
+      {/* 1. HERO — ниша-арка, каллиграфия и золото */}
+      <div className="relative overflow-hidden arch-panel rounded-3xl hero-mesh-gradient text-white p-5 sm:p-8 shadow-2xl shadow-emerald-950/30 border border-gold-400/25">
+        {/* Каллиграфический акцент */}
+        <div className="absolute -right-4 -top-10 opacity-[0.13] pointer-events-none select-none">
+          <span className="font-arabic text-[170px] font-bold leading-none">اقرأ</span>
         </div>
+        {/* Орнаментальная звёздная сетка поверх градиента */}
+        <div
+          className="absolute inset-0 pointer-events-none opacity-[0.35]"
+          style={{ backgroundImage: 'var(--pattern-stars)', backgroundSize: '56px 56px' }}
+        />
 
-        <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-5">
-          <div className="space-y-2.5 max-w-xl">
-            <h1 className="text-xl sm:text-3xl font-black tracking-tight leading-tight">
-              Му'аллим Сани — просто и понятно
+        <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
+          <div className="space-y-3 max-w-xl">
+            <span className="inline-flex items-center gap-1.5 text-[10px] sm:text-[11px] font-black uppercase tracking-kicker text-gold-300">
+              <Sparkles className="w-3.5 h-3.5" />
+              Метод «Му'аллим Сани» · 41 урок
+            </span>
+            <h1 className="font-display font-semibold text-fluid-2xl tracking-tight leading-tight">
+              Арабское чтение — просто и понятно
             </h1>
-            <p className="text-xs sm:text-sm text-emerald-100/95 leading-relaxed pretty-copy">
+            <p className="text-xs sm:text-sm text-emerald-100/90 leading-relaxed pretty-copy max-w-md">
               Никаких сложных терминов: слушайте студийную озвучку, нажимайте на слова и идите шаг за шагом от первой буквы до суры «Аль-Фатиха».
             </p>
 
-            {/* Progress bar */}
+            {/* Золотой индикатор прогресса */}
             <div className="pt-1 space-y-1.5 max-w-sm">
               <div className="flex items-center justify-between text-xs font-bold text-emerald-100">
                 <span>Пройдено: {completedCount} из {totalLessons} уроков</span>
-                <span className="text-amber-300 font-black">{percent}%</span>
+                <span className="text-gold-300 font-black">{percent}%</span>
               </div>
-              <div className="w-full h-2.5 bg-emerald-950/75 rounded-full overflow-hidden border border-white/20">
+              <div className="w-full h-2.5 bg-emerald-950/70 rounded-full overflow-hidden border border-gold-400/25">
                 <div
-                  className="h-full bg-gradient-to-r from-amber-400 to-emerald-400 transition-all duration-500 rounded-full"
+                  className="h-full bg-gradient-to-r from-gold-500 via-gold-400 to-emerald-400 transition-all duration-500 rounded-full"
                   style={{ width: `${percent}%` }}
                 />
               </div>
@@ -181,14 +191,14 @@ export default function LessonsView({ onSelectLesson }) {
           {nextUnfinishedLesson && (
             <button
               onClick={() => onSelectLesson(nextUnfinishedLesson)}
-              className="w-full md:w-auto shrink-0 inline-flex items-center justify-between md:justify-center gap-3 px-5 py-3.5 rounded-2xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-black text-sm shadow-lg shadow-amber-500/25 active:scale-95 transition-all group cursor-pointer"
+              className="w-full md:w-auto shrink-0 inline-flex items-center justify-between md:justify-center gap-3 px-5 py-3.5 rounded-2xl bg-gradient-to-b from-gold-300 to-gold-500 hover:from-gold-200 hover:to-gold-400 text-emerald-950 font-black text-sm shadow-lg shadow-gold-600/30 active:scale-95 transition-all group cursor-pointer"
             >
               <div className="flex items-center gap-3 min-w-0">
-                <div className="w-8 h-8 rounded-xl bg-slate-950 text-amber-400 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
+                <div className="w-8 h-8 rounded-xl bg-emerald-950 text-gold-300 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
                   <Play className="w-4 h-4 fill-current ml-0.5" />
                 </div>
                 <div className="text-left min-w-0">
-                  <div className="text-[10px] uppercase font-bold text-slate-800 tracking-wider">
+                  <div className="text-[10px] uppercase font-bold text-emerald-900/80 tracking-wider">
                     {completedCount === 0 ? 'Начать с 1-го шага' : 'Продолжить обучение'}
                   </div>
                   <div className="text-xs sm:text-sm font-extrabold truncate max-w-[220px]">
@@ -196,7 +206,7 @@ export default function LessonsView({ onSelectLesson }) {
                   </div>
                 </div>
               </div>
-              <ArrowRight className="w-4 h-4 text-slate-950 shrink-0 group-hover:translate-x-1 transition-transform" />
+              <ArrowRight className="w-4 h-4 text-emerald-950 shrink-0 group-hover:translate-x-1 transition-transform" />
             </button>
           )}
         </div>

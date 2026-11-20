@@ -99,11 +99,11 @@ export default function App() {
   };
 
   return (
-    <div className="relative min-h-screen flex flex-col bg-[#F8FAFC] dark:bg-[#070D1F] transition-colors pb-24 md:pb-0 overflow-x-hidden">
-      {/* Subtle Ambient Background Orbs */}
+    <div className="relative min-h-screen flex flex-col bg-[#F6F3EA] dark:bg-[#0A120E] transition-colors pb-24 md:pb-0 overflow-x-hidden">
+      {/* Мягкое золотисто-изумрудное свечение фона */}
       <div className="pointer-events-none fixed inset-0 overflow-hidden z-0">
-        <div className="absolute -top-40 left-1/4 w-[500px] h-[500px] rounded-full bg-emerald-400/10 dark:bg-emerald-500/5 blur-3xl" />
-        <div className="absolute top-1/3 -right-40 w-[450px] h-[450px] rounded-full bg-amber-400/10 dark:bg-amber-500/5 blur-3xl" />
+        <div className="absolute -top-40 left-1/4 w-[500px] h-[500px] rounded-full bg-emerald-400/15 dark:bg-emerald-500/5 blur-3xl" />
+        <div className="absolute top-1/3 -right-40 w-[450px] h-[450px] rounded-full bg-gold-400/15 dark:bg-gold-500/5 blur-3xl" />
       </div>
 
       {/* Top & Mobile Bottom Navigation */}
