@@ -30,12 +30,12 @@ export default function App() {
       document.documentElement.classList.add('dark');
       storageService.setTheme('dark');
       if (schemeMeta) schemeMeta.setAttribute('content', 'dark');
-      if (themeMeta) themeMeta.setAttribute('content', '#070D14');
+      if (themeMeta) themeMeta.setAttribute('content', '#090A0F');
     } else {
       document.documentElement.classList.remove('dark');
       storageService.setTheme('light');
       if (schemeMeta) schemeMeta.setAttribute('content', 'light');
-      if (themeMeta) themeMeta.setAttribute('content', '#FAF8F3');
+      if (themeMeta) themeMeta.setAttribute('content', '#FFFFFF');
     }
   }, [darkMode]);
 
@@ -105,12 +105,12 @@ export default function App() {
   };
 
   return (
-    <div className="relative min-h-screen flex flex-col bg-[#FAF8F3] dark:bg-[#070D14] transition-colors pb-24 md:pb-0 overflow-x-hidden">
-      {/* Subtle Ambient Architectural Light */}
+    <div className="relative min-h-screen flex flex-col bg-slate-50/60 dark:bg-[#090A0F] text-slate-900 dark:text-slate-100 transition-colors pb-24 md:pb-0 overflow-x-hidden">
+      {/* Subtle Ambient Apple-Style Diffused Light */}
       <div className="pointer-events-none fixed inset-0 overflow-hidden z-0" aria-hidden="true">
-        <div className="absolute -top-48 left-1/4 w-[560px] h-[560px] rounded-full bg-emerald-500/[0.08] dark:bg-emerald-500/[0.07] blur-3xl" />
-        <div className="absolute top-1/3 -right-44 w-[480px] h-[480px] rounded-full bg-amber-400/[0.09] dark:bg-amber-400/[0.05] blur-3xl" />
-        <div className="absolute bottom-0 left-0 w-[420px] h-[420px] rounded-full bg-teal-500/[0.06] dark:bg-teal-500/[0.05] blur-3xl" />
+        <div className="absolute -top-48 left-1/4 w-[560px] h-[560px] rounded-full bg-emerald-500/[0.04] dark:bg-emerald-500/[0.03] blur-3xl" />
+        <div className="absolute top-1/3 -right-44 w-[480px] h-[480px] rounded-full bg-sky-500/[0.03] dark:bg-sky-500/[0.02] blur-3xl" />
+        <div className="absolute bottom-0 left-0 w-[420px] h-[420px] rounded-full bg-slate-400/[0.03] dark:bg-emerald-600/[0.02] blur-3xl" />
       </div>
 
       {/* Top & Mobile Bottom Navigation */}

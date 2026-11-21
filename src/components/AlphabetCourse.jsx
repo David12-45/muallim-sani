@@ -493,13 +493,13 @@ export default function AlphabetCourse({ onBack: externalOnBack, onCompleted }) 
   return (
     <div className="max-w-2xl mx-auto px-3 sm:px-4 py-4 sm:py-6 pb-28 md:pb-10 space-y-6">
       {/* Top Banner */}
-      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-emerald-800 via-teal-900 to-slate-900 text-white p-6 sm:p-7 shadow-xl shadow-emerald-950/20">
+      <div className="relative overflow-hidden rounded-[2rem] hero-mesh-gradient text-white p-6 sm:p-7 border border-white/15 shadow-apple-lg">
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <div>
             {externalOnBack && (
               <button
                 onClick={externalOnBack}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/15 hover:bg-white/25 text-xs font-bold text-white mb-3 backdrop-blur-sm transition-colors active:scale-95"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/15 hover:bg-white/25 text-xs font-semibold text-white mb-3 backdrop-blur-sm transition-colors active:scale-95"
               >
                 <ArrowLeft className="w-3.5 h-3.5" />
                 <span>Назад к урокам</span>
@@ -508,28 +508,28 @@ export default function AlphabetCourse({ onBack: externalOnBack, onCompleted }) 
             <h1 className="text-2xl sm:text-3xl font-black tracking-tight leading-tight">
               Урок 1: Изучение арабского алфавита
             </h1>
-            <p className="text-emerald-100/90 text-xs sm:text-sm mt-1 leading-relaxed">
+            <p className="text-emerald-100/90 text-xs sm:text-sm mt-1 leading-relaxed font-normal">
               28 согласных букв, разделенных на <strong>7 удобных групп</strong> по сходству основы.
             </p>
           </div>
 
-          <div className="shrink-0 p-3 rounded-2xl bg-white/10 backdrop-blur-sm border border-white/15 text-center min-w-[90px]">
+          <div className="shrink-0 p-3.5 rounded-2xl bg-white/10 backdrop-blur-md border border-white/15 text-center min-w-[90px] shadow-sm">
             <div className="text-2xl font-black text-amber-300">
               {learnedCount} / 28
             </div>
-            <div className="text-[10px] text-emerald-200 font-bold">Букв освоено</div>
+            <div className="text-[10px] text-emerald-200 font-semibold">Букв освоено</div>
           </div>
         </div>
 
         {/* Progress Bar */}
         <div className="mt-4 pt-3 border-t border-white/15">
-          <div className="flex justify-between text-[11px] font-bold text-emerald-200 mb-1.5">
+          <div className="flex justify-between text-[11px] font-semibold text-emerald-200 mb-1.5">
             <span>Общий прогресс алфавита</span>
             <span>{Math.round((learnedCount / 28) * 100)}%</span>
           </div>
-          <div className="h-2.5 rounded-full bg-emerald-950/60 overflow-hidden border border-white/20">
+          <div className="h-2 rounded-full bg-black/25 overflow-hidden border border-white/10">
             <div
-              className="h-full bg-gradient-to-r from-amber-400 to-emerald-400 transition-all duration-500"
+              className="h-full bg-gradient-to-r from-amber-400 to-emerald-400 transition-all duration-500 rounded-full"
               style={{ width: `${(learnedCount / 28) * 100}%` }}
             />
           </div>
@@ -543,7 +543,7 @@ export default function AlphabetCourse({ onBack: externalOnBack, onCompleted }) 
             soundFx.playTap();
             setView({ mode: 'review' });
           }}
-          className="w-full p-4 rounded-2xl bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 text-slate-950 font-black text-sm flex items-center justify-center gap-2.5 shadow-lg shadow-amber-500/20 active:scale-95 transition"
+          className="w-full p-4 rounded-2xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-bold text-sm flex items-center justify-center gap-2.5 shadow-apple-sm hover:shadow-apple-md hover:-translate-y-0.5 active:scale-95 transition-all"
         >
           <Repeat className="w-5 h-5" />
           <span>Повторить буквы по системе Лейтнера ({dueIds.length})</span>
@@ -552,7 +552,7 @@ export default function AlphabetCourse({ onBack: externalOnBack, onCompleted }) 
 
       {/* 7 Groups Cards */}
       <div className="space-y-3">
-        <h2 className="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 px-1">
+        <h2 className="text-xs font-semibold uppercase tracking-wider text-slate-400 dark:text-slate-500 px-1">
           7 этапов освоения (от простых к сложным):
         </h2>
 
@@ -568,19 +568,19 @@ export default function AlphabetCourse({ onBack: externalOnBack, onCompleted }) 
                 soundFx.playTap();
                 setView({ mode: 'learn', group: g });
               }}
-              className={`w-full text-left p-4 sm:p-5 rounded-3xl border-2 transition-all flex items-center gap-4 active:scale-98 ${
+              className={`w-full text-left p-4 sm:p-5 rounded-3xl border transition-all flex items-center gap-4 active:scale-98 shadow-apple-xs hover:shadow-apple-sm hover:-translate-y-0.5 ${
                 isComplete
-                  ? 'bg-emerald-50/70 dark:bg-emerald-950/30 border-emerald-400 dark:border-emerald-800 shadow-sm'
+                  ? 'bg-emerald-50/70 dark:bg-emerald-950/30 border-emerald-500/60 dark:border-emerald-800/80'
                   : started
-                  ? 'bg-white dark:bg-slate-800 border-amber-300 dark:border-amber-800 shadow-md ring-1 ring-amber-400/20'
-                  : 'bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 hover:border-emerald-400 shadow-sm'
+                  ? 'bg-white dark:bg-slate-900 border-amber-300 dark:border-amber-700/60 ring-1 ring-amber-400/20'
+                  : 'bg-white dark:bg-slate-900 border-slate-200/80 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700'
               }`}
             >
               <div
-                className={`w-11 h-11 shrink-0 rounded-2xl flex items-center justify-center font-black text-sm shadow-sm ${
+                className={`w-11 h-11 shrink-0 rounded-2xl flex items-center justify-center font-bold text-sm shadow-apple-xs ${
                   isComplete
                     ? 'bg-emerald-600 text-white'
-                    : 'bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200'
+                    : 'bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200'
                 }`}
               >
                 {isComplete ? <Check className="w-5 h-5" /> : gi + 1}
@@ -588,11 +588,11 @@ export default function AlphabetCourse({ onBack: externalOnBack, onCompleted }) 
 
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2">
-                  <p className="font-extrabold text-sm sm:text-base text-slate-900 dark:text-white">
+                  <p className="font-bold text-sm sm:text-base text-slate-900 dark:text-white">
                     {g.title}
                   </p>
                 </div>
-                <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
+                <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5 font-normal">
                   {isComplete
                     ? '✓ Освоено 100%'
                     : started

@@ -164,42 +164,42 @@ export default function LessonsView({ onSelectLesson }) {
 
   return (
     <div className="max-w-5xl mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-7 pb-28 md:pb-14 space-y-6">
-      {/* 1. FLAGSHIP EDITORIAL HERO CARD */}
-      <section className="relative overflow-hidden rounded-[2rem] hero-mesh-gradient text-white p-5 sm:p-8 border border-white/15">
-        {/* Subtle CSS Geometric Lattice */}
-        <div className="absolute inset-0 hero-lattice pointer-events-none" aria-hidden="true" />
-        {/* Watermark Calligraphy */}
-        <div className="absolute -right-4 -top-6 opacity-[0.09] pointer-events-none select-none" aria-hidden="true">
-          <span className="font-arabic text-[165px] sm:text-[210px] font-bold leading-none">اقرأ</span>
+      {/* 1. APPLE / NOTION STYLE MINIMALIST HERO */}
+      <section className="relative overflow-hidden rounded-3xl hero-mesh-gradient text-white p-6 sm:p-8 border border-slate-800/80 dark:border-white/10 shadow-apple-lg">
+        {/* Subtle Ambient Refraction */}
+        <div className="absolute inset-0 hero-lattice pointer-events-none opacity-50" aria-hidden="true" />
+        {/* Modern Minimalist Arabic Watermark */}
+        <div className="absolute -right-4 -bottom-8 opacity-[0.05] pointer-events-none select-none" aria-hidden="true">
+          <span className="font-arabic text-[180px] sm:text-[230px] font-bold leading-none">اقرأ</span>
         </div>
 
         <div className="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
           <div className="space-y-3.5 max-w-xl">
-            <div className="inline-flex flex-wrap items-center gap-2 text-[11px] font-bold tracking-wide text-emerald-100/90">
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/15">
-                <Sparkles className="w-3.5 h-3.5 text-amber-300" aria-hidden="true" />
+            <div className="inline-flex flex-wrap items-center gap-2 text-xs font-semibold text-slate-300">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-white shadow-xs">
+                <Sparkles className="w-3.5 h-3.5 text-emerald-400" aria-hidden="true" />
                 Интерактивный самоучитель
               </span>
-              <span className="text-emerald-200/80">• 58 уроков</span>
-              <span className="text-amber-300/95">• 100% озвучка MP3</span>
+              <span className="text-slate-300">• 58 уроков</span>
+              <span className="text-emerald-400">• 100% озвучка MP3</span>
             </div>
 
-            <h1 className="heading-fluid font-black text-white">
-              Му'аллим Сани — просто и понятно с первого урока
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-white leading-tight">
+              Му'аллим Сани онлайн
             </h1>
 
-            <p className="text-xs sm:text-sm text-emerald-50/90 leading-relaxed pretty-copy max-w-[54ch]">
-              Слушайте произношение каждого слова, разбирайте буквы одним касанием и пройдите путь от первой буквы до суры «Аль-Фатиха».
+            <p className="text-xs sm:text-sm text-slate-300 leading-relaxed max-w-[52ch]">
+              Классическая методика чтения Корана с нуля. Слушайте произношение каждого слова, разбирайте буквы одним касанием и осваивайте таджвид шаг за шагом.
             </p>
 
             {/* Clean Progress Bar */}
             <div className="pt-1 space-y-2 max-w-md">
-              <div className="flex items-center justify-between text-xs font-bold text-emerald-100">
-                <span>Ваш прогресс: {completedCount} из {totalLessons} уроков</span>
-                <span className="text-amber-300 font-black tabular-nums">{percent}%</span>
+              <div className="flex items-center justify-between text-xs font-medium text-slate-300">
+                <span>Пройдено {completedCount} из {totalLessons} уроков</span>
+                <span className="text-white font-bold tabular-nums">{percent}%</span>
               </div>
               <div
-                className="w-full h-2.5 bg-black/30 rounded-full overflow-hidden border border-white/15 p-0.5"
+                className="w-full h-2 bg-white/15 rounded-full overflow-hidden p-0.5"
                 role="progressbar"
                 aria-valuenow={percent}
                 aria-valuemin={0}
@@ -207,52 +207,52 @@ export default function LessonsView({ onSelectLesson }) {
                 aria-label={`Пройдено ${completedCount} из ${totalLessons} уроков`}
               >
                 <div
-                  className="h-full bg-gradient-to-r from-amber-300 via-amber-400 to-emerald-400 transition-all duration-500 rounded-full"
+                  className="h-full bg-emerald-400 transition-all duration-500 rounded-full"
                   style={{ width: `${Math.max(percent, completedCount > 0 ? 4 : 0)}%` }}
                 />
               </div>
             </div>
           </div>
 
-          {/* Primary Golden CTA */}
+          {/* Primary Minimalist CTA */}
           {nextUnfinishedLesson && (
             <button
               type="button"
               onClick={() => onSelectLesson(nextUnfinishedLesson)}
-              className="w-full lg:w-auto shrink-0 inline-flex items-center justify-between lg:justify-center gap-3.5 px-5 py-4 rounded-2xl bg-gradient-to-b from-amber-300 to-amber-400 hover:from-amber-200 hover:to-amber-300 text-slate-950 font-black text-sm shadow-xl shadow-black/25 ring-1 ring-white/50 interactive-lift group cursor-pointer"
+              className="w-full lg:w-auto shrink-0 inline-flex items-center justify-between lg:justify-center gap-4 px-6 py-4 rounded-2xl bg-white hover:bg-slate-100 text-slate-900 font-bold text-sm shadow-apple-md transition-all active:scale-98 group cursor-pointer"
             >
               <div className="flex items-center gap-3 min-w-0">
-                <div className="w-10 h-10 rounded-xl squircle bg-slate-950 text-amber-300 flex items-center justify-center shrink-0 shadow-inner">
+                <div className="w-9 h-9 rounded-xl bg-emerald-600 text-white flex items-center justify-center shrink-0 shadow-xs">
                   <Play className="w-4 h-4 fill-current ml-0.5" aria-hidden="true" />
                 </div>
                 <div className="text-left min-w-0">
-                  <div className="text-[10px] uppercase font-extrabold text-slate-800/90 tracking-wider">
-                    {completedCount === 0 ? 'Начать с 1-го шага' : 'Продолжить обучение'}
+                  <div className="text-[10px] uppercase font-bold text-slate-500 tracking-wider">
+                    {completedCount === 0 ? 'Начать с 1-го шага' : 'Продолжить урок'}
                   </div>
-                  <div className="text-xs sm:text-sm font-black truncate max-w-[220px] sm:max-w-[260px]">
+                  <div className="text-xs sm:text-sm font-bold text-slate-900 truncate max-w-[200px] sm:max-w-[240px]">
                     {nextUnfinishedLesson.title}
                   </div>
                 </div>
               </div>
-              <ArrowRight className="w-4 h-4 text-slate-950 shrink-0 transition-transform group-hover:translate-x-1" aria-hidden="true" />
+              <ArrowRight className="w-4 h-4 text-slate-600 shrink-0 transition-transform group-hover:translate-x-1" aria-hidden="true" />
             </button>
           )}
         </div>
       </section>
 
-      {/* 2. BEGINNER 7-SIGN CHEAT SHEET BENTO */}
-      <section className="surface-card rounded-[1.75rem] p-4 sm:p-6">
+      {/* 2. BEGINNER 7-SIGN CHEAT SHEET BENTO (Apple/Notion Style) */}
+      <section className="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-white/5 rounded-3xl p-5 sm:p-6 shadow-apple-sm">
         <div className="flex items-start sm:items-center justify-between gap-3">
           <div className="flex items-start sm:items-center gap-3 min-w-0">
-            <div className="w-10 h-10 rounded-2xl squircle bg-emerald-50 dark:bg-emerald-950/70 text-emerald-700 dark:text-emerald-300 border border-emerald-200/80 dark:border-emerald-800/80 flex items-center justify-center shrink-0">
-              <Sparkles className="w-5 h-5" aria-hidden="true" />
+            <div className="w-9 h-9 rounded-xl bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 border border-emerald-200/60 dark:border-emerald-800/60 flex items-center justify-center shrink-0">
+              <Sparkles className="w-4 h-4" aria-hidden="true" />
             </div>
             <div className="min-w-0">
-              <h2 className="text-sm sm:text-base font-black text-slate-900 dark:text-white leading-snug">
-                Шпаргалка новичка: все 7 знаков чтения за 30 секунд
+              <h2 className="text-sm sm:text-base font-bold text-slate-900 dark:text-white leading-snug">
+                Шпаргалка новичка: 7 знаков чтения за 30 секунд
               </h2>
-              <p className="text-xs text-slate-600 dark:text-slate-400 mt-0.5 pretty-copy">
-                Нажмите на карточку, чтобы услышать звук. Вся система чтения показана на одной букве «Б» (ب).
+              <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
+                Нажмите на карточку для прослушивания. Вся система огласовок на одной букве «Б» (ب).
               </p>
             </div>
           </div>
@@ -261,9 +261,9 @@ export default function LessonsView({ onSelectLesson }) {
             type="button"
             onClick={() => setShowCheatSheet(v => !v)}
             aria-expanded={showCheatSheet}
-            className="inline-flex items-center gap-1 px-3 py-1.5 rounded-xl text-xs font-extrabold bg-stone-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-stone-200/80 dark:hover:bg-slate-700 border border-stone-200/80 dark:border-slate-700 shrink-0 cursor-pointer transition-colors"
+            className="inline-flex items-center gap-1 px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200/80 dark:hover:bg-slate-700 border border-slate-200/80 dark:border-slate-700 shrink-0 cursor-pointer transition-colors"
           >
-            <span>{showCheatSheet ? 'Свернуть' : 'Показать'}</span>
+            <span>{showCheatSheet ? 'Свернуть' : 'Развернуть'}</span>
             {showCheatSheet ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
           </button>
         </div>
@@ -275,47 +275,44 @@ export default function LessonsView({ onSelectLesson }) {
               return (
                 <div
                   key={sign.id}
-                  className={`relative overflow-hidden rounded-2xl border bg-[#FAF8F3]/80 dark:bg-slate-900/70 p-3 flex flex-col justify-between transition-all ${
+                  className={`relative overflow-hidden rounded-2xl border bg-slate-50/70 dark:bg-slate-950/60 p-3 flex flex-col justify-between transition-all ${
                     isPlaying
-                      ? 'border-emerald-500 ring-2 ring-emerald-500/25 shadow-md'
-                      : 'border-stone-200/90 dark:border-slate-800 hover:border-emerald-400/80 dark:hover:border-emerald-700'
+                      ? 'border-emerald-500 ring-2 ring-emerald-500/20 shadow-apple-sm'
+                      : 'border-slate-200/80 dark:border-white/5 hover:border-slate-300 dark:hover:border-slate-700'
                   }`}
                 >
-                  {/* Subtle Top Color Bar */}
-                  <div className={`absolute top-0 inset-x-0 h-1 ${sign.accent}`} aria-hidden="true" />
-
                   <button
                     type="button"
                     onClick={() => handlePlaySign(sign)}
-                    className="w-full text-center group cursor-pointer focus-visible:outline-2 focus-visible:outline-emerald-600 rounded-xl pt-0.5"
+                    className="w-full text-center group cursor-pointer focus-visible:outline-2 focus-visible:outline-emerald-600 rounded-xl"
                     title="Нажмите, чтобы прослушать"
                   >
-                    <div className="flex items-center justify-between text-[10px] font-extrabold text-slate-500 dark:text-slate-400 mb-1.5">
+                    <div className="flex items-center justify-between text-[10px] font-semibold text-slate-400 mb-1.5">
                       <span>Шаг {index + 1}</span>
                       <Volume2
                         className={`w-3.5 h-3.5 transition-transform ${
-                          isPlaying ? 'text-emerald-600 scale-110' : 'text-emerald-600/80 dark:text-emerald-400/80 group-hover:scale-110'
+                          isPlaying ? 'text-emerald-600 scale-110' : 'text-slate-400 group-hover:text-emerald-600 group-hover:scale-110'
                         }`}
                         aria-hidden="true"
                       />
                     </div>
 
-                    <div className="py-2 rounded-xl bg-white dark:bg-slate-950/90 border border-stone-200/70 dark:border-slate-800 shadow-xs">
+                    <div className="py-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-200/70 dark:border-white/5 shadow-apple-xs">
                       <span className="font-arabic text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white leading-normal" dir="rtl">
                         {sign.arabic}
                       </span>
                     </div>
 
                     <div className="mt-2 flex justify-center">
-                      <span className={`px-2 py-0.5 rounded-lg text-[11px] font-black border ${sign.badge}`}>
+                      <span className="px-2 py-0.5 rounded-md text-[11px] font-bold bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-slate-200/70 dark:border-white/5">
                         «{sign.sound}»
                       </span>
                     </div>
 
-                    <div className="text-xs font-black text-slate-900 dark:text-white mt-1.5">
+                    <div className="text-xs font-bold text-slate-900 dark:text-white mt-1.5">
                       {sign.name}
                     </div>
-                    <p className="text-[11px] text-slate-600 dark:text-slate-400 leading-snug mt-0.5">
+                    <p className="text-[11px] text-slate-500 dark:text-slate-400 leading-snug mt-0.5">
                       {sign.meaning}
                     </p>
                   </button>
@@ -323,7 +320,7 @@ export default function LessonsView({ onSelectLesson }) {
                   <button
                     type="button"
                     onClick={() => handleOpenRuleLesson(sign.lessonId)}
-                    className="mt-2.5 w-full py-1.5 rounded-xl bg-white dark:bg-slate-800 hover:bg-emerald-600 hover:text-white dark:hover:bg-emerald-600 text-[11px] font-extrabold text-slate-700 dark:text-slate-300 border border-stone-200/90 dark:border-slate-700 transition-colors cursor-pointer"
+                    className="mt-2.5 w-full py-1.5 rounded-lg bg-white dark:bg-slate-900 hover:bg-emerald-600 hover:text-white dark:hover:bg-emerald-600 text-[11px] font-semibold text-slate-700 dark:text-slate-300 border border-slate-200/80 dark:border-white/5 transition-colors cursor-pointer"
                   >
                     К уроку →
                   </button>
@@ -334,11 +331,11 @@ export default function LessonsView({ onSelectLesson }) {
         )}
       </section>
 
-      {/* 3. CHAPTER PILLS & MODERN SEARCH */}
+      {/* 3. CHAPTER PILLS & SPOTLIGHT SEARCH */}
       <div className="space-y-3">
         <div
           ref={moduleScrollRef}
-          className="flex items-center gap-2 overflow-x-auto pb-1.5 pt-0.5 scroll-smooth no-scrollbar mask-fade-x-right pr-6"
+          className="flex items-center gap-1.5 overflow-x-auto pb-1.5 pt-0.5 scroll-smooth no-scrollbar mask-fade-x-right pr-6"
         >
           <button
             type="button"
@@ -346,10 +343,10 @@ export default function LessonsView({ onSelectLesson }) {
               setSelectedModuleId('all');
               e.currentTarget.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
             }}
-            className={`px-4 py-2 rounded-full text-xs sm:text-sm font-extrabold whitespace-nowrap shrink-0 transition-all active:scale-95 cursor-pointer ${
+            className={`px-3.5 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap shrink-0 transition-all active:scale-95 cursor-pointer ${
               selectedModuleId === 'all'
-                ? 'bg-emerald-700 dark:bg-emerald-600 text-white shadow-md shadow-emerald-900/15'
-                : 'bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-stone-200/90 dark:border-slate-800 hover:border-emerald-400'
+                ? 'bg-slate-900 text-white dark:bg-white dark:text-slate-900 shadow-xs'
+                : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200/80 dark:border-white/5 hover:border-slate-300 dark:hover:border-slate-700'
             }`}
           >
             Все главы ({totalLessons})
@@ -365,10 +362,10 @@ export default function LessonsView({ onSelectLesson }) {
                   setSelectedModuleId(mod.id);
                   e.currentTarget.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
                 }}
-                className={`px-4 py-2 rounded-full text-xs sm:text-sm font-extrabold whitespace-nowrap shrink-0 transition-all active:scale-95 cursor-pointer ${
+                className={`px-3.5 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap shrink-0 transition-all active:scale-95 cursor-pointer ${
                   isSelected
-                    ? 'bg-emerald-700 dark:bg-emerald-600 text-white shadow-md shadow-emerald-900/15'
-                    : 'bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-stone-200/90 dark:border-slate-800 hover:border-emerald-400'
+                    ? 'bg-slate-900 text-white dark:bg-white dark:text-slate-900 shadow-xs'
+                    : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200/80 dark:border-white/5 hover:border-slate-300 dark:hover:border-slate-700'
                 }`}
               >
                 {MODULE_SHORT_TITLES[mod.id] || `${mod.number}. ${mod.title}`}
@@ -377,21 +374,21 @@ export default function LessonsView({ onSelectLesson }) {
           })}
         </div>
 
-        {/* Refined Search Bar */}
+        {/* Apple Spotlight Inspired Search */}
         <div className="relative">
-          <Search className="w-4 h-4 absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" aria-hidden="true" />
+          <Search className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" aria-hidden="true" />
           <input
             type="search"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Поиск по темам: фатха, сукун, мадд, ташдид, танвин..."
-            className="w-full pl-10 pr-10 py-3 bg-white dark:bg-slate-900/90 border border-stone-200/90 dark:border-slate-800 rounded-2xl text-xs sm:text-sm text-slate-900 dark:text-slate-100 placeholder:text-slate-400 shadow-xs focus:outline-none focus:ring-2 focus:ring-emerald-500/40 focus:border-emerald-500 transition-all"
+            className="w-full pl-10 pr-10 py-2.5 bg-white dark:bg-slate-900/90 border border-slate-200/80 dark:border-white/10 rounded-2xl text-xs sm:text-sm text-slate-900 dark:text-slate-100 placeholder:text-slate-400 shadow-apple-xs focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all"
           />
           {searchQuery && (
             <button
               type="button"
               onClick={() => setSearchQuery('')}
-              className="absolute right-3 top-1/2 -translate-y-1/2 p-1 rounded-lg text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-stone-100 dark:hover:bg-slate-800 cursor-pointer"
+              className="absolute right-3 top-1/2 -translate-y-1/2 p-1 rounded-lg text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 cursor-pointer"
               aria-label="Очистить поиск"
             >
               <X className="w-4 h-4" />
@@ -426,46 +423,46 @@ export default function LessonsView({ onSelectLesson }) {
             return (
               <section
                 key={module.id}
-                className="surface-card rounded-[1.75rem] p-4 sm:p-6"
+                className="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-white/5 rounded-3xl p-5 sm:p-6 shadow-apple-sm"
               >
                 {/* Chapter Header */}
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 mb-5 border-b border-stone-100 dark:border-slate-800/90">
-                  <div className="flex items-start sm:items-center gap-3.5 min-w-0">
-                    <div className={`w-11 h-11 rounded-2xl squircle flex items-center justify-center font-black text-sm shrink-0 ${
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 mb-5 border-b border-slate-100 dark:border-slate-800/80">
+                  <div className="flex items-start sm:items-center gap-3 min-w-0">
+                    <div className={`w-9 h-9 rounded-xl flex items-center justify-center font-bold text-xs shrink-0 ${
                       isAllDone
-                        ? 'bg-emerald-600 text-white shadow-md shadow-emerald-600/20'
-                        : 'bg-emerald-50 dark:bg-emerald-950/70 text-emerald-800 dark:text-emerald-300 border border-emerald-200/80 dark:border-emerald-800'
+                        ? 'bg-emerald-600 text-white shadow-xs'
+                        : 'bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-white/5'
                     }`}>
-                      {isAllDone ? <CheckCircle2 className="w-5 h-5" /> : module.number}
+                      {isAllDone ? <CheckCircle2 className="w-4 h-4" /> : module.number}
                     </div>
                     <div className="min-w-0">
                       <div className="flex flex-wrap items-center gap-2">
-                        <h3 className="text-base sm:text-lg font-black text-slate-900 dark:text-white tracking-tight">
+                        <h3 className="text-sm sm:text-base font-bold text-slate-900 dark:text-white tracking-tight">
                           Глава {module.number}. {module.title}
                         </h3>
                       </div>
-                      <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 mt-0.5 pretty-copy">
+                      <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
                         {module.description}
                       </p>
                     </div>
                   </div>
 
                   {/* Mini Chapter Progress */}
-                  <div className="flex items-center gap-2.5 shrink-0 pl-14 sm:pl-0">
-                    <div className="w-20 h-2 rounded-full bg-stone-100 dark:bg-slate-800 overflow-hidden">
+                  <div className="flex items-center gap-2.5 shrink-0 pl-12 sm:pl-0">
+                    <div className="w-20 h-1.5 rounded-full bg-slate-100 dark:bg-slate-800 overflow-hidden">
                       <div
                         className="h-full bg-emerald-500 rounded-full transition-all duration-300"
                         style={{ width: `${modulePercent}%` }}
                       />
                     </div>
-                    <span className="text-xs font-extrabold text-slate-600 dark:text-slate-300 tabular-nums whitespace-nowrap">
+                    <span className="text-xs font-semibold text-slate-500 dark:text-slate-400 tabular-nums whitespace-nowrap">
                       {moduleCompleted} / {module.lessons.length}
                     </span>
                   </div>
                 </div>
 
                 {/* Lesson Cards Grid */}
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 sm:gap-3.5">
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
                   {module.lessons.map((lesson) => {
                     const isDone = !!progress.completedLessons[lesson.id];
                     const stars = storageService.getLessonStars(lesson.id);
@@ -477,20 +474,20 @@ export default function LessonsView({ onSelectLesson }) {
                         key={lesson.id}
                         type="button"
                         onClick={() => onSelectLesson(lesson)}
-                        className={`group relative p-3.5 rounded-2xl text-left flex flex-col justify-between select-none cursor-pointer interactive-lift ${
+                        className={`group relative p-3.5 rounded-2xl text-left flex flex-col justify-between select-none cursor-pointer transition-all duration-200 ${
                           isCurrentTarget
-                            ? 'bg-gradient-to-b from-amber-50/90 to-white dark:from-amber-950/35 dark:to-slate-900 border-2 border-amber-400 dark:border-amber-500/80 ring-4 ring-amber-400/15'
+                            ? 'bg-emerald-50/30 dark:bg-emerald-950/20 border-2 border-emerald-500 ring-4 ring-emerald-500/10 shadow-apple-md'
                             : isDone
-                            ? 'bg-emerald-50/40 dark:bg-emerald-950/20 border border-emerald-200/90 dark:border-emerald-800/80 hover:border-emerald-500'
-                            : 'bg-[#FAF8F3]/75 dark:bg-slate-950/50 border border-stone-200/90 dark:border-slate-800 hover:border-emerald-400 dark:hover:border-emerald-600'
+                            ? 'bg-white dark:bg-slate-950/60 border border-slate-200/80 dark:border-white/5 hover:border-emerald-500/40 shadow-apple-xs hover:shadow-apple-sm'
+                            : 'bg-white dark:bg-slate-950/60 border border-slate-200/80 dark:border-white/5 hover:border-slate-300 dark:hover:border-slate-700 shadow-apple-xs hover:shadow-apple-sm'
                         }`}
                       >
                         {/* Top row: Lesson # and Stars */}
                         <div className="flex items-center justify-between w-full mb-2 gap-1">
-                          <span className={`text-[10px] font-extrabold px-2 py-0.5 rounded-lg border ${
+                          <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-md border ${
                             isCurrentTarget
-                              ? 'bg-amber-400/20 text-amber-900 dark:text-amber-300 border-amber-400/40'
-                              : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 border-stone-200/80 dark:border-slate-800'
+                              ? 'bg-emerald-500/10 text-emerald-800 dark:text-emerald-300 border-emerald-500/20'
+                              : 'bg-slate-50 dark:bg-slate-900 text-slate-500 dark:text-slate-400 border-slate-200/70 dark:border-white/5'
                           }`}>
                             Урок {lessonGlobalIndex}
                           </span>
@@ -501,30 +498,30 @@ export default function LessonsView({ onSelectLesson }) {
                                 className={`w-3 h-3 ${
                                   s <= stars
                                     ? 'fill-amber-400 text-amber-500'
-                                    : 'text-stone-300 dark:text-slate-700'
+                                    : 'text-slate-200 dark:text-slate-700'
                                 }`}
                               />
                             ))}
                           </div>
                         </div>
 
-                        {/* Warm Manuscript Arabic Preview Tile */}
+                        {/* Crisp Minimalist Arabic Preview Tile */}
                         <div
-                          className="my-1.5 flex items-center justify-center min-h-[4rem] px-2 rounded-xl bg-white dark:bg-slate-900 border border-stone-200/70 dark:border-slate-800 shadow-2xs group-hover:border-emerald-300/80 dark:group-hover:border-emerald-700/70 transition-colors"
+                          className="my-1.5 flex items-center justify-center min-h-[4rem] px-2 rounded-xl bg-slate-50/80 dark:bg-slate-900/80 border border-slate-200/60 dark:border-white/5 group-hover:border-emerald-500/30 transition-colors"
                           dir="rtl"
                         >
                           {lesson.headerForms && lesson.headerForms.length === 3 ? (
-                            <div className="flex items-center gap-2 font-arabic text-2xl font-bold text-emerald-800 dark:text-emerald-300">
+                            <div className="flex items-center gap-2 font-arabic text-2xl font-bold text-slate-900 dark:text-slate-100">
                               {lesson.headerForms.map((hf, i) => (
                                 <span key={i}>{hf}</span>
                               ))}
                             </div>
                           ) : lesson.letter ? (
-                            <span className="font-arabic text-4xl font-bold text-emerald-800 dark:text-emerald-300">
+                            <span className="font-arabic text-4xl font-bold text-slate-900 dark:text-slate-100">
                               {lesson.letter}
                             </span>
                           ) : (
-                            <span className="font-arabic text-xl font-bold text-emerald-800 dark:text-emerald-300 px-1 truncate">
+                            <span className="font-arabic text-xl font-bold text-slate-900 dark:text-slate-100 px-1 truncate">
                               {lesson.titleAr || 'قرآن'}
                             </span>
                           )}
@@ -533,7 +530,7 @@ export default function LessonsView({ onSelectLesson }) {
                         {/* Title + 1-line hint + footer action */}
                         <div className="mt-1.5 flex-1 flex flex-col justify-between">
                           <div>
-                            <h4 className="text-xs font-black text-slate-900 dark:text-white line-clamp-2 leading-snug">
+                            <h4 className="text-xs font-bold text-slate-900 dark:text-white line-clamp-2 leading-snug">
                               {lesson.title.replace(/^Урок\s+\d+:\s*/, '')}
                             </h4>
                             {lesson.hint && (
@@ -543,19 +540,19 @@ export default function LessonsView({ onSelectLesson }) {
                             )}
                           </div>
 
-                          <div className="mt-3 pt-2 border-t border-stone-200/60 dark:border-slate-800/80 flex items-center justify-between">
+                          <div className="mt-3 pt-2 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between">
                             {isCurrentTarget ? (
-                              <span className="text-[10px] font-black text-amber-800 dark:text-amber-300 flex items-center gap-1">
+                              <span className="text-[10px] font-bold text-emerald-600 dark:text-emerald-400 flex items-center gap-1">
                                 <Play className="w-3 h-3 fill-current" aria-hidden="true" />
-                                Текущий шаг
+                                Начать
                               </span>
                             ) : isDone ? (
-                              <span className="text-[10px] font-extrabold text-emerald-700 dark:text-emerald-400 flex items-center gap-1">
+                              <span className="text-[10px] font-semibold text-emerald-600 dark:text-emerald-400 flex items-center gap-1">
                                 <CheckCircle2 className="w-3 h-3" aria-hidden="true" />
                                 Пройдено
                               </span>
                             ) : (
-                              <span className="text-[10px] font-bold text-slate-500 dark:text-slate-400 flex items-center gap-1 group-hover:text-emerald-700 dark:group-hover:text-emerald-400 transition-colors">
+                              <span className="text-[10px] font-medium text-slate-500 dark:text-slate-400 flex items-center gap-1 group-hover:text-emerald-600 transition-colors">
                                 <BookOpen className="w-3 h-3" aria-hidden="true" />
                                 Открыть
                               </span>

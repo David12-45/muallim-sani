@@ -3,8 +3,9 @@
 @tailwind utilities;
 
 /* ============================================================
-   Design Tokens & Modern CSS Architecture (Му'аллим Сани 2026)
-   Warm Manuscript Ivory + Deep Emerald + Burnished Gold
+   Design Tokens & Modern CSS Architecture (Му'аллим Сани)
+   Modern Minimalist Design System (Apple / Notion Style)
+   Clean Grayscale + Vibrant Emerald + Multi-layer Diffusion
    ============================================================ */
 :root {
   color-scheme: light dark;
@@ -12,29 +13,27 @@
   --in-oklab: ;
   --in-oklch: ;
 
-  /* Semantic Surface & Border Tokens (Light: Warm Ivory Manuscript) */
-  --surface-canvas: #FAF8F3;
+  /* Semantic Surface & Border Tokens (Light: Crisp White & Slate) */
+  --surface-canvas: #F8FAFC;
   --surface-card: #FFFFFF;
-  --surface-subtle: #F4EFE4;
-  --surface-elevated: rgba(255, 255, 255, 0.92);
+  --surface-subtle: #F1F5F9;
+  --surface-elevated: rgba(255, 255, 255, 0.95);
   --border-subtle: rgba(15, 23, 42, 0.08);
   --border-strong: rgba(15, 23, 42, 0.14);
   --accent-emerald: #059669;
   --accent-emerald-deep: #064E3B;
-  --accent-gold: #D97706;
+  --accent-gold: #F59E0B;
 
-  /* Layered Multi-Shadow Elevation */
+  /* Apple-Style Soft Multi-Layer Diffusion */
   --shadow-card:
-    0 1px 2px rgba(15, 23, 42, 0.04),
-    0 6px 20px -4px rgba(15, 23, 42, 0.06),
-    inset 0 1px 0 0 rgba(255, 255, 255, 0.8);
+    0 1px 2px rgba(0, 0, 0, 0.03),
+    0 4px 16px -2px rgba(0, 0, 0, 0.04);
   --shadow-elevated:
-    0 2px 6px rgba(15, 23, 42, 0.05),
-    0 16px 36px -8px rgba(6, 78, 59, 0.12),
-    inset 0 1px 0 0 rgba(255, 255, 255, 0.9);
+    0 2px 4px rgba(0, 0, 0, 0.03),
+    0 12px 28px -4px rgba(0, 0, 0, 0.07);
   --shadow-dock:
-    0 4px 12px rgba(15, 23, 42, 0.08),
-    0 18px 40px -8px rgba(15, 23, 42, 0.16);
+    0 2px 8px rgba(0, 0, 0, 0.04),
+    0 16px 36px -4px rgba(0, 0, 0, 0.09);
 }
 
 :root:has(> head > meta[name="color-scheme"][content="dark"]) {
@@ -46,23 +45,21 @@
 }
 
 .dark {
-  --surface-canvas: #070D14;
-  --surface-card: #0E1726;
-  --surface-subtle: #142136;
-  --surface-elevated: rgba(14, 23, 38, 0.88);
-  --border-subtle: rgba(148, 163, 184, 0.14);
-  --border-strong: rgba(148, 163, 184, 0.24);
+  --surface-canvas: #090A0F;
+  --surface-card: #12141A;
+  --surface-subtle: #181B22;
+  --surface-elevated: rgba(18, 20, 26, 0.92);
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(255, 255, 255, 0.16);
   --shadow-card:
-    0 2px 6px rgba(0, 0, 0, 0.28),
-    0 12px 28px -6px rgba(0, 0, 0, 0.42),
-    inset 0 1px 0 0 rgba(255, 255, 255, 0.06);
+    0 1px 3px rgba(0, 0, 0, 0.4),
+    0 8px 24px -4px rgba(0, 0, 0, 0.55);
   --shadow-elevated:
-    0 4px 12px rgba(0, 0, 0, 0.35),
-    0 20px 44px -8px rgba(0, 0, 0, 0.55),
-    inset 0 1px 0 0 rgba(255, 255, 255, 0.08);
+    0 2px 6px rgba(0, 0, 0, 0.5),
+    0 16px 36px -4px rgba(0, 0, 0, 0.7);
   --shadow-dock:
-    0 6px 16px rgba(0, 0, 0, 0.45),
-    0 20px 44px -8px rgba(0, 0, 0, 0.65);
+    0 4px 12px rgba(0, 0, 0, 0.5),
+    0 20px 40px -4px rgba(0, 0, 0, 0.8);
 }
 
 @supports (background: linear-gradient(in oklab, white, black)) {
@@ -147,25 +144,23 @@
   }
 }
 
-/* Perceptual Oklab Hero Surface + Subtle Geometric Lattice Pattern */
+/* Modern Minimalist Hero Surface */
 .hero-mesh-gradient {
   isolation: isolate;
   background:
-    radial-gradient(circle at 86% 14%, rgba(251, 191, 36, 0.28) 0%, transparent 44%),
-    radial-gradient(circle at 12% 88%, rgba(16, 185, 129, 0.34) 0%, transparent 48%),
-    radial-gradient(circle at 52% 0%, rgba(20, 184, 166, 0.22) 0%, transparent 52%),
-    linear-gradient(135deg var(--in-oklab), #053b2e 0%, #0a5c4a 45%, #0b2434 100%);
+    radial-gradient(circle at 90% 10%, rgba(16, 185, 129, 0.18) 0%, transparent 45%),
+    radial-gradient(circle at 10% 90%, rgba(20, 184, 166, 0.16) 0%, transparent 50%),
+    radial-gradient(circle at 50% 0%, rgba(245, 158, 11, 0.12) 0%, transparent 40%),
+    linear-gradient(145deg, #0f172a 0%, #111827 50%, #064e3b 100%);
   box-shadow:
-    0 2px 6px rgba(6, 78, 59, 0.16),
-    0 22px 48px -12px rgba(6, 78, 59, 0.32),
-    inset 0 1px 0 0 rgba(255, 255, 255, 0.18);
+    0 1px 3px rgba(0, 0, 0, 0.05),
+    0 20px 40px -12px rgba(15, 23, 42, 0.25);
 }
 
 .hero-lattice {
   background-image:
-    linear-gradient(45deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px),
-    linear-gradient(-45deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
-  background-size: 28px 28px;
+    radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+  background-size: 24px 24px;
 }
 
 /* Soft-edge content fade using CSS masking */
@@ -188,12 +183,12 @@
 .pattern-dots {
   --dot-space: 24px;
   --dot-radius: 1px;
-  background-image: radial-gradient(circle, rgba(6, 95, 70, 0.12) var(--dot-radius), transparent calc(var(--dot-radius) + 0.5px));
+  background-image: radial-gradient(circle, rgba(15, 23, 42, 0.06) var(--dot-radius), transparent calc(var(--dot-radius) + 0.5px));
   background-size: var(--dot-space) var(--dot-space);
 }
 
 .dark .pattern-dots {
-  background-image: radial-gradient(circle, rgba(58, 173, 139, 0.16) var(--dot-radius), transparent calc(var(--dot-radius) + 0.6px));
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.06) var(--dot-radius), transparent calc(var(--dot-radius) + 0.6px));
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */
@@ -205,36 +200,36 @@
   scrollbar-width: none;
 }
 
-/* Frosted Glassmorphism Surfaces */
+/* Frosted Glassmorphism Surfaces (Apple Style) */
 .glass-header {
-  background: rgba(250, 248, 243, 0.84);
-  backdrop-filter: blur(20px) saturate(160%);
-  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
   border-bottom: 1px solid var(--border-subtle);
 }
 
 .dark .glass-header {
-  background: rgba(7, 13, 20, 0.84);
+  background: rgba(9, 10, 15, 0.82);
 }
 
 .glass-panel {
-  background: rgba(255, 255, 255, 0.86);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 }
 .dark .glass-panel {
-  background: rgba(14, 23, 38, 0.86);
+  background: rgba(18, 20, 26, 0.88);
 }
 
 .glass-dock {
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.88);
   backdrop-filter: blur(24px) saturate(180%);
   -webkit-backdrop-filter: blur(24px) saturate(180%);
   box-shadow: var(--shadow-dock);
   border: 1px solid var(--border-subtle);
 }
 .dark .glass-dock {
-  background: rgba(14, 23, 38, 0.9);
+  background: rgba(18, 20, 26, 0.88);
 }
 
 /* Safe area helpers for iPhone 11 / iOS notch and home indicator */

@@ -237,20 +237,20 @@ export default function DailyWorkoutModal({ isOpen, onClose }) {
       <div className="relative w-full max-w-lg rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-2xl overflow-hidden flex flex-col max-h-[92vh]">
         {/* Header */}
         <div className="p-4 sm:p-5 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between gap-3 bg-gradient-to-r from-emerald-50 via-teal-50 to-amber-50 dark:from-slate-900 dark:via-slate-900 dark:to-slate-800">
-          <div className="flex items-center gap-2.5">
-            <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-amber-500 to-orange-500 text-white flex items-center justify-center shadow-md shadow-orange-500/20">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-2xl bg-amber-400 text-slate-950 flex items-center justify-center shadow-apple-xs">
               <Flame className="w-5 h-5 fill-current animate-pulse" />
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <h3 className="font-black text-base sm:text-lg text-slate-900 dark:text-white leading-tight">
+                <h3 className="font-bold text-base sm:text-lg text-slate-900 dark:text-white leading-tight">
                   Тренировка дня
                 </h3>
-                <span className="text-[10px] font-black px-2 py-0.5 rounded-full bg-orange-100 dark:bg-orange-950/60 text-orange-700 dark:text-orange-300 border border-orange-300/40">
+                <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-100 dark:bg-amber-950/60 text-amber-800 dark:text-amber-300 border border-amber-200 dark:border-amber-800/60">
                   🔥 {questStatus.streak} дн. подряд
                 </span>
               </div>
-              <p className="text-[11px] text-slate-500 dark:text-slate-400 font-medium">
+              <p className="text-[11px] text-slate-500 dark:text-slate-400 font-normal">
                 Ежедневная 3-минутная разминка • +50 XP
               </p>
             </div>
@@ -258,25 +258,25 @@ export default function DailyWorkoutModal({ isOpen, onClose }) {
 
           <button
             onClick={onClose}
-            className="p-2 rounded-xl text-slate-400 hover:text-slate-600 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+            className="p-2 rounded-xl text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
         {/* Content Area */}
-        <div className="p-4 sm:p-6 overflow-y-auto space-y-4">
+        <div className="p-5 sm:p-6 overflow-y-auto space-y-4">
           {!isFinished && currentQ ? (
             <>
               {/* Progress Bar & Counter */}
               <div className="space-y-1.5">
-                <div className="flex items-center justify-between text-xs font-bold text-slate-500 dark:text-slate-400">
+                <div className="flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
                   <span>Вопрос {currentIdx + 1} из {questions.length}</span>
                   <span className="text-emerald-600 dark:text-emerald-400 font-mono">Верно: {score}</span>
                 </div>
                 <div className="w-full h-2 rounded-full bg-slate-100 dark:bg-slate-800 overflow-hidden">
                   <div
-                    className="h-full bg-gradient-to-r from-emerald-500 to-teal-500 transition-all duration-300"
+                    className="h-full bg-emerald-500 transition-all duration-300 rounded-full"
                     style={{ width: `${((currentIdx + 1) / questions.length) * 100}%` }}
                   />
                 </div>
@@ -284,16 +284,16 @@ export default function DailyWorkoutModal({ isOpen, onClose }) {
 
               {/* Question Badge & Title */}
               <div className="text-center pt-2">
-                <span className="inline-block text-[11px] font-extrabold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-emerald-100 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 mb-1.5 border border-emerald-300/30">
+                <span className="inline-block text-[11px] font-semibold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 mb-1.5 border border-slate-200/60 dark:border-slate-700/60">
                   {currentQ.title}
                 </span>
-                <h4 className="text-sm sm:text-base font-extrabold text-slate-800 dark:text-slate-100">
+                <h4 className="text-sm sm:text-base font-bold text-slate-800 dark:text-slate-100">
                   {currentQ.prompt}
                 </h4>
               </div>
 
               {/* Display Box: Big Letter or Word or Audio Speaker Button */}
-              <div className="relative p-5 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-100 dark:border-slate-800 flex flex-col items-center justify-center min-h-[120px]">
+              <div className="relative p-6 rounded-2xl bg-slate-50 dark:bg-slate-850/60 border border-slate-200/80 dark:border-slate-800 flex flex-col items-center justify-center min-h-[120px]">
                 {currentQ.displayArabic ? (
                   <div className="flex items-center gap-3">
                     <span className="font-arabic text-5xl sm:text-6xl font-bold text-slate-900 dark:text-white leading-normal" dir="rtl">
@@ -302,7 +302,7 @@ export default function DailyWorkoutModal({ isOpen, onClose }) {
                     {currentQ.audio && (
                       <button
                         onClick={() => audioService.speakArabic(currentQ.audio)}
-                        className="p-3 rounded-2xl bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300 hover:scale-105 active:scale-95 transition-all shadow-xs"
+                        className="p-3 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700 text-emerald-600 dark:text-emerald-400 hover:border-emerald-500 active:scale-95 transition-all shadow-apple-xs"
                         title="Послушать аудио ещё раз"
                       >
                         <Volume2 className="w-5 h-5" />
@@ -312,7 +312,7 @@ export default function DailyWorkoutModal({ isOpen, onClose }) {
                 ) : (
                   <button
                     onClick={() => audioService.speakArabic(currentQ.audio)}
-                    className="w-20 h-20 rounded-full bg-gradient-to-tr from-emerald-600 to-teal-500 text-white flex items-center justify-center shadow-lg shadow-emerald-600/30 hover:scale-105 active:scale-95 transition-all group"
+                    className="w-20 h-20 rounded-full bg-emerald-600 text-white flex items-center justify-center shadow-apple-md hover:bg-emerald-500 active:scale-95 transition-all group"
                     title="Нажмите, чтобы прослушать букву"
                   >
                     <Volume2 className="w-9 h-9 group-hover:scale-110 transition-transform" />
@@ -325,13 +325,13 @@ export default function DailyWorkoutModal({ isOpen, onClose }) {
                 {currentQ.options.map((opt, idx) => {
                   const isSelected = selectedOpt === opt.key;
                   const isCorrect = opt.key === currentQ.correctAnswer;
-                  let btnCls = 'bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-100 hover:border-emerald-500';
+                  let btnCls = 'bg-white dark:bg-slate-850 border-slate-200/80 dark:border-slate-750 text-slate-800 dark:text-slate-100 hover:border-slate-300 dark:hover:border-slate-650 shadow-apple-xs';
 
                   if (isAnswered) {
                     if (isCorrect) {
-                      btnCls = 'bg-emerald-100 dark:bg-emerald-950 border-emerald-500 text-emerald-900 dark:text-emerald-200 font-bold';
+                      btnCls = 'bg-emerald-50 dark:bg-emerald-950/70 border-emerald-500 text-emerald-900 dark:text-emerald-200 font-bold ring-2 ring-emerald-500/20';
                     } else if (isSelected && !isCorrect) {
-                      btnCls = 'bg-rose-100 dark:bg-rose-950 border-rose-500 text-rose-900 dark:text-rose-200';
+                      btnCls = 'bg-rose-50 dark:bg-rose-950/70 border-rose-500 text-rose-900 dark:text-rose-200';
                     } else {
                       btnCls += ' opacity-50';
                     }
@@ -343,10 +343,10 @@ export default function DailyWorkoutModal({ isOpen, onClose }) {
                       onClick={() => handleSelect(opt)}
                       disabled={isAnswered}
                       dir={opt.isArabic ? 'rtl' : 'ltr'}
-                      className={`p-3.5 sm:p-4 rounded-2xl border-2 border-b-4 text-center transition-all active:scale-95 flex items-center justify-center ${
+                      className={`p-3.5 sm:p-4 rounded-2xl border text-center transition-all active:scale-95 flex items-center justify-center ${
                         opt.isArabic
                           ? 'font-arabic text-3xl sm:text-4xl font-bold leading-relaxed'
-                          : 'text-xs sm:text-sm font-extrabold'
+                          : 'text-xs sm:text-sm font-bold'
                       } ${btnCls}`}
                     >
                       {opt.label}
@@ -359,15 +359,15 @@ export default function DailyWorkoutModal({ isOpen, onClose }) {
               {isAnswered && (
                 <div className={`p-4 rounded-2xl border animate-fadeIn ${
                   selectedOpt === currentQ.correctAnswer
-                    ? 'bg-emerald-50 dark:bg-emerald-950/40 border-emerald-300 dark:border-emerald-700'
-                    : 'bg-rose-50 dark:bg-rose-950/40 border-rose-300 dark:border-rose-700'
+                    ? 'bg-emerald-50/70 dark:bg-emerald-950/40 border-emerald-300/80 dark:border-emerald-700/80'
+                    : 'bg-rose-50/70 dark:bg-rose-950/40 border-rose-300/80 dark:border-rose-700/80'
                 }`}>
-                  <p className="text-xs sm:text-sm font-bold text-slate-800 dark:text-slate-200 mb-2">
+                  <p className="text-xs sm:text-sm font-semibold text-slate-800 dark:text-slate-200 mb-2.5">
                     {currentQ.explanation}
                   </p>
                   <button
                     onClick={handleNext}
-                    className="w-full py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-black text-sm shadow-md active:scale-95 flex items-center justify-center gap-2 transition-all"
+                    className="w-full py-3 rounded-2xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm shadow-apple-sm active:scale-95 flex items-center justify-center gap-2 transition-all"
                   >
                     <span>{currentIdx + 1 < questions.length ? 'Следующий вопрос' : 'Завершить разминку'}</span>
                     <ArrowRight className="w-4 h-4" />
@@ -378,8 +378,8 @@ export default function DailyWorkoutModal({ isOpen, onClose }) {
           ) : (
             /* Completed Screen */
             <div className="py-4 text-center space-y-4">
-              <div className="w-20 h-20 rounded-3xl bg-gradient-to-tr from-amber-400 via-orange-500 to-amber-600 text-white flex items-center justify-center mx-auto shadow-xl shadow-orange-500/25 animate-bounce">
-                <Flame className="w-10 h-10 fill-current" />
+              <div className="w-16 h-16 rounded-2xl bg-amber-400 text-slate-950 flex items-center justify-center mx-auto shadow-apple-md">
+                <Flame className="w-9 h-9 fill-current" />
               </div>
 
               <div>
@@ -387,24 +387,24 @@ export default function DailyWorkoutModal({ isOpen, onClose }) {
                   МашаАллах! Задание дня выполнено!
                 </h4>
                 <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">
-                  Ударный режим сохранён: <strong className="text-orange-500 font-extrabold">{questStatus.streak} дней подряд 🔥</strong>
+                  Ударный режим сохранён: <strong className="text-amber-500 font-bold">{questStatus.streak} дней подряд 🔥</strong>
                 </p>
               </div>
 
               {/* XP Bonus Badge */}
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-2xl bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 font-black text-sm border border-emerald-300/40">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-2xl bg-emerald-50 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 font-bold text-sm border border-emerald-200/80 dark:border-emerald-800/60">
                 <Zap className="w-4 h-4 fill-current text-amber-500" />
                 <span>+50 Бонусных XP начислено!</span>
               </div>
 
               {/* 7 Days Streak Calendar Tracker */}
-              <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 text-left">
+              <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-850/80 border border-slate-200/80 dark:border-slate-800 text-left shadow-apple-xs">
                 <div className="flex items-center justify-between mb-3">
                   <span className="text-xs font-bold text-slate-700 dark:text-slate-300 flex items-center gap-1.5">
-                    <Calendar className="w-3.5 h-3.5 text-emerald-600" />
+                    <Calendar className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
                     Ваша неделя:
                   </span>
-                  <span className="text-[11px] font-extrabold text-orange-500">
+                  <span className="text-[11px] font-bold text-amber-500">
                     🔥 {questStatus.streak} дн.
                   </span>
                 </div>
@@ -415,14 +415,14 @@ export default function DailyWorkoutModal({ isOpen, onClose }) {
                       key={i}
                       className={`p-2 rounded-xl flex flex-col items-center justify-center border transition-all ${
                         d.isDone
-                          ? 'bg-emerald-500 text-white border-emerald-600 shadow-xs'
+                          ? 'bg-emerald-600 text-white border-emerald-600 shadow-apple-xs'
                           : d.isToday
                           ? 'bg-amber-100 dark:bg-amber-950/60 border-amber-400 text-amber-800 dark:text-amber-200 font-bold'
-                          : 'bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-700 text-slate-400'
+                          : 'bg-white dark:bg-slate-900 border-slate-200/80 dark:border-slate-800 text-slate-400'
                       }`}
                     >
-                      <span className="text-[10px] font-bold">{d.dayName}</span>
-                      <span className="text-xs font-black mt-0.5">
+                      <span className="text-[10px] font-semibold">{d.dayName}</span>
+                      <span className="text-xs font-bold mt-0.5">
                         {d.isDone ? '✓' : d.dayNum}
                       </span>
                     </div>
@@ -433,13 +433,13 @@ export default function DailyWorkoutModal({ isOpen, onClose }) {
               <div className="flex flex-col sm:flex-row gap-2.5 pt-2">
                 <button
                   onClick={onClose}
-                  className="flex-1 py-3.5 rounded-2xl bg-emerald-600 hover:bg-emerald-700 text-white font-black text-sm shadow-lg shadow-emerald-600/30 active:scale-95 transition-all"
+                  className="flex-1 py-3.5 rounded-2xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm shadow-apple-sm active:scale-95 transition-all"
                 >
                   Отлично, продолжить курс!
                 </button>
                 <button
                   onClick={startNewWorkout}
-                  className="px-4 py-3.5 rounded-2xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-bold text-sm hover:bg-slate-200 active:scale-95 transition-all flex items-center justify-center gap-1.5"
+                  className="px-4 py-3.5 rounded-2xl bg-slate-100 hover:bg-slate-200/70 dark:bg-slate-800 dark:hover:bg-slate-750 text-slate-700 dark:text-slate-300 font-semibold text-sm active:scale-95 transition-all flex items-center justify-center gap-1.5"
                 >
                   <RotateCcw className="w-4 h-4" />
                   <span>Ещё раз</span>
