@@ -233,7 +233,7 @@ export default function AlphabetGameModal({ onClose }) {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/60 backdrop-blur-sm animate-fadeIn">
-      <div className="relative w-full max-w-xl bg-white dark:bg-slate-900 rounded-3xl shadow-2xl border border-slate-200 dark:border-slate-800 overflow-hidden flex flex-col max-h-[92vh]">
+      <div className="relative w-full max-w-xl bg-[#FFFDF8] dark:bg-slate-900 rounded-3xl shadow-2xl border border-slate-200 dark:border-slate-800 overflow-hidden flex flex-col max-h-[92vh]">
         {/* Top Header */}
         <div className="flex items-center justify-between p-4 sm:p-5 border-b border-slate-100 dark:border-slate-800">
           <div className="flex items-center gap-2.5">
@@ -267,7 +267,7 @@ export default function AlphabetGameModal({ onClose }) {
             onClick={() => setSubMode('audio')}
             className={`py-2 px-1.5 rounded-xl text-xs font-extrabold flex items-center justify-center gap-1.5 transition-all ${
               subMode === 'audio'
-                ? 'bg-white dark:bg-slate-800 text-emerald-700 dark:text-emerald-400 shadow-sm border border-emerald-500/20'
+                ? 'bg-[#FFFDF8] dark:bg-slate-800 text-emerald-700 dark:text-emerald-400 shadow-sm border border-emerald-500/20'
                 : 'text-slate-500 hover:text-slate-900 dark:text-slate-400'
             }`}
           >
@@ -279,7 +279,7 @@ export default function AlphabetGameModal({ onClose }) {
             onClick={() => setSubMode('families')}
             className={`py-2 px-1.5 rounded-xl text-xs font-extrabold flex items-center justify-center gap-1.5 transition-all ${
               subMode === 'families'
-                ? 'bg-white dark:bg-slate-800 text-teal-700 dark:text-teal-400 shadow-sm border border-teal-500/20'
+                ? 'bg-[#FFFDF8] dark:bg-slate-800 text-teal-700 dark:text-teal-400 shadow-sm border border-teal-500/20'
                 : 'text-slate-500 hover:text-slate-900 dark:text-slate-400'
             }`}
           >
@@ -291,7 +291,7 @@ export default function AlphabetGameModal({ onClose }) {
             onClick={() => setSubMode('order')}
             className={`py-2 px-1.5 rounded-xl text-xs font-extrabold flex items-center justify-center gap-1.5 transition-all ${
               subMode === 'order'
-                ? 'bg-white dark:bg-slate-800 text-amber-700 dark:text-amber-400 shadow-sm border border-amber-500/20'
+                ? 'bg-[#FFFDF8] dark:bg-slate-800 text-amber-700 dark:text-amber-400 shadow-sm border border-amber-500/20'
                 : 'text-slate-500 hover:text-slate-900 dark:text-slate-400'
             }`}
           >
@@ -370,7 +370,7 @@ export default function AlphabetGameModal({ onClose }) {
                       {currentQ.displaySymbol}
                     </span>
                     {currentQ.promptBadge && (
-                      <span className="block mt-2 text-[11px] font-bold text-slate-500 bg-white dark:bg-slate-800 px-3 py-1 rounded-full border border-slate-200 dark:border-slate-700">
+                      <span className="block mt-2 text-[11px] font-bold text-slate-500 bg-[#FFFDF8] dark:bg-slate-800 px-3 py-1 rounded-full border border-slate-200 dark:border-slate-700">
                         {currentQ.promptBadge}
                       </span>
                     )}
@@ -390,7 +390,7 @@ export default function AlphabetGameModal({ onClose }) {
                   const isSelected = selectedOpt === opt.value;
                   const isRight = opt.value === currentQ.correctAnswer;
 
-                  let style = 'bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 hover:border-emerald-500 text-slate-900 dark:text-white';
+                  let style = 'bg-[#FFFDF8] dark:bg-slate-800 border-slate-200 dark:border-slate-700 hover:border-emerald-500 text-slate-900 dark:text-white';
                   if (isAnswered) {
                     if (isRight) {
                       style = 'bg-emerald-100 dark:bg-emerald-950/80 border-emerald-500 text-emerald-900 dark:text-emerald-200 ring-2 ring-emerald-500/30';

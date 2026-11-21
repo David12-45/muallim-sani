@@ -252,7 +252,7 @@ export default function LetterConnectorGame({ level, onExit }) {
                     ? isTarget
                       ? 'bg-emerald-50/80 dark:bg-emerald-950/30 border-emerald-500 shadow-sm'
                       : 'bg-rose-50/80 dark:bg-rose-950/30 border-rose-400'
-                    : 'bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700'
+                    : 'bg-[#FFFDF8] dark:bg-slate-800 border-slate-200 dark:border-slate-700'
                 }`}
                 dir="ltr"
               >

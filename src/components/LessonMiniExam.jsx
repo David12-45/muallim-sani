@@ -156,7 +156,7 @@ export default function LessonMiniExam({ lesson, onPassExam, defaultOpen = false
   };
 
   return (
-    <div className="bg-white dark:bg-slate-800 rounded-3xl p-4 sm:p-7 border-2 border-amber-400/40 dark:border-amber-500/30 shadow-lg mb-6">
+    <div className="bg-[#FFFDF8] dark:bg-slate-800 rounded-3xl p-4 sm:p-7 border-2 border-amber-400/40 dark:border-amber-500/30 shadow-lg mb-6">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div className="flex items-start gap-3">
           <div className="w-11 h-11 rounded-2xl bg-amber-100 dark:bg-amber-950/70 text-amber-600 dark:text-amber-400 flex items-center justify-center shrink-0">
@@ -232,7 +232,7 @@ export default function LessonMiniExam({ lesson, onPassExam, defaultOpen = false
               const isChosen = selectedOption === opt.value;
               const isRight = opt.value === currentQuestion.targetWord;
 
-              let btnStyle = 'bg-white dark:bg-slate-800 border-b-4 border-slate-200 dark:border-slate-700 hover:border-emerald-400 text-slate-900 dark:text-white';
+              let btnStyle = 'bg-[#FFFDF8] dark:bg-slate-800 border-b-4 border-slate-200 dark:border-slate-700 hover:border-emerald-400 text-slate-900 dark:text-white';
               if (selectedOption !== null) {
                 if (isRight) {
                   btnStyle = 'bg-emerald-50 dark:bg-emerald-950/70 border-b-4 border-emerald-500 text-emerald-900 dark:text-emerald-200 ring-2 ring-emerald-500/30';

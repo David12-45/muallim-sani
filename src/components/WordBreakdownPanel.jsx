@@ -43,7 +43,7 @@ export default function WordBreakdownPanel({ word, onClose }) {
   };
 
   return (
-    <div className="mb-6 rounded-[2rem] bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 p-5 sm:p-6 shadow-apple-md animate-fadeIn">
+    <div className="mb-6 rounded-[2rem] bg-[#FFFDF8] dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 p-5 sm:p-6 shadow-apple-md animate-fadeIn">
       {/* Header Row: Selected Word & Transcription */}
       <div className="flex flex-wrap items-center justify-between gap-4 pb-4 border-b border-slate-100 dark:border-slate-800">
         <div className="flex items-center gap-4">
@@ -137,7 +137,7 @@ export default function WordBreakdownPanel({ word, onClose }) {
               >
                 {/* Top row: Step number + Isolated letter badge */}
                 <div className="flex items-center justify-between w-full mb-1" dir="ltr">
-                  <span className="px-2 py-0.5 rounded-md bg-white dark:bg-slate-800 text-[10px] font-mono text-slate-500 dark:text-slate-400 border border-slate-200/50 dark:border-slate-700/50">
+                  <span className="px-2 py-0.5 rounded-md bg-[#FFFDF8] dark:bg-slate-800 text-[10px] font-mono text-slate-500 dark:text-slate-400 border border-slate-200/50 dark:border-slate-700/50">
                     Буква {idx + 1}
                   </span>
                   <span className="text-xs font-semibold text-slate-700 dark:text-slate-300 flex items-center gap-1">

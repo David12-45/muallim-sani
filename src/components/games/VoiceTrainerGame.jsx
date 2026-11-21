@@ -117,7 +117,7 @@ export default function VoiceTrainerGame({ level, onExit }) {
               onClick={() => { setMode('letters'); setCurrentIndex(0); setResult(null); }}
               className={`px-3 py-1 rounded-lg transition-all ${
                 mode === 'letters'
-                  ? 'bg-white dark:bg-slate-800 text-emerald-600 dark:text-emerald-400 shadow-sm'
+                  ? 'bg-[#FFFDF8] dark:bg-slate-800 text-emerald-600 dark:text-emerald-400 shadow-sm'
                   : 'text-slate-500 hover:text-slate-900 dark:text-slate-400'
               }`}
             >
@@ -127,7 +127,7 @@ export default function VoiceTrainerGame({ level, onExit }) {
               onClick={() => { setMode('words'); setCurrentIndex(0); setResult(null); }}
               className={`px-3 py-1 rounded-lg transition-all ${
                 mode === 'words'
-                  ? 'bg-white dark:bg-slate-800 text-emerald-600 dark:text-emerald-400 shadow-sm'
+                  ? 'bg-[#FFFDF8] dark:bg-slate-800 text-emerald-600 dark:text-emerald-400 shadow-sm'
                   : 'text-slate-500 hover:text-slate-900 dark:text-slate-400'
               }`}
             >
@@ -250,7 +250,7 @@ export default function VoiceTrainerGame({ level, onExit }) {
               <div className="flex-1">
                 <div className="font-black text-sm text-slate-900 dark:text-white flex items-center justify-between">
                   <span>{result.isMatch ? 'Отличное произношение! Ма ша Аллах!' : 'Почти получилось! Попробуйте ещё раз'}</span>
-                  <span className="text-xs font-bold px-2 py-0.5 rounded-full bg-white dark:bg-slate-800">
+                  <span className="text-xs font-bold px-2 py-0.5 rounded-full bg-[#FFFDF8] dark:bg-slate-800">
                     Точность: {Math.round(result.ratio * 100)}%
                   </span>
                 </div>

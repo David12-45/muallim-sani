@@ -93,8 +93,8 @@ export default function AlphabetView() {
   return (
     <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-5 sm:py-8 pb-28 md:pb-12 space-y-7">
       {/* 1. TOP HERO HEADER */}
-      <header className="relative overflow-hidden rounded-[2rem] hero-mesh-gradient text-white p-6 sm:p-9 border border-white/15 shadow-apple-xl">
-        <div className="absolute inset-0 hero-lattice pointer-events-none opacity-40" aria-hidden="true" />
+      <header className="relative overflow-hidden rounded-[2rem] hero-mesh-gradient text-white p-6 sm:p-9 border border-gold-300/25 shadow-apple-xl">
+        <div className="absolute inset-0 hero-arabesque pointer-events-none opacity-[0.15]" aria-hidden="true" />
         <div className="relative z-10 flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-6">
           <div className="space-y-3 max-w-2xl">
             {/* Badges */}
@@ -141,7 +141,7 @@ export default function AlphabetView() {
           onClick={() => { soundFx.playTap(); setMainTab('course'); }}
           className={`px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold flex items-center gap-2 transition-all active:scale-95 ${
             mainTab === 'course'
-              ? 'bg-white dark:bg-slate-900 text-slate-900 dark:text-white shadow-apple-sm'
+              ? 'bg-[#FFFDF8] dark:bg-slate-900 text-slate-900 dark:text-white shadow-apple-sm'
               : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
           }`}
         >
@@ -153,7 +153,7 @@ export default function AlphabetView() {
           onClick={() => { soundFx.playTap(); setMainTab('atlas'); }}
           className={`px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold flex items-center gap-2 transition-all active:scale-95 ${
             mainTab === 'atlas'
-              ? 'bg-white dark:bg-slate-900 text-slate-900 dark:text-white shadow-apple-sm'
+              ? 'bg-[#FFFDF8] dark:bg-slate-900 text-slate-900 dark:text-white shadow-apple-sm'
               : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
           }`}
         >
@@ -165,7 +165,7 @@ export default function AlphabetView() {
           onClick={() => { soundFx.playTap(); setMainTab('rules'); }}
           className={`px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold flex items-center gap-2 transition-all active:scale-95 ${
             mainTab === 'rules'
-              ? 'bg-white dark:bg-slate-900 text-slate-900 dark:text-white shadow-apple-sm'
+              ? 'bg-[#FFFDF8] dark:bg-slate-900 text-slate-900 dark:text-white shadow-apple-sm'
               : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
           }`}
         >
@@ -177,7 +177,7 @@ export default function AlphabetView() {
           onClick={() => { soundFx.playTap(); setMainTab('sounds'); }}
           className={`px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold flex items-center gap-2 transition-all active:scale-95 ${
             mainTab === 'sounds'
-              ? 'bg-white dark:bg-slate-900 text-slate-900 dark:text-white shadow-apple-sm'
+              ? 'bg-[#FFFDF8] dark:bg-slate-900 text-slate-900 dark:text-white shadow-apple-sm'
               : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
           }`}
         >
@@ -197,7 +197,7 @@ export default function AlphabetView() {
       {mainTab === 'atlas' && (
         <div className="space-y-6">
           {/* Controls Bar: Sub-views, Search, Tajweed Badges */}
-          <div className="bg-white dark:bg-slate-900 rounded-3xl p-4 sm:p-5 border border-slate-200/80 dark:border-slate-800 shadow-apple-sm space-y-4">
+          <div className="bg-[#FFFDF8] dark:bg-slate-900 rounded-3xl p-4 sm:p-5 border border-slate-200/80 dark:border-slate-800 shadow-apple-sm space-y-4">
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
               {/* Sub-view switcher (iOS Segmented) */}
               <div className="inline-flex p-1 rounded-xl bg-slate-100 dark:bg-slate-800/80 border border-slate-200/60 dark:border-slate-700/60 shrink-0">
@@ -205,7 +205,7 @@ export default function AlphabetView() {
                   onClick={() => { soundFx.playTap(); setAtlasSubView('groups10'); }}
                   className={`px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-all ${
                     atlasSubView === 'groups10'
-                      ? 'bg-white dark:bg-slate-900 text-emerald-600 dark:text-emerald-400 shadow-apple-xs'
+                      ? 'bg-[#FFFDF8] dark:bg-slate-900 text-emerald-600 dark:text-emerald-400 shadow-apple-xs'
                       : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
                   }`}
                 >
@@ -216,7 +216,7 @@ export default function AlphabetView() {
                   onClick={() => { soundFx.playTap(); setAtlasSubView('families'); }}
                   className={`px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-all ${
                     atlasSubView === 'families'
-                      ? 'bg-white dark:bg-slate-900 text-emerald-600 dark:text-emerald-400 shadow-apple-xs'
+                      ? 'bg-[#FFFDF8] dark:bg-slate-900 text-emerald-600 dark:text-emerald-400 shadow-apple-xs'
                       : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
                   }`}
                 >
@@ -227,7 +227,7 @@ export default function AlphabetView() {
                   onClick={() => { soundFx.playTap(); setAtlasSubView('grid'); }}
                   className={`px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-all ${
                     atlasSubView === 'grid'
-                      ? 'bg-white dark:bg-slate-900 text-emerald-600 dark:text-emerald-400 shadow-apple-xs'
+                      ? 'bg-[#FFFDF8] dark:bg-slate-900 text-emerald-600 dark:text-emerald-400 shadow-apple-xs'
                       : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
                   }`}
                 >
@@ -327,7 +327,7 @@ export default function AlphabetView() {
                             className={`rounded-2xl border p-4 flex flex-col justify-between transition-all shadow-apple-xs hover:shadow-apple-md hover:-translate-y-0.5 ${
                               isPlaying
                                 ? 'bg-emerald-50/70 dark:bg-emerald-950/40 border-emerald-500/80 ring-2 ring-emerald-500/20'
-                                : 'bg-white dark:bg-slate-900 border-slate-200/80 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700'
+                                : 'bg-[#FFFDF8] dark:bg-slate-900 border-slate-200/80 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700'
                             }`}
                           >
                             <div className="flex items-center justify-between w-full mb-1">
@@ -437,7 +437,7 @@ export default function AlphabetView() {
                   return (
                     <div
                       key={family.id}
-                      className="p-5 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 shadow-apple-xs space-y-3"
+                      className="p-5 rounded-3xl bg-[#FFFDF8] dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 shadow-apple-xs space-y-3"
                     >
                       <div className="flex flex-wrap items-center justify-between gap-2 pb-2 border-b border-slate-100 dark:border-slate-800">
                         <div className="flex items-center gap-2.5">
@@ -493,7 +493,7 @@ export default function AlphabetView() {
               {/* Sidebar detail for active letter */}
               <div className="lg:col-span-5 sticky top-24">
                 {activeLetter && (
-                  <div className="bg-white dark:bg-slate-900 rounded-3xl p-6 border border-slate-200/80 dark:border-slate-800 shadow-apple-md space-y-5">
+                  <div className="bg-[#FFFDF8] dark:bg-slate-900 rounded-3xl p-6 border border-slate-200/80 dark:border-slate-800 shadow-apple-md space-y-5">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-3.5">
                         <button
@@ -585,7 +585,7 @@ export default function AlphabetView() {
                         ? 'bg-emerald-600 text-white border-emerald-600 -translate-y-0.5'
                         : isPlaying
                         ? 'bg-emerald-50 dark:bg-emerald-950/50 text-emerald-900 dark:text-emerald-200 border-emerald-400 ring-2 ring-emerald-500/20'
-                        : 'bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100 border-slate-200/80 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700'
+                        : 'bg-[#FFFDF8] dark:bg-slate-900 text-slate-800 dark:text-slate-100 border-slate-200/80 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700'
                     }`}
                   >
                     <span className="font-arabic text-3xl sm:text-4xl font-bold my-1">
@@ -624,7 +624,7 @@ export default function AlphabetView() {
                     className={`p-4 rounded-2xl border text-left transition-all active:scale-95 flex items-start gap-3.5 shadow-apple-xs hover:shadow-apple-sm ${
                       isPlaying
                         ? 'bg-emerald-50/70 dark:bg-emerald-950/50 border-emerald-500/80 ring-2 ring-emerald-500/20'
-                        : 'bg-white dark:bg-slate-900 border-slate-200/80 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700'
+                        : 'bg-[#FFFDF8] dark:bg-slate-900 border-slate-200/80 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700'
                     }`}
                   >
                     <div className="w-12 h-12 rounded-xl bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 border border-emerald-200/50 dark:border-emerald-800/50 flex items-center justify-center font-arabic text-2xl font-bold shrink-0">
@@ -652,7 +652,7 @@ export default function AlphabetView() {
         <div className="space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {/* Step 1 */}
-            <div className="rounded-3xl p-6 bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 shadow-apple-xs hover:shadow-apple-sm transition-all space-y-3.5">
+            <div className="rounded-3xl p-6 bg-[#FFFDF8] dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 shadow-apple-xs hover:shadow-apple-sm transition-all space-y-3.5">
               <div className="flex items-center gap-3">
                 <span className="w-8 h-8 rounded-xl bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200/60 dark:border-emerald-800/60 text-emerald-700 dark:text-emerald-300 flex items-center justify-center font-bold text-sm">
                   1
@@ -673,7 +673,7 @@ export default function AlphabetView() {
             </div>
 
             {/* Step 2 */}
-            <div className="rounded-3xl p-6 bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 shadow-apple-xs hover:shadow-apple-sm transition-all space-y-3.5">
+            <div className="rounded-3xl p-6 bg-[#FFFDF8] dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 shadow-apple-xs hover:shadow-apple-sm transition-all space-y-3.5">
               <div className="flex items-center gap-3">
                 <span className="w-8 h-8 rounded-xl bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200/60 dark:border-emerald-800/60 text-emerald-700 dark:text-emerald-300 flex items-center justify-center font-bold text-sm">
                   2
@@ -694,7 +694,7 @@ export default function AlphabetView() {
             </div>
 
             {/* Step 3 */}
-            <div className="rounded-3xl p-6 bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 shadow-apple-xs hover:shadow-apple-sm transition-all space-y-3.5">
+            <div className="rounded-3xl p-6 bg-[#FFFDF8] dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 shadow-apple-xs hover:shadow-apple-sm transition-all space-y-3.5">
               <div className="flex items-center gap-3">
                 <span className="w-8 h-8 rounded-xl bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200/60 dark:border-emerald-800/60 text-emerald-700 dark:text-emerald-300 flex items-center justify-center font-bold text-sm">
                   3
@@ -715,7 +715,7 @@ export default function AlphabetView() {
             </div>
 
             {/* Step 4 */}
-            <div className="rounded-3xl p-6 bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 shadow-apple-xs hover:shadow-apple-sm transition-all space-y-3.5">
+            <div className="rounded-3xl p-6 bg-[#FFFDF8] dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 shadow-apple-xs hover:shadow-apple-sm transition-all space-y-3.5">
               <div className="flex items-center gap-3">
                 <span className="w-8 h-8 rounded-xl bg-amber-50 dark:bg-amber-950/60 border border-amber-200/60 dark:border-amber-800/60 text-amber-700 dark:text-amber-300 flex items-center justify-center font-bold text-sm">
                   4
@@ -741,7 +741,7 @@ export default function AlphabetView() {
       {/* ================= TAB 4: SOUND ANALOGIES ================= */}
       {mainTab === 'sounds' && (
         <div className="space-y-4">
-          <div className="bg-white dark:bg-slate-900 rounded-2xl p-4 sm:p-5 border border-slate-200/80 dark:border-slate-800 shadow-apple-xs">
+          <div className="bg-[#FFFDF8] dark:bg-slate-900 rounded-2xl p-4 sm:p-5 border border-slate-200/80 dark:border-slate-800 shadow-apple-xs">
             <h2 className="text-sm sm:text-base font-bold text-slate-900 dark:text-white">
               15 звуковых аналогий для быстрого старта
             </h2>
@@ -760,7 +760,7 @@ export default function AlphabetView() {
                   className={`p-3.5 rounded-2xl border text-left transition-all flex items-center gap-3.5 active:scale-95 shadow-apple-xs hover:shadow-apple-sm ${
                     isPlaying
                       ? 'bg-emerald-50/70 dark:bg-emerald-950/70 border-emerald-500/80 ring-2 ring-emerald-500/20'
-                      : 'bg-white dark:bg-slate-900 border-slate-200/80 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700'
+                      : 'bg-[#FFFDF8] dark:bg-slate-900 border-slate-200/80 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700'
                   }`}
                 >
                   <div className="w-12 h-12 rounded-xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200/60 dark:border-slate-700/60 flex items-center justify-center shrink-0">

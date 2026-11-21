@@ -435,7 +435,8 @@ export default function QuizView() {
       <LevelProgressBar onLevelChanged={(lvl) => setCurrentLevel(lvl)} />
 
       {/* 1. ARCADE HEADER & GAME SELECTOR DECK */}
-      <div className="relative overflow-hidden rounded-[2rem] hero-mesh-gradient text-white p-6 sm:p-8 border border-white/15 shadow-apple-xl space-y-6">
+      <div className="relative overflow-hidden rounded-[2rem] hero-mesh-gradient text-white p-6 sm:p-8 border border-gold-300/25 shadow-apple-xl space-y-6">
+        <div className="absolute inset-0 hero-arabesque pointer-events-none opacity-[0.15]" aria-hidden="true" />
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-white/15 text-amber-300 border border-white/15 mb-2.5 backdrop-blur-md shadow-sm">
@@ -505,7 +506,7 @@ export default function QuizView() {
               onClick={() => setGameMode('classic')}
               className={`py-2 px-2 rounded-xl text-xs sm:text-sm font-semibold flex items-center justify-center gap-1.5 transition-all ${
                 gameMode === 'classic'
-                  ? 'bg-white dark:bg-slate-900 text-slate-900 dark:text-white shadow-apple-xs'
+                  ? 'bg-[#FFFDF8] dark:bg-slate-900 text-slate-900 dark:text-white shadow-apple-xs'
                   : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
               }`}
             >
@@ -517,7 +518,7 @@ export default function QuizView() {
               onClick={() => setGameMode('forms')}
               className={`py-2 px-2 rounded-xl text-xs sm:text-sm font-semibold flex items-center justify-center gap-1.5 transition-all ${
                 gameMode === 'forms'
-                  ? 'bg-white dark:bg-slate-900 text-slate-900 dark:text-white shadow-apple-xs'
+                  ? 'bg-[#FFFDF8] dark:bg-slate-900 text-slate-900 dark:text-white shadow-apple-xs'
                   : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
               }`}
             >
@@ -529,7 +530,7 @@ export default function QuizView() {
               onClick={() => setGameMode('blitz')}
               className={`py-2 px-2 rounded-xl text-xs sm:text-sm font-semibold flex items-center justify-center gap-1.5 transition-all ${
                 gameMode === 'blitz'
-                  ? 'bg-white dark:bg-slate-900 text-slate-900 dark:text-white shadow-apple-xs'
+                  ? 'bg-[#FFFDF8] dark:bg-slate-900 text-slate-900 dark:text-white shadow-apple-xs'
                   : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
               }`}
             >
@@ -541,7 +542,7 @@ export default function QuizView() {
               onClick={() => setGameMode('pairs')}
               className={`py-2 px-2 rounded-xl text-xs sm:text-sm font-semibold flex items-center justify-center gap-1.5 transition-all ${
                 gameMode === 'pairs'
-                  ? 'bg-white dark:bg-slate-900 text-slate-900 dark:text-white shadow-apple-xs'
+                  ? 'bg-[#FFFDF8] dark:bg-slate-900 text-slate-900 dark:text-white shadow-apple-xs'
                   : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
               }`}
             >
@@ -551,7 +552,7 @@ export default function QuizView() {
           </div>
 
           {gameMode === 'pairs' ? (
-            <div className="bg-white dark:bg-slate-900 rounded-3xl p-5 sm:p-7 border border-slate-200/80 dark:border-slate-800 shadow-apple-md">
+            <div className="bg-[#FFFDF8] dark:bg-slate-900 rounded-3xl p-5 sm:p-7 border border-slate-200/80 dark:border-slate-800 shadow-apple-md">
               <div className="flex items-center justify-between mb-5 pb-3 border-b border-slate-100 dark:border-slate-800">
                 <div>
                   <h2 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white">
@@ -628,7 +629,7 @@ export default function QuizView() {
               )}
             </div>
           ) : !quizFinished && currentQ ? (
-            <div className="bg-white dark:bg-slate-900 rounded-3xl p-5 sm:p-7 border border-slate-200/80 dark:border-slate-800 shadow-apple-md">
+            <div className="bg-[#FFFDF8] dark:bg-slate-900 rounded-3xl p-5 sm:p-7 border border-slate-200/80 dark:border-slate-800 shadow-apple-md">
               <div className="flex items-center justify-between gap-2 mb-4">
                 {gameMode === 'classic' || gameMode === 'forms' ? (
                   <div className="flex items-center gap-1 px-3 py-1.5 rounded-xl bg-rose-50 dark:bg-rose-950/40 border border-rose-200/60 dark:border-rose-900/40">
@@ -681,7 +682,7 @@ export default function QuizView() {
                   <button
                     type="button"
                     onClick={() => audioService.playLetter(currentQ.displayLetter)}
-                    className="inline-flex items-center gap-3 px-5 py-2.5 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700 hover:border-emerald-500 shadow-apple-xs transition-all active:scale-95 cursor-pointer"
+                    className="inline-flex items-center gap-3 px-5 py-2.5 rounded-2xl bg-[#FFFDF8] dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700 hover:border-emerald-500 shadow-apple-xs transition-all active:scale-95 cursor-pointer"
                     title="Послушать произношение буквы"
                   >
                     <span className="font-arabic text-5xl sm:text-6xl font-bold text-emerald-600 dark:text-emerald-400" dir="rtl">
@@ -695,7 +696,7 @@ export default function QuizView() {
                   <button
                     type="button"
                     onClick={() => audioService.speakArabic(currentQ.displayWord)}
-                    className="inline-flex items-center gap-3 px-5 py-2.5 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700 hover:border-emerald-500 shadow-apple-xs transition-all active:scale-95 cursor-pointer"
+                    className="inline-flex items-center gap-3 px-5 py-2.5 rounded-2xl bg-[#FFFDF8] dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700 hover:border-emerald-500 shadow-apple-xs transition-all active:scale-95 cursor-pointer"
                     title="Послушать произношение слова"
                   >
                     <span className="font-arabic text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white leading-relaxed" dir="rtl">
@@ -709,7 +710,7 @@ export default function QuizView() {
               <div className="grid grid-cols-2 gap-3">
                 {currentQ.options.map((opt, idx) => {
                   const isSelected = selectedOption === opt;
-                  let btnClass = 'bg-white dark:bg-slate-850 border-slate-200/80 dark:border-slate-750 text-slate-800 dark:text-slate-200 hover:border-slate-300 dark:hover:border-slate-600 shadow-apple-xs';
+                  let btnClass = 'bg-[#FFFDF8] dark:bg-slate-850 border-slate-200/80 dark:border-slate-750 text-slate-800 dark:text-slate-200 hover:border-slate-300 dark:hover:border-slate-600 shadow-apple-xs';
 
                   if (isAnswered) {
                     if (opt === currentQ.correctAnswer) {
@@ -753,7 +754,7 @@ export default function QuizView() {
               )}
             </div>
           ) : (
-            <div className="bg-white dark:bg-slate-900 rounded-3xl p-8 border border-slate-200/80 dark:border-slate-800 text-center shadow-apple-md space-y-3">
+            <div className="bg-[#FFFDF8] dark:bg-slate-900 rounded-3xl p-8 border border-slate-200/80 dark:border-slate-800 text-center shadow-apple-md space-y-3">
               <div className="w-16 h-16 rounded-2xl bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 mx-auto flex items-center justify-center mb-2 border border-emerald-200/60 dark:border-emerald-800/60">
                 <Sparkles className="w-8 h-8" />
               </div>

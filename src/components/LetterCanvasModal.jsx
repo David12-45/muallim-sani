@@ -107,7 +107,7 @@ export default function LetterCanvasModal({ letter, onClose }) {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 bg-black/60 backdrop-blur-sm animate-fadeIn">
-      <div className="relative w-full max-w-lg bg-white dark:bg-slate-900 rounded-3xl shadow-2xl border border-slate-200 dark:border-slate-800 overflow-hidden flex flex-col max-h-[92vh]">
+      <div className="relative w-full max-w-lg bg-[#FFFDF8] dark:bg-slate-900 rounded-3xl shadow-2xl border border-slate-200 dark:border-slate-800 overflow-hidden flex flex-col max-h-[92vh]">
         {/* Header */}
         <div className="flex items-center justify-between p-4 border-b border-slate-100 dark:border-slate-800">
           <div className="flex items-center gap-2.5">
@@ -144,7 +144,7 @@ export default function LetterCanvasModal({ letter, onClose }) {
               }}
               className={`py-2 px-1 rounded-xl text-xs font-bold transition-all ${
                 selectedFormIndex === idx
-                  ? 'bg-white dark:bg-slate-800 text-emerald-600 dark:text-emerald-400 shadow-sm border border-emerald-500/20'
+                  ? 'bg-[#FFFDF8] dark:bg-slate-800 text-emerald-600 dark:text-emerald-400 shadow-sm border border-emerald-500/20'
                   : 'text-slate-500 hover:text-slate-900 dark:text-slate-400'
               }`}
             >
@@ -194,7 +194,7 @@ export default function LetterCanvasModal({ letter, onClose }) {
         </div>
 
         {/* Toolbar & Controls */}
-        <div className="p-3 sm:p-4 bg-white dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800 flex flex-wrap items-center justify-between gap-2.5">
+        <div className="p-3 sm:p-4 bg-[#FFFDF8] dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800 flex flex-wrap items-center justify-between gap-2.5">
           {/* Colors */}
           <div className="flex items-center gap-1.5">
             {['#059669', '#d97706', '#2563eb', '#dc2626', '#1e293b'].map(c => (

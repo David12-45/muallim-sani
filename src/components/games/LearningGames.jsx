@@ -318,7 +318,7 @@ function SortGame({ onExit }) {
             <button
               key={id}
               onClick={() => { soundFx.playTap(); setMode(id); }}
-              className="p-4 rounded-2xl text-left border-2 border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 hover:border-emerald-500 active:scale-95"
+              className="p-4 rounded-2xl text-left border-2 border-slate-200 dark:border-slate-700 bg-[#FFFDF8] dark:bg-slate-800 hover:border-emerald-500 active:scale-95"
             >
               <div className="font-black text-slate-900 dark:text-white">{m.label}</div>
               <div className="text-xs text-slate-500 mt-0.5">{m.buckets.map((b) => b.label).join(' · ')}</div>
@@ -418,7 +418,7 @@ export default function LearningGamesHub({ level }) {
     const g = GAMES.find((x) => x.id === active);
     const Comp = g.Comp;
     return (
-      <div className="bg-white dark:bg-slate-800 rounded-3xl p-4 sm:p-7 border border-slate-200 dark:border-slate-700 shadow-xl max-w-3xl mx-auto">
+      <div className="bg-[#FFFDF8] dark:bg-slate-800 rounded-3xl p-4 sm:p-7 border border-slate-200 dark:border-slate-700 shadow-xl max-w-3xl mx-auto">
         <Comp level={level} onExit={() => { setActive(null); refresh((x) => x + 1); }} />
       </div>
     );
@@ -454,7 +454,7 @@ export default function LearningGamesHub({ level }) {
             <button
               key={g.id}
               onClick={() => { soundFx.playTap(); setActive(g.id); }}
-              className="group p-4 rounded-3xl text-left bg-white dark:bg-slate-800 border-2 border-slate-200 dark:border-slate-700 hover:border-emerald-500 shadow-sm hover:shadow-lg transition-all active:scale-[0.98] flex items-center gap-4"
+              className="group p-4 rounded-3xl text-left bg-[#FFFDF8] dark:bg-slate-800 border-2 border-slate-200 dark:border-slate-700 hover:border-emerald-500 shadow-sm hover:shadow-lg transition-all active:scale-[0.98] flex items-center gap-4"
             >
               <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${g.color} text-white flex items-center justify-center shrink-0 shadow-md group-hover:scale-105 transition-transform`}>
                 <Icon className="w-7 h-7" />

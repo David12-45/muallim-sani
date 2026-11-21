@@ -30,12 +30,12 @@ export default function App() {
       document.documentElement.classList.add('dark');
       storageService.setTheme('dark');
       if (schemeMeta) schemeMeta.setAttribute('content', 'dark');
-      if (themeMeta) themeMeta.setAttribute('content', '#090A0F');
+      if (themeMeta) themeMeta.setAttribute('content', '#100F0A');
     } else {
       document.documentElement.classList.remove('dark');
       storageService.setTheme('light');
       if (schemeMeta) schemeMeta.setAttribute('content', 'light');
-      if (themeMeta) themeMeta.setAttribute('content', '#FFFFFF');
+      if (themeMeta) themeMeta.setAttribute('content', '#F6F3EA');
     }
   }, [darkMode]);
 
@@ -105,12 +105,12 @@ export default function App() {
   };
 
   return (
-    <div className="relative min-h-screen flex flex-col bg-slate-50/60 dark:bg-[#090A0F] text-slate-900 dark:text-slate-100 transition-colors pb-24 md:pb-0 overflow-x-hidden">
-      {/* Subtle Ambient Apple-Style Diffused Light */}
+    <div className="relative min-h-screen flex flex-col bg-transparent text-slate-900 dark:text-gold-50 transition-colors pb-24 md:pb-0 overflow-x-hidden">
+      {/* Subtle Ambient Warm Diffusion */}
       <div className="pointer-events-none fixed inset-0 overflow-hidden z-0" aria-hidden="true">
-        <div className="absolute -top-48 left-1/4 w-[560px] h-[560px] rounded-full bg-emerald-500/[0.04] dark:bg-emerald-500/[0.03] blur-3xl" />
-        <div className="absolute top-1/3 -right-44 w-[480px] h-[480px] rounded-full bg-sky-500/[0.03] dark:bg-sky-500/[0.02] blur-3xl" />
-        <div className="absolute bottom-0 left-0 w-[420px] h-[420px] rounded-full bg-slate-400/[0.03] dark:bg-emerald-600/[0.02] blur-3xl" />
+        <div className="absolute -top-48 left-1/4 w-[560px] h-[560px] rounded-full bg-emerald-600/[0.06] dark:bg-emerald-500/[0.05] blur-3xl" />
+        <div className="absolute top-1/3 -right-44 w-[480px] h-[480px] rounded-full bg-gold-400/[0.07] dark:bg-gold-400/[0.04] blur-3xl" />
+        <div className="absolute bottom-0 left-0 w-[420px] h-[420px] rounded-full bg-slate-300/[0.10] dark:bg-emerald-600/[0.05] blur-3xl" />
       </div>
 
       {/* Top & Mobile Bottom Navigation */}
@@ -163,21 +163,28 @@ export default function App() {
         onClose={() => setIsDailyWorkoutOpen(false)}
       />
 
-      {/* Modern Editorial Footer */}
-      <footer className="relative z-10 mt-auto border-t border-stone-200/80 dark:border-slate-800/80 bg-white/70 dark:bg-[#0B1320]/80 backdrop-blur-md py-8 text-center text-xs text-slate-500 dark:text-slate-400">
-        <div className="max-w-4xl mx-auto px-4 space-y-2.5">
+      {/* Manuscript Footer — тёмный изумруд с золотым орнаментом */}
+      <footer className="relative z-10 mt-auto overflow-hidden bg-gradient-to-b from-emerald-900 to-emerald-950 dark:from-[#0C1712] dark:to-[#081009] text-emerald-50 py-10 shadow-apple-lg">
+        <div className="absolute inset-0 hero-arabesque pointer-events-none opacity-[0.12]" aria-hidden="true" />
+        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold-300/70 to-transparent" aria-hidden="true" />
+        <div className="relative max-w-4xl mx-auto px-4 space-y-3">
           <div className="flex items-center justify-center gap-2.5">
-            <div className="w-7 h-7 rounded-xl squircle bg-gradient-to-tr from-emerald-800 via-emerald-600 to-teal-500 flex items-center justify-center text-white font-arabic text-base font-bold shadow-sm ring-1 ring-amber-300/40">
+            <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-emerald-700 to-emerald-800 flex items-center justify-center text-white font-arabic text-lg font-bold shadow-apple-sm ring-1 ring-gold-300/50">
               م
             </div>
-            <span className="font-extrabold text-sm text-slate-900 dark:text-slate-100 tracking-tight">
-              Му'аллим Сани • Платформа арабского чтения
+            <span className="font-brand font-bold text-sm text-white tracking-tight">
+              Му'аллим Сани <span className="text-gold-grad">•</span> Платформа арабского чтения
             </span>
           </div>
-          <p className="leading-relaxed max-w-xl mx-auto pretty-copy text-slate-600 dark:text-slate-400">
+          <div className="flex items-center justify-center gap-2" aria-hidden="true">
+            <div className="ornament-line w-16" />
+            <div className="diamond" />
+            <div className="ornament-line w-16" />
+          </div>
+          <p className="leading-relaxed max-w-xl mx-auto pretty-copy text-emerald-100/70 text-xs">
             Классическая методика «Му'аллим Сани» Ахмадхади Максуди в современном интерактивном формате.
           </p>
-          <p className="text-[11px] font-semibold text-slate-400 dark:text-slate-500">
+          <p className="text-[11px] font-semibold text-gold-300/90">
             58 уроков • 1596 озвученных слов и слогов • Студийные MP3 • Цветовой таджвид
           </p>
         </div>

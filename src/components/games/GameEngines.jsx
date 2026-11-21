@@ -70,7 +70,7 @@ function FinishScreen({ score, total, mistakes, onRestart, onExit }) {
               <button
                 key={ch}
                 onClick={() => audioService.playLetter(ch)}
-                className="w-14 h-14 rounded-xl bg-white dark:bg-slate-900 border-2 border-amber-300 dark:border-amber-700 font-arabic text-3xl font-bold text-slate-900 dark:text-white active:scale-95"
+                className="w-14 h-14 rounded-xl bg-[#FFFDF8] dark:bg-slate-900 border-2 border-amber-300 dark:border-amber-700 font-arabic text-3xl font-bold text-slate-900 dark:text-white active:scale-95"
                 title="Прослушать"
               >
                 {ch}
@@ -213,7 +213,7 @@ export function RoundGame({ title, skill, makeRound, totalRounds = 10, maxHearts
 
       <div className={`grid ${longLabels ? 'grid-cols-1 sm:grid-cols-2' : 'grid-cols-2'} gap-2.5`}>
         {round.options.map((opt) => {
-          let cls = 'bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-100 hover:border-emerald-500';
+          let cls = 'bg-[#FFFDF8] dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-100 hover:border-emerald-500';
           if (selected !== null) {
             if (opt.key === round.correct) cls = 'bg-emerald-100 dark:bg-emerald-950 border-emerald-500 text-emerald-900 dark:text-emerald-200';
             else if (opt.key === selected) cls = 'bg-rose-100 dark:bg-rose-950 border-rose-500 text-rose-900 dark:text-rose-200';
@@ -244,7 +244,7 @@ export function RoundGame({ title, skill, makeRound, totalRounds = 10, maxHearts
           {round.revealAudio && audioService.hasAudio(round.revealAudio) && (
             <button
               onClick={() => audioService.speakArabic(round.revealAudio)}
-              className="mt-2 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white dark:bg-slate-900 border border-emerald-300 dark:border-emerald-700 text-emerald-700 dark:text-emerald-300 text-xs font-bold active:scale-95"
+              className="mt-2 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#FFFDF8] dark:bg-slate-900 border border-emerald-300 dark:border-emerald-700 text-emerald-700 dark:text-emerald-300 text-xs font-bold active:scale-95"
             >
               <Volume2 className="w-4 h-4" /> Послушать ещё раз
             </button>
@@ -407,7 +407,7 @@ export function SequenceGame({ title, skill, makeRound, totalRounds = 8, maxHear
                     ? 'opacity-20 bg-slate-100 dark:bg-slate-800 border-slate-200 dark:border-slate-700'
                     : wrongId === item.id
                     ? 'bg-rose-500 text-white border-rose-700 animate-pulse'
-                    : 'bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white hover:border-emerald-500'
+                    : 'bg-[#FFFDF8] dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white hover:border-emerald-500'
                 }`}
               >
                 {item.char}
@@ -425,7 +425,7 @@ export function SequenceGame({ title, skill, makeRound, totalRounds = 8, maxHear
           {round.doneAudio && audioService.hasAudio(round.doneAudio) && (
             <button
               onClick={() => audioService.speakArabic(round.doneAudio)}
-              className="mt-2 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white dark:bg-slate-900 border border-emerald-300 dark:border-emerald-700 text-emerald-700 dark:text-emerald-300 text-xs font-bold active:scale-95"
+              className="mt-2 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#FFFDF8] dark:bg-slate-900 border border-emerald-300 dark:border-emerald-700 text-emerald-700 dark:text-emerald-300 text-xs font-bold active:scale-95"
             >
               <Volume2 className="w-4 h-4" /> Послушать слово
             </button>

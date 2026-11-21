@@ -4,8 +4,8 @@
 
 /* ============================================================
    Design Tokens & Modern CSS Architecture (Му'аллим Сани)
-   Modern Minimalist Design System (Apple / Notion Style)
-   Clean Grayscale + Vibrant Emerald + Multi-layer Diffusion
+   «Восточная рукопись»: тёплая ivory-бумага + глубокий
+   изумруд + золото + арабский геометрический орнамент
    ============================================================ */
 :root {
   color-scheme: light dark;
@@ -13,27 +13,27 @@
   --in-oklab: ;
   --in-oklch: ;
 
-  /* Semantic Surface & Border Tokens (Light: Crisp White & Slate) */
-  --surface-canvas: #F8FAFC;
-  --surface-card: #FFFFFF;
-  --surface-subtle: #F1F5F9;
-  --surface-elevated: rgba(255, 255, 255, 0.95);
-  --border-subtle: rgba(15, 23, 42, 0.08);
-  --border-strong: rgba(15, 23, 42, 0.14);
-  --accent-emerald: #059669;
-  --accent-emerald-deep: #064E3B;
-  --accent-gold: #F59E0B;
+  /* Semantic Surface & Border Tokens (Light: Warm Ivory Paper) */
+  --surface-canvas: #F6F3EA;
+  --surface-card: #FFFDF8;
+  --surface-subtle: #EFECE2;
+  --surface-elevated: rgba(255, 253, 248, 0.95);
+  --border-subtle: rgba(92, 61, 28, 0.10);
+  --border-strong: rgba(92, 61, 28, 0.18);
+  --accent-emerald: #047857;
+  --accent-emerald-deep: #05372A;
+  --accent-gold: #C9962B;
 
-  /* Apple-Style Soft Multi-Layer Diffusion */
+  /* Warm Manuscript Multi-Layer Diffusion */
   --shadow-card:
-    0 1px 2px rgba(0, 0, 0, 0.03),
-    0 4px 16px -2px rgba(0, 0, 0, 0.04);
+    0 1px 2px rgba(67, 48, 16, 0.04),
+    0 4px 16px -2px rgba(67, 48, 16, 0.06);
   --shadow-elevated:
-    0 2px 4px rgba(0, 0, 0, 0.03),
-    0 12px 28px -4px rgba(0, 0, 0, 0.07);
+    0 2px 4px rgba(67, 48, 16, 0.04),
+    0 12px 28px -4px rgba(67, 48, 16, 0.10);
   --shadow-dock:
-    0 2px 8px rgba(0, 0, 0, 0.04),
-    0 16px 36px -4px rgba(0, 0, 0, 0.09);
+    0 2px 8px rgba(2, 36, 28, 0.18),
+    0 16px 36px -4px rgba(2, 36, 28, 0.35);
 }
 
 :root:has(> head > meta[name="color-scheme"][content="dark"]) {
@@ -45,14 +45,14 @@
 }
 
 .dark {
-  --surface-canvas: #090A0F;
-  --surface-card: #12141A;
-  --surface-subtle: #181B22;
-  --surface-elevated: rgba(18, 20, 26, 0.92);
-  --border-subtle: rgba(255, 255, 255, 0.08);
-  --border-strong: rgba(255, 255, 255, 0.16);
+  --surface-canvas: #100F0A;
+  --surface-card: #1C1A13;
+  --surface-subtle: #26231A;
+  --surface-elevated: rgba(28, 26, 19, 0.92);
+  --border-subtle: rgba(237, 217, 143, 0.09);
+  --border-strong: rgba(237, 217, 143, 0.18);
   --shadow-card:
-    0 1px 3px rgba(0, 0, 0, 0.4),
+    0 1px 3px rgba(0, 0, 0, 0.45),
     0 8px 24px -4px rgba(0, 0, 0, 0.55);
   --shadow-elevated:
     0 2px 6px rgba(0, 0, 0, 0.5),
@@ -78,7 +78,7 @@
 
   body {
     background-color: var(--surface-canvas);
-    color: #0f172a;
+    color: #26231A;
     line-height: 1.5;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
@@ -88,12 +88,17 @@
   }
 
   .dark body {
-    color: #f1f5f9;
+    color: #F1EDE2;
   }
 
   h1, h2, h3, h4 {
     text-wrap: balance;
   }
+}
+
+::selection {
+  background: #047857;
+  color: #FFFDF8;
 }
 
 /* Fluid Display Typography (max <= 2.5x min for WCAG 1.4.4 zoom) */
@@ -107,12 +112,18 @@
   text-wrap: pretty;
 }
 
+/* Brand display face (Unbounded) — только для фирменных заголовков */
+.font-brand {
+  font-family: 'Unbounded', 'Plus Jakarta Sans', system-ui, sans-serif;
+  letter-spacing: -0.01em;
+}
+
 /* Modern Progressive Squircle Shape */
 .squircle {
   corner-shape: squircle;
 }
 
-/* Elevated Editorial Cards */
+/* Elevated Manuscript Cards */
 .surface-card {
   background-color: var(--surface-card);
   border: 1px solid var(--border-subtle);
@@ -144,23 +155,63 @@
   }
 }
 
-/* Modern Minimalist Hero Surface */
+/* ===== HERO «Изумрудная рукопись»: глубокий градиент + золото + гирих ===== */
 .hero-mesh-gradient {
   isolation: isolate;
   background:
-    radial-gradient(circle at 90% 10%, rgba(16, 185, 129, 0.18) 0%, transparent 45%),
-    radial-gradient(circle at 10% 90%, rgba(20, 184, 166, 0.16) 0%, transparent 50%),
-    radial-gradient(circle at 50% 0%, rgba(245, 158, 11, 0.12) 0%, transparent 40%),
-    linear-gradient(145deg, #0f172a 0%, #111827 50%, #064e3b 100%);
+    radial-gradient(circle at 88% 12%, rgba(227, 194, 92, 0.22) 0%, transparent 42%),
+    radial-gradient(circle at 8% 88%, rgba(16, 185, 129, 0.30) 0%, transparent 52%),
+    radial-gradient(circle at 50% 130%, rgba(217, 172, 53, 0.16) 0%, transparent 55%),
+    linear-gradient(140deg, #052E22 0%, #07432F 48%, #05382A 100%);
   box-shadow:
-    0 1px 3px rgba(0, 0, 0, 0.05),
-    0 20px 40px -12px rgba(15, 23, 42, 0.25);
+    inset 0 1px 0 rgba(237, 217, 143, 0.22),
+    inset 0 0 0 1px rgba(237, 217, 143, 0.10),
+    0 24px 48px -12px rgba(4, 43, 32, 0.45);
+}
+
+/* Геометрический орнамент «гирих» (восьмиконечная звезда), поверх hero */
+.hero-arabesque {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='76' height='76' viewBox='0 0 76 76'%3E%3Cg fill='none' stroke='%23E9D48A' stroke-opacity='0.55' stroke-width='1'%3E%3Crect x='23' y='23' width='30' height='30'/%3E%3Crect x='23' y='23' width='30' height='30' transform='rotate(45 38 38)'/%3E%3Ccircle cx='38' cy='38' r='2.5' fill='%23E9D48A' fill-opacity='0.45' stroke='none'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 76px 76px;
+}
+
+/* Тот же орнамент для светлых поверхностей (тёмные штрихи) */
+.pattern-girih {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='76' height='76' viewBox='0 0 76 76'%3E%3Cg fill='none' stroke='%235C3D1C' stroke-opacity='0.12' stroke-width='1'%3E%3Crect x='23' y='23' width='30' height='30'/%3E%3Crect x='23' y='23' width='30' height='30' transform='rotate(45 38 38)'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 76px 76px;
+}
+
+.dark .pattern-girih {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='76' height='76' viewBox='0 0 76 76'%3E%3Cg fill='none' stroke='%23E9D48A' stroke-opacity='0.07' stroke-width='1'%3E%3Crect x='23' y='23' width='30' height='30'/%3E%3Crect x='23' y='23' width='30' height='30' transform='rotate(45 38 38)'/%3E%3C/g%3E%3C/svg%3E");
 }
 
 .hero-lattice {
   background-image:
-    radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+    radial-gradient(rgba(233, 212, 138, 0.13) 1px, transparent 1px);
   background-size: 24px 24px;
+}
+
+/* Золотые орнаментальные элементы */
+.ornament-line {
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(201, 150, 43, 0.55), transparent);
+}
+
+.diamond {
+  width: 7px;
+  height: 7px;
+  transform: rotate(45deg);
+  background: linear-gradient(135deg, #E3C25C, #C9962B);
+  border-radius: 1.5px;
+  flex-shrink: 0;
+}
+
+/* Шиммер-золото для акцентного текста на тёмном */
+.text-gold-grad {
+  background: linear-gradient(100deg, #F6ECCB 0%, #E3C25C 45%, #D9AC35 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 /* Soft-edge content fade using CSS masking */
@@ -183,12 +234,12 @@
 .pattern-dots {
   --dot-space: 24px;
   --dot-radius: 1px;
-  background-image: radial-gradient(circle, rgba(15, 23, 42, 0.06) var(--dot-radius), transparent calc(var(--dot-radius) + 0.5px));
+  background-image: radial-gradient(circle, rgba(92, 61, 28, 0.08) var(--dot-radius), transparent calc(var(--dot-radius) + 0.5px));
   background-size: var(--dot-space) var(--dot-space);
 }
 
 .dark .pattern-dots {
-  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.06) var(--dot-radius), transparent calc(var(--dot-radius) + 0.6px));
+  background-image: radial-gradient(circle, rgba(237, 217, 143, 0.07) var(--dot-radius), transparent calc(var(--dot-radius) + 0.6px));
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */
@@ -200,36 +251,50 @@
   scrollbar-width: none;
 }
 
-/* Frosted Glassmorphism Surfaces (Apple Style) */
+/* Frosted Glass Surfaces — тёплая ivory-бумага */
 .glass-header {
-  background: rgba(255, 255, 255, 0.82);
-  backdrop-filter: blur(24px) saturate(180%);
-  -webkit-backdrop-filter: blur(24px) saturate(180%);
-  border-bottom: 1px solid var(--border-subtle);
+  background: rgba(246, 243, 234, 0.86);
+  backdrop-filter: blur(24px) saturate(170%);
+  -webkit-backdrop-filter: blur(24px) saturate(170%);
+  border-bottom: 1px solid rgba(92, 61, 28, 0.10);
+  position: relative;
+}
+
+.glass-header::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 1px;
+  background: linear-gradient(to right, transparent 4%, rgba(201, 150, 43, 0.35) 50%, transparent 96%);
+  pointer-events: none;
 }
 
 .dark .glass-header {
-  background: rgba(9, 10, 15, 0.82);
+  background: rgba(16, 15, 10, 0.86);
+  border-bottom: 1px solid rgba(237, 217, 143, 0.10);
 }
 
 .glass-panel {
-  background: rgba(255, 255, 255, 0.88);
+  background: rgba(255, 253, 248, 0.9);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
 }
 .dark .glass-panel {
-  background: rgba(18, 20, 26, 0.88);
+  background: rgba(28, 26, 19, 0.9);
 }
 
+/* Мобильный док — тёмный изумруд со золотой кромкой (якорь снизу) */
 .glass-dock {
-  background: rgba(255, 255, 255, 0.88);
-  backdrop-filter: blur(24px) saturate(180%);
-  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  background: linear-gradient(165deg, rgba(6, 58, 43, 0.96), rgba(3, 36, 27, 0.97));
+  backdrop-filter: blur(24px) saturate(160%);
+  -webkit-backdrop-filter: blur(24px) saturate(160%);
   box-shadow: var(--shadow-dock);
-  border: 1px solid var(--border-subtle);
+  border: 1px solid rgba(233, 212, 138, 0.22);
 }
 .dark .glass-dock {
-  background: rgba(18, 20, 26, 0.88);
+  background: linear-gradient(165deg, rgba(8, 48, 36, 0.96), rgba(3, 30, 23, 0.97));
 }
 
 /* Safe area helpers for iPhone 11 / iOS notch and home indicator */
@@ -328,7 +393,7 @@ html.scale-arabic-150 {
   }
 }
 
-/* Custom scrollbars */
+/* Custom scrollbars — тёплый песочный */
 ::-webkit-scrollbar {
   width: 10px;
   height: 10px;
@@ -337,11 +402,11 @@ html.scale-arabic-150 {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(148, 163, 184, 0.42);
+  background: rgba(150, 138, 110, 0.45);
   border-radius: 9999px;
   border: 2px solid transparent;
   background-clip: content-box;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(100, 116, 139, 0.65);
+  background: rgba(120, 108, 82, 0.65);
 }

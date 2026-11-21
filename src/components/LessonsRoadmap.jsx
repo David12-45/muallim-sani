@@ -233,7 +233,7 @@ export default function LessonsRoadmap({ onSelectLesson, onOpenArcade, onOpenDai
                             ? 'bg-gradient-to-b from-amber-300 via-amber-400 to-amber-500 border-b-[6px] border-amber-700 text-slate-950 shadow-2xl shadow-amber-500/40 ring-4 ring-amber-400/40 scale-110'
                             : isDone
                             ? 'bg-gradient-to-b from-emerald-400 via-emerald-500 to-emerald-600 border-b-[6px] border-emerald-800 text-white shadow-xl shadow-emerald-600/25 hover:scale-105'
-                            : 'bg-white dark:bg-slate-800 border-2 border-b-[6px] border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-200 hover:border-emerald-400 dark:hover:border-emerald-500 hover:scale-105 shadow-lg'
+                            : 'bg-[#FFFDF8] dark:bg-slate-800 border-2 border-b-[6px] border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-200 hover:border-emerald-400 dark:hover:border-emerald-500 hover:scale-105 shadow-lg'
                         }`}
                         title={lesson.title}
                       >
@@ -317,7 +317,7 @@ export default function LessonsRoadmap({ onSelectLesson, onOpenArcade, onOpenDai
                   className={`px-6 py-4 rounded-3xl flex items-center gap-3.5 transition-all cursor-pointer shadow-xl active:scale-95 ${
                     isChapterComplete
                       ? 'bg-gradient-to-r from-amber-400 via-yellow-400 to-amber-500 text-slate-950 border-b-[5px] border-amber-700 shadow-amber-500/30'
-                      : 'bg-white dark:bg-slate-800 border-2 border-b-[5px] border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-200 hover:border-emerald-500'
+                      : 'bg-[#FFFDF8] dark:bg-slate-800 border-2 border-b-[5px] border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-200 hover:border-emerald-500'
                   }`}
                   title={`Испытание Главы ${chapter.number}`}
                 >

@@ -27,7 +27,7 @@ export default function BookPagesView({ initialPage = 2, onSelectLesson }) {
   return (
     <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-6 pb-28 md:pb-10">
       {/* Top Page Controls */}
-      <div className="bg-white dark:bg-slate-800 rounded-3xl p-4 sm:p-5 border border-slate-200 dark:border-slate-700 shadow-sm mb-6 flex flex-wrap items-center justify-between gap-4">
+      <div className="bg-[#FFFDF8] dark:bg-slate-800 rounded-3xl p-4 sm:p-5 border border-slate-200 dark:border-slate-700 shadow-sm mb-6 flex flex-wrap items-center justify-between gap-4">
         <div className="flex items-center gap-3">
           <button
             onClick={() => {
@@ -111,7 +111,7 @@ export default function BookPagesView({ initialPage = 2, onSelectLesson }) {
 
       {/* Main Split View: Left = Original Scan, Right = Interactive Words of this Page */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-        <div className="lg:col-span-5 bg-white dark:bg-slate-800 rounded-3xl p-4 border border-slate-200 dark:border-slate-700 shadow-lg sticky top-24">
+        <div className="lg:col-span-5 bg-[#FFFDF8] dark:bg-slate-800 rounded-3xl p-4 border border-slate-200 dark:border-slate-700 shadow-lg sticky top-24">
           <div className="rounded-2xl overflow-hidden border border-slate-100 dark:border-slate-700 bg-white">
             <img
               src={`/pages/p${pad}.jpg`}
@@ -130,7 +130,7 @@ export default function BookPagesView({ initialPage = 2, onSelectLesson }) {
           )}
 
           {page === 1 ? (
-            <div className="bg-white dark:bg-slate-800 rounded-3xl p-8 border border-slate-200 dark:border-slate-700 text-center">
+            <div className="bg-[#FFFDF8] dark:bg-slate-800 rounded-3xl p-8 border border-slate-200 dark:border-slate-700 text-center">
               <h2 className="text-2xl font-bold text-slate-900 dark:text-white">
                 Титульный лист книги «Му'аллим Сани»
               </h2>
@@ -145,14 +145,14 @@ export default function BookPagesView({ initialPage = 2, onSelectLesson }) {
               </button>
             </div>
           ) : pageLessons.length === 0 ? (
-            <div className="bg-white dark:bg-slate-800 rounded-3xl p-8 border border-slate-200 dark:border-slate-700 text-center">
+            <div className="bg-[#FFFDF8] dark:bg-slate-800 rounded-3xl p-8 border border-slate-200 dark:border-slate-700 text-center">
               <p className="text-slate-500">Выберите страницу для интерактивного чтения.</p>
             </div>
           ) : (
             pageLessons.map(les => (
               <div
                 key={les.id}
-                className="bg-white dark:bg-slate-800 rounded-3xl p-5 sm:p-6 border border-slate-200 dark:border-slate-700 shadow-sm"
+                className="bg-[#FFFDF8] dark:bg-slate-800 rounded-3xl p-5 sm:p-6 border border-slate-200 dark:border-slate-700 shadow-sm"
               >
                 <div className="flex flex-wrap items-center justify-between gap-3 pb-4 mb-4 border-b border-slate-100 dark:border-slate-700">
                   <div>
@@ -244,7 +244,7 @@ export default function BookPagesView({ initialPage = 2, onSelectLesson }) {
                                 className={`px-3.5 py-2 rounded-xl border transition-all flex flex-col items-center min-w-[85px] sm:min-w-[100px] ${
                                   isAct
                                     ? 'bg-emerald-600 text-white border-emerald-600 shadow-md scale-105'
-                                    : 'bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 border-stone-200 dark:border-slate-700 hover:border-emerald-500'
+                                    : 'bg-[#FFFDF8] dark:bg-slate-800 text-slate-900 dark:text-slate-100 border-stone-200 dark:border-slate-700 hover:border-emerald-500'
                                 }`}
                               >
                                 <span className="font-arabic text-4xl sm:text-5xl font-bold leading-relaxed">

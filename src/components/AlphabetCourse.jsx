@@ -121,7 +121,7 @@ function LearnStep({ ids, onDone }) {
         </div>
       </div>
 
-      <div className="bg-white dark:bg-slate-800 rounded-3xl border border-slate-200 dark:border-slate-700 p-6 text-center shadow-xl space-y-4">
+      <div className="bg-[#FFFDF8] dark:bg-slate-800 rounded-3xl border border-slate-200 dark:border-slate-700 p-6 text-center shadow-xl space-y-4">
         {/* Big Letter Button with Audio on Tap */}
         <button
           onClick={() => handlePlay(l.arabic)}
@@ -151,25 +151,25 @@ function LearnStep({ ids, onDone }) {
               4 формы написания в слове (← справа налево)
             </p>
             <div className="grid grid-cols-4 gap-1.5 p-2 rounded-2xl bg-slate-50 dark:bg-slate-900/60 border border-slate-100 dark:border-slate-700" dir="rtl">
-              <div className="p-2 rounded-xl bg-white dark:bg-slate-800 text-center shadow-xs">
+              <div className="p-2 rounded-xl bg-[#FFFDF8] dark:bg-slate-800 text-center shadow-xs">
                 <span className="font-arabic text-3xl sm:text-4xl font-bold text-emerald-600 dark:text-emerald-400 leading-tight">
                   {l.forms.initial}
                 </span>
                 <p className="text-[10px] font-bold text-slate-400 mt-1" dir="ltr">В начале</p>
               </div>
-              <div className="p-2 rounded-xl bg-white dark:bg-slate-800 text-center shadow-xs">
+              <div className="p-2 rounded-xl bg-[#FFFDF8] dark:bg-slate-800 text-center shadow-xs">
                 <span className="font-arabic text-3xl sm:text-4xl font-bold text-emerald-600 dark:text-emerald-400 leading-tight">
                   {l.forms.medial}
                 </span>
                 <p className="text-[10px] font-bold text-slate-400 mt-1" dir="ltr">В середине</p>
               </div>
-              <div className="p-2 rounded-xl bg-white dark:bg-slate-800 text-center shadow-xs">
+              <div className="p-2 rounded-xl bg-[#FFFDF8] dark:bg-slate-800 text-center shadow-xs">
                 <span className="font-arabic text-3xl sm:text-4xl font-bold text-emerald-600 dark:text-emerald-400 leading-tight">
                   {l.forms.final}
                 </span>
                 <p className="text-[10px] font-bold text-slate-400 mt-1" dir="ltr">В конце</p>
               </div>
-              <div className="p-2 rounded-xl bg-white dark:bg-slate-800 text-center shadow-xs">
+              <div className="p-2 rounded-xl bg-[#FFFDF8] dark:bg-slate-800 text-center shadow-xs">
                 <span className="font-arabic text-3xl sm:text-4xl font-bold text-emerald-600 dark:text-emerald-400 leading-tight">
                   {l.forms.isolated}
                 </span>
@@ -223,7 +223,7 @@ function LearnStep({ ids, onDone }) {
             soundFx.playTap();
             setI(i - 1);
           }}
-          className="px-4 py-3 min-h-[44px] rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 font-bold text-xs disabled:opacity-30 flex items-center gap-1.5 shadow-sm active:scale-95 transition"
+          className="px-4 py-3 min-h-[44px] rounded-2xl border border-slate-200 dark:border-slate-700 bg-[#FFFDF8] dark:bg-slate-800 text-slate-700 dark:text-slate-200 font-bold text-xs disabled:opacity-30 flex items-center gap-1.5 shadow-sm active:scale-95 transition"
         >
           <ArrowLeft className="w-4 h-4" />
           <span>Назад</span>
@@ -277,7 +277,7 @@ function Practice({ ids, onFinish }) {
   if (done) {
     const pct = Math.round((score / questions.length) * 100);
     return (
-      <div className="max-w-md mx-auto text-center bg-white dark:bg-slate-800 rounded-3xl p-8 border border-slate-200 dark:border-slate-700 shadow-2xl space-y-4">
+      <div className="max-w-md mx-auto text-center bg-[#FFFDF8] dark:bg-slate-800 rounded-3xl p-8 border border-slate-200 dark:border-slate-700 shadow-2xl space-y-4">
         <div className="text-6xl mb-1">{pct >= 80 ? '🌟' : pct >= 50 ? '👍' : '💪'}</div>
         <h2 className="text-3xl font-black text-slate-900 dark:text-white">
           {score} из {questions.length} верно
@@ -303,7 +303,7 @@ function Practice({ ids, onFinish }) {
               setScore(0);
               setPicked(null);
             }}
-            className="px-4 py-3 rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 font-bold text-xs flex items-center gap-1.5 active:scale-95 transition"
+            className="px-4 py-3 rounded-2xl border border-slate-200 dark:border-slate-700 bg-[#FFFDF8] dark:bg-slate-800 font-bold text-xs flex items-center gap-1.5 active:scale-95 transition"
           >
             <RotateCcw className="w-4 h-4" />
             <span>Ещё раз</span>
@@ -359,7 +359,7 @@ function Practice({ ids, onFinish }) {
         />
       </div>
 
-      <div className="bg-white dark:bg-slate-800 rounded-3xl border border-slate-200 dark:border-slate-700 p-6 text-center shadow-xl space-y-4">
+      <div className="bg-[#FFFDF8] dark:bg-slate-800 rounded-3xl border border-slate-200 dark:border-slate-700 p-6 text-center shadow-xl space-y-4">
         <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">
           Вопрос {n + 1} из {questions.length}
         </span>
@@ -493,7 +493,8 @@ export default function AlphabetCourse({ onBack: externalOnBack, onCompleted }) 
   return (
     <div className="max-w-2xl mx-auto px-3 sm:px-4 py-4 sm:py-6 pb-28 md:pb-10 space-y-6">
       {/* Top Banner */}
-      <div className="relative overflow-hidden rounded-[2rem] hero-mesh-gradient text-white p-6 sm:p-7 border border-white/15 shadow-apple-lg">
+      <div className="relative overflow-hidden rounded-[2rem] hero-mesh-gradient text-white p-6 sm:p-7 border border-gold-300/25 shadow-apple-lg">
+        <div className="absolute inset-0 hero-arabesque pointer-events-none opacity-[0.15]" aria-hidden="true" />
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <div>
             {externalOnBack && (
@@ -572,8 +573,8 @@ export default function AlphabetCourse({ onBack: externalOnBack, onCompleted }) 
                 isComplete
                   ? 'bg-emerald-50/70 dark:bg-emerald-950/30 border-emerald-500/60 dark:border-emerald-800/80'
                   : started
-                  ? 'bg-white dark:bg-slate-900 border-amber-300 dark:border-amber-700/60 ring-1 ring-amber-400/20'
-                  : 'bg-white dark:bg-slate-900 border-slate-200/80 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700'
+                  ? 'bg-[#FFFDF8] dark:bg-slate-900 border-amber-300 dark:border-amber-700/60 ring-1 ring-amber-400/20'
+                  : 'bg-[#FFFDF8] dark:bg-slate-900 border-slate-200/80 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700'
               }`}
             >
               <div
@@ -626,7 +627,7 @@ function Wrap({ title, onBack, children }) {
       <div className="mb-4 flex items-center gap-2.5">
         <button
           onClick={onBack}
-          className="p-2.5 rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:border-emerald-500 active:scale-95 transition"
+          className="p-2.5 rounded-2xl border border-slate-200 dark:border-slate-700 bg-[#FFFDF8] dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:border-emerald-500 active:scale-95 transition"
         >
           <ArrowLeft className="w-4 h-4" />
         </button>

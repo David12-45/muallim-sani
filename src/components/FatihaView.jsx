@@ -61,8 +61,8 @@ export default function FatihaView({ embedded = false }) {
     <div className={embedded ? '' : 'max-w-4xl mx-auto px-3 sm:px-6 lg:px-8 py-5 sm:py-8 pb-28 md:pb-12 space-y-6'}>
       {/* Flagship Surah Hero Banner */}
       {!embedded && (
-        <section className="relative overflow-hidden rounded-[2rem] hero-mesh-gradient text-white p-6 sm:p-9 border border-white/15 text-center shadow-apple-xl">
-          <div className="absolute inset-0 hero-lattice pointer-events-none opacity-40" aria-hidden="true" />
+        <section className="relative overflow-hidden rounded-[2rem] hero-mesh-gradient text-white p-6 sm:p-9 border border-gold-300/25 text-center shadow-apple-xl">
+          <div className="absolute inset-0 hero-arabesque pointer-events-none opacity-[0.15]" aria-hidden="true" />
           <div className="relative z-10 max-w-2xl mx-auto space-y-3.5">
             <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-xs font-semibold bg-white/10 backdrop-blur-md border border-white/15 text-emerald-100 shadow-sm">
               <Sparkles className="w-3.5 h-3.5 text-amber-300" aria-hidden="true" />
@@ -134,7 +134,7 @@ export default function FatihaView({ embedded = false }) {
 
       {/* Selected Word Details Spotlight */}
       {activeWord && (
-        <div className="bg-white dark:bg-slate-900 rounded-3xl p-5 border border-emerald-500/60 dark:border-emerald-700/60 shadow-apple-md flex flex-wrap items-center justify-between gap-4 animate-fadeIn">
+        <div className="bg-[#FFFDF8] dark:bg-slate-900 rounded-3xl p-5 border border-emerald-500/60 dark:border-emerald-700/60 shadow-apple-md flex flex-wrap items-center justify-between gap-4 animate-fadeIn">
           <div className="flex items-center gap-4 min-w-0">
             <button
               type="button"
@@ -169,7 +169,7 @@ export default function FatihaView({ embedded = false }) {
           return (
             <article
               key={verse.verseNumber}
-              className={`p-6 sm:p-7 rounded-3xl bg-white dark:bg-slate-900 border transition-all duration-300 ${
+              className={`p-6 sm:p-7 rounded-3xl bg-[#FFFDF8] dark:bg-slate-900 border transition-all duration-300 ${
                 isAyahActive
                   ? 'border-emerald-500/80 ring-2 ring-emerald-500/20 shadow-apple-md'
                   : 'border-slate-200/80 dark:border-slate-800 shadow-apple-xs hover:shadow-apple-sm'

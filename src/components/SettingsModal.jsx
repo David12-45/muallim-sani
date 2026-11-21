@@ -81,7 +81,7 @@ export default function SettingsModal({ onClose, darkMode, setDarkMode }) {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/50 backdrop-blur-md animate-fadeIn">
-      <div className="relative w-full max-w-lg bg-white dark:bg-slate-900 rounded-[2rem] shadow-apple-2xl border border-slate-200/80 dark:border-slate-800 overflow-hidden flex flex-col max-h-[90vh]">
+      <div className="relative w-full max-w-lg bg-[#FFFDF8] dark:bg-slate-900 rounded-[2rem] shadow-apple-2xl border border-slate-200/80 dark:border-slate-800 overflow-hidden flex flex-col max-h-[90vh]">
         {/* Header */}
         <div className="flex items-center justify-between p-5 sm:p-6 border-b border-slate-100 dark:border-slate-800">
           <div className="flex items-center gap-3">
@@ -123,7 +123,7 @@ export default function SettingsModal({ onClose, darkMode, setDarkMode }) {
             </div>
 
             <div className="grid grid-cols-3 gap-2 text-center pt-3 border-t border-slate-200/60 dark:border-slate-750">
-              <div className="p-2.5 rounded-xl bg-white dark:bg-slate-800/90 border border-slate-200/60 dark:border-slate-700/60 shadow-apple-xs">
+              <div className="p-2.5 rounded-xl bg-[#FFFDF8] dark:bg-slate-800/90 border border-slate-200/60 dark:border-slate-700/60 shadow-apple-xs">
                 <div className="flex items-center justify-center gap-1 text-orange-500 text-xs font-semibold">
                   <Flame className="w-3.5 h-3.5 fill-current" />
                   <span>Ударный</span>
@@ -133,7 +133,7 @@ export default function SettingsModal({ onClose, darkMode, setDarkMode }) {
                 </div>
               </div>
 
-              <div className="p-2.5 rounded-xl bg-white dark:bg-slate-800/90 border border-slate-200/60 dark:border-slate-700/60 shadow-apple-xs">
+              <div className="p-2.5 rounded-xl bg-[#FFFDF8] dark:bg-slate-800/90 border border-slate-200/60 dark:border-slate-700/60 shadow-apple-xs">
                 <div className="flex items-center justify-center gap-1 text-amber-500 text-xs font-semibold">
                   <Star className="w-3.5 h-3.5 fill-current" />
                   <span>Звёзды</span>
@@ -143,7 +143,7 @@ export default function SettingsModal({ onClose, darkMode, setDarkMode }) {
                 </div>
               </div>
 
-              <div className="p-2.5 rounded-xl bg-white dark:bg-slate-800/90 border border-slate-200/60 dark:border-slate-700/60 shadow-apple-xs">
+              <div className="p-2.5 rounded-xl bg-[#FFFDF8] dark:bg-slate-800/90 border border-slate-200/60 dark:border-slate-700/60 shadow-apple-xs">
                 <div className="flex items-center justify-center gap-1 text-emerald-600 text-xs font-semibold">
                   <Zap className="w-3.5 h-3.5 fill-current" />
                   <span>Опыт</span>
@@ -173,7 +173,7 @@ export default function SettingsModal({ onClose, darkMode, setDarkMode }) {
                   onClick={() => handleScaleChange(opt.id)}
                   className={`p-3 rounded-2xl border flex flex-col items-center justify-center transition-all active:scale-95 shadow-apple-xs ${
                     arabicScale === opt.id
-                      ? 'bg-white dark:bg-slate-800 border-emerald-500 text-emerald-600 dark:text-emerald-400 font-bold ring-2 ring-emerald-500/20'
+                      ? 'bg-[#FFFDF8] dark:bg-slate-800 border-emerald-500 text-emerald-600 dark:text-emerald-400 font-bold ring-2 ring-emerald-500/20'
                       : 'bg-slate-50 dark:bg-slate-850 border-slate-200/80 dark:border-slate-750 text-slate-600 dark:text-slate-400 hover:border-slate-300 dark:hover:border-slate-600'
                   }`}
                 >
@@ -233,7 +233,7 @@ export default function SettingsModal({ onClose, darkMode, setDarkMode }) {
             <div className="grid grid-cols-2 gap-2.5">
               <button
                 onClick={handleExport}
-                className="p-3 rounded-2xl bg-white dark:bg-slate-850 border border-slate-200/80 dark:border-slate-750 hover:border-slate-300 dark:hover:border-slate-650 flex items-center justify-center gap-2 text-xs font-semibold text-slate-800 dark:text-slate-200 active:scale-95 transition-all shadow-apple-xs"
+                className="p-3 rounded-2xl bg-[#FFFDF8] dark:bg-slate-850 border border-slate-200/80 dark:border-slate-750 hover:border-slate-300 dark:hover:border-slate-650 flex items-center justify-center gap-2 text-xs font-semibold text-slate-800 dark:text-slate-200 active:scale-95 transition-all shadow-apple-xs"
               >
                 <Download className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
                 <span>Скачать прогресс</span>
@@ -241,7 +241,7 @@ export default function SettingsModal({ onClose, darkMode, setDarkMode }) {
 
               <button
                 onClick={() => fileInputRef.current?.click()}
-                className="p-3 rounded-2xl bg-white dark:bg-slate-850 border border-slate-200/80 dark:border-slate-750 hover:border-slate-300 dark:hover:border-slate-650 flex items-center justify-center gap-2 text-xs font-semibold text-slate-800 dark:text-slate-200 active:scale-95 transition-all shadow-apple-xs"
+                className="p-3 rounded-2xl bg-[#FFFDF8] dark:bg-slate-850 border border-slate-200/80 dark:border-slate-750 hover:border-slate-300 dark:hover:border-slate-650 flex items-center justify-center gap-2 text-xs font-semibold text-slate-800 dark:text-slate-200 active:scale-95 transition-all shadow-apple-xs"
               >
                 <Upload className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
                 <span>Восстановить</span>

@@ -234,7 +234,7 @@ export default function DailyWorkoutModal({ isOpen, onClose }) {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-slate-950/70 backdrop-blur-md animate-fadeIn">
-      <div className="relative w-full max-w-lg rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-2xl overflow-hidden flex flex-col max-h-[92vh]">
+      <div className="relative w-full max-w-lg rounded-3xl bg-[#FFFDF8] dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-2xl overflow-hidden flex flex-col max-h-[92vh]">
         {/* Header */}
         <div className="p-4 sm:p-5 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between gap-3 bg-gradient-to-r from-emerald-50 via-teal-50 to-amber-50 dark:from-slate-900 dark:via-slate-900 dark:to-slate-800">
           <div className="flex items-center gap-3">
@@ -302,7 +302,7 @@ export default function DailyWorkoutModal({ isOpen, onClose }) {
                     {currentQ.audio && (
                       <button
                         onClick={() => audioService.speakArabic(currentQ.audio)}
-                        className="p-3 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700 text-emerald-600 dark:text-emerald-400 hover:border-emerald-500 active:scale-95 transition-all shadow-apple-xs"
+                        className="p-3 rounded-2xl bg-[#FFFDF8] dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700 text-emerald-600 dark:text-emerald-400 hover:border-emerald-500 active:scale-95 transition-all shadow-apple-xs"
                         title="Послушать аудио ещё раз"
                       >
                         <Volume2 className="w-5 h-5" />
@@ -325,7 +325,7 @@ export default function DailyWorkoutModal({ isOpen, onClose }) {
                 {currentQ.options.map((opt, idx) => {
                   const isSelected = selectedOpt === opt.key;
                   const isCorrect = opt.key === currentQ.correctAnswer;
-                  let btnCls = 'bg-white dark:bg-slate-850 border-slate-200/80 dark:border-slate-750 text-slate-800 dark:text-slate-100 hover:border-slate-300 dark:hover:border-slate-650 shadow-apple-xs';
+                  let btnCls = 'bg-[#FFFDF8] dark:bg-slate-850 border-slate-200/80 dark:border-slate-750 text-slate-800 dark:text-slate-100 hover:border-slate-300 dark:hover:border-slate-650 shadow-apple-xs';
 
                   if (isAnswered) {
                     if (isCorrect) {
@@ -418,7 +418,7 @@ export default function DailyWorkoutModal({ isOpen, onClose }) {
                           ? 'bg-emerald-600 text-white border-emerald-600 shadow-apple-xs'
                           : d.isToday
                           ? 'bg-amber-100 dark:bg-amber-950/60 border-amber-400 text-amber-800 dark:text-amber-200 font-bold'
-                          : 'bg-white dark:bg-slate-900 border-slate-200/80 dark:border-slate-800 text-slate-400'
+                          : 'bg-[#FFFDF8] dark:bg-slate-900 border-slate-200/80 dark:border-slate-800 text-slate-400'
                       }`}
                     >
                       <span className="text-[10px] font-semibold">{d.dayName}</span>

@@ -181,7 +181,7 @@ export default function WordBuilderGame({ lesson, onCompleteGame }) {
   };
 
   return (
-    <div className="bg-white dark:bg-slate-800 rounded-3xl p-4 sm:p-7 border-2 border-emerald-500/30 dark:border-emerald-500/20 shadow-lg mb-6">
+    <div className="bg-[#FFFDF8] dark:bg-slate-800 rounded-3xl p-4 sm:p-7 border-2 border-emerald-500/30 dark:border-emerald-500/20 shadow-lg mb-6">
       {/* Top Game Status Bar */}
       <div className="flex items-center justify-between gap-2 pb-4 mb-4 border-b border-slate-100 dark:border-slate-700">
         <div className="flex items-center gap-2">
@@ -269,7 +269,7 @@ export default function WordBuilderGame({ lesson, onCompleteGame }) {
             <p className="text-xs font-bold text-slate-500 dark:text-slate-400 mb-2">
               Соберите по буквам слово с чтением (справа налево ←):
             </p>
-            <span className="inline-block text-2xl sm:text-3xl font-mono font-black text-emerald-800 dark:text-emerald-300 bg-white dark:bg-slate-800 px-5 py-2.5 rounded-2xl border border-emerald-200 dark:border-slate-700 shadow-sm">
+            <span className="inline-block text-2xl sm:text-3xl font-mono font-black text-emerald-800 dark:text-emerald-300 bg-[#FFFDF8] dark:bg-slate-800 px-5 py-2.5 rounded-2xl border border-emerald-200 dark:border-slate-700 shadow-sm">
               [{targetTranscription}]
             </span>
           </div>
@@ -321,7 +321,7 @@ export default function WordBuilderGame({ lesson, onCompleteGame }) {
                 </div>
                 <button
                   onClick={() => audioService.speakArabic(currentWord)}
-                  className="p-2.5 rounded-xl bg-white dark:bg-slate-900 border border-emerald-300 dark:border-emerald-700 text-emerald-700 dark:text-emerald-300 active:scale-95 hover:bg-emerald-100 transition-colors shrink-0"
+                  className="p-2.5 rounded-xl bg-[#FFFDF8] dark:bg-slate-900 border border-emerald-300 dark:border-emerald-700 text-emerald-700 dark:text-emerald-300 active:scale-95 hover:bg-emerald-100 transition-colors shrink-0"
                   title="Прослушать слово ещё раз"
                 >
                   <Volume2 className="w-5 h-5" />
@@ -351,7 +351,7 @@ export default function WordBuilderGame({ lesson, onCompleteGame }) {
                       className={`h-16 sm:h-20 rounded-2xl border-b-4 font-arabic text-3xl sm:text-4xl font-bold flex items-center justify-center transition-all active:translate-y-0.5 select-none ${
                         isWrong
                           ? 'bg-rose-500 text-white border-rose-700 scale-95'
-                          : 'bg-white dark:bg-slate-700 text-slate-900 dark:text-white border-slate-200 dark:border-slate-900 hover:border-emerald-500 hover:bg-emerald-50/50 shadow-sm'
+                          : 'bg-[#FFFDF8] dark:bg-slate-700 text-slate-900 dark:text-white border-slate-200 dark:border-slate-900 hover:border-emerald-500 hover:bg-emerald-50/50 shadow-sm'
                       }`}
                     >
                       {tile.text}
