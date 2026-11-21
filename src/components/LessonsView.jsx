@@ -172,11 +172,6 @@ export default function LessonsView({ onSelectLesson }) {
         <div className="absolute -right-4 -top-6 opacity-[0.09] pointer-events-none select-none" aria-hidden="true">
           <span className="font-arabic text-[165px] sm:text-[210px] font-bold leading-none">اقرأ</span>
         </div>
-        {/* Орнаментальная звёздная сетка поверх градиента */}
-        <div
-          className="absolute inset-0 pointer-events-none opacity-[0.35]"
-          style={{ backgroundImage: 'var(--pattern-stars)', backgroundSize: '56px 56px' }}
-        />
 
         <div className="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
           <div className="space-y-3.5 max-w-xl">
