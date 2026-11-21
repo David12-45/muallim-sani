@@ -462,36 +462,46 @@ export default function LessonsView({ onSelectLesson }) {
                 </div>
 
                 {/* Lesson Cards Grid */}
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 sm:gap-3.5">
                   {module.lessons.map((lesson) => {
                     const isDone = !!progress.completedLessons[lesson.id];
                     const stars = storageService.getLessonStars(lesson.id);
                     const isCurrentTarget = nextUnfinishedLesson?.id === lesson.id;
                     const lessonGlobalIndex = ALL_LESSONS.findIndex(l => l.id === lesson.id) + 1;
+                    const isSingleInModule = module.lessons.length === 1;
+                    const arText = lesson.titleAr || 'قرآن';
+                    const arSizeClass =
+                      arText.length > 24
+                        ? 'text-lg sm:text-xl leading-[1.85]'
+                        : arText.length > 14
+                        ? 'text-xl sm:text-2xl leading-[1.8]'
+                        : 'text-2xl sm:text-[26px] leading-[1.7]';
 
                     return (
                       <button
                         key={lesson.id}
                         type="button"
                         onClick={() => onSelectLesson(lesson)}
-                        className={`group relative p-3.5 rounded-2xl text-left flex flex-col justify-between select-none cursor-pointer transition-all duration-200 ${
+                        className={`group relative min-w-0 w-full overflow-hidden p-3.5 sm:p-4 rounded-2xl text-left flex flex-col justify-between select-none cursor-pointer transition-all duration-200 hover:-translate-y-0.5 ${
+                          isSingleInModule ? 'col-span-2 sm:col-span-3 md:col-span-4' : ''
+                        } ${
                           isCurrentTarget
-                            ? 'bg-emerald-50/30 dark:bg-emerald-950/20 border-2 border-emerald-500 ring-4 ring-emerald-500/10 shadow-apple-md'
+                            ? 'bg-gradient-to-b from-emerald-50/50 to-white dark:from-emerald-950/30 dark:to-slate-950/80 border-2 border-emerald-500 ring-4 ring-emerald-500/10 shadow-apple-md'
                             : isDone
-                            ? 'bg-white dark:bg-slate-950/60 border border-slate-200/80 dark:border-white/5 hover:border-emerald-500/40 shadow-apple-xs hover:shadow-apple-sm'
-                            : 'bg-white dark:bg-slate-950/60 border border-slate-200/80 dark:border-white/5 hover:border-slate-300 dark:hover:border-slate-700 shadow-apple-xs hover:shadow-apple-sm'
+                            ? 'bg-white dark:bg-slate-950/60 border border-slate-200/80 dark:border-white/5 hover:border-emerald-500/40 shadow-apple-xs hover:shadow-apple-md'
+                            : 'bg-white dark:bg-slate-950/60 border border-slate-200/80 dark:border-white/5 hover:border-slate-300 dark:hover:border-slate-700 shadow-apple-xs hover:shadow-apple-md'
                         }`}
                       >
                         {/* Top row: Lesson # and Stars */}
-                        <div className="flex items-center justify-between w-full mb-2 gap-1">
-                          <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-md border ${
+                        <div className="flex items-center justify-between w-full mb-2.5 gap-1.5 min-w-0">
+                          <span className={`text-[10px] font-semibold px-2.5 py-0.5 rounded-lg border shrink-0 ${
                             isCurrentTarget
                               ? 'bg-emerald-500/10 text-emerald-800 dark:text-emerald-300 border-emerald-500/20'
-                              : 'bg-slate-50 dark:bg-slate-900 text-slate-500 dark:text-slate-400 border-slate-200/70 dark:border-white/5'
+                              : 'bg-slate-50 dark:bg-slate-900 text-slate-600 dark:text-slate-400 border-slate-200/70 dark:border-white/5'
                           }`}>
                             Урок {lessonGlobalIndex}
                           </span>
-                          <div className="flex items-center gap-0.5" aria-label={`Звёзды: ${stars} из 3`}>
+                          <div className="flex items-center gap-0.5 shrink-0" aria-label={`Звёзды: ${stars} из 3`}>
                             {[1, 2, 3].map(s => (
                               <Star
                                 key={s}
@@ -507,57 +517,63 @@ export default function LessonsView({ onSelectLesson }) {
 
                         {/* Crisp Minimalist Arabic Preview Tile */}
                         <div
-                          className="my-1.5 flex items-center justify-center min-h-[4rem] px-2 rounded-xl bg-slate-50/80 dark:bg-slate-900/80 border border-slate-200/60 dark:border-white/5 group-hover:border-emerald-500/30 transition-colors"
+                          className={`my-1 w-full min-w-0 overflow-hidden flex items-center justify-center rounded-xl bg-gradient-to-b from-slate-50/90 to-slate-100/50 dark:from-slate-900/90 dark:to-slate-950/80 border border-slate-200/70 dark:border-white/5 group-hover:border-emerald-500/35 group-hover:from-emerald-50/30 group-hover:to-white dark:group-hover:from-emerald-950/20 dark:group-hover:to-slate-900 transition-colors ${
+                            isSingleInModule ? 'min-h-[5.5rem] px-4 py-3.5' : 'min-h-[4.75rem] px-2.5 py-2.5'
+                          }`}
                           dir="rtl"
                         >
                           {lesson.headerForms && lesson.headerForms.length === 3 ? (
-                            <div className="flex items-center gap-2 font-arabic text-2xl font-bold text-slate-900 dark:text-slate-100">
+                            <div className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1 font-arabic text-xl sm:text-2xl font-bold text-slate-900 dark:text-slate-100 leading-relaxed">
                               {lesson.headerForms.map((hf, i) => (
                                 <span key={i}>{hf}</span>
                               ))}
                             </div>
                           ) : lesson.letter ? (
-                            <span className="font-arabic text-4xl font-bold text-slate-900 dark:text-slate-100">
+                            <span className="font-arabic text-4xl font-bold text-slate-900 dark:text-slate-100 leading-normal">
                               {lesson.letter}
                             </span>
                           ) : (
-                            <span className="font-arabic text-xl font-bold text-slate-900 dark:text-slate-100 px-1 truncate">
-                              {lesson.titleAr || 'قرآن'}
+                            <span
+                              className={`font-arabic font-bold text-slate-900 dark:text-slate-100 text-center break-words w-full ${
+                                isSingleInModule ? 'text-2xl sm:text-3xl leading-[1.85]' : arSizeClass
+                              }`}
+                            >
+                              {arText}
                             </span>
                           )}
                         </div>
 
                         {/* Title + 1-line hint + footer action */}
-                        <div className="mt-1.5 flex-1 flex flex-col justify-between">
-                          <div>
-                            <h4 className="text-xs font-bold text-slate-900 dark:text-white line-clamp-2 leading-snug">
+                        <div className="mt-2.5 flex-1 flex flex-col justify-between w-full min-w-0">
+                          <div className="min-w-0">
+                            <h4 className="text-xs sm:text-[13px] font-bold text-slate-900 dark:text-white line-clamp-2 leading-snug">
                               {lesson.title.replace(/^Урок\s+\d+:\s*/, '')}
                             </h4>
                             {lesson.hint && (
-                              <p className="text-[10.5px] text-slate-500 dark:text-slate-400 line-clamp-2 mt-1 leading-snug">
+                              <p className="text-[11px] text-slate-500 dark:text-slate-400 line-clamp-2 mt-1 leading-snug">
                                 {lesson.hint}
                               </p>
                             )}
                           </div>
 
-                          <div className="mt-3 pt-2 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between">
+                          <div className="mt-3 pt-2.5 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between w-full">
                             {isCurrentTarget ? (
-                              <span className="text-[10px] font-bold text-emerald-600 dark:text-emerald-400 flex items-center gap-1">
+                              <span className="text-[11px] font-bold text-emerald-600 dark:text-emerald-400 flex items-center gap-1">
                                 <Play className="w-3 h-3 fill-current" aria-hidden="true" />
                                 Начать
                               </span>
                             ) : isDone ? (
-                              <span className="text-[10px] font-semibold text-emerald-600 dark:text-emerald-400 flex items-center gap-1">
-                                <CheckCircle2 className="w-3 h-3" aria-hidden="true" />
+                              <span className="text-[11px] font-semibold text-emerald-600 dark:text-emerald-400 flex items-center gap-1">
+                                <CheckCircle2 className="w-3.5 h-3.5" aria-hidden="true" />
                                 Пройдено
                               </span>
                             ) : (
-                              <span className="text-[10px] font-medium text-slate-500 dark:text-slate-400 flex items-center gap-1 group-hover:text-emerald-600 transition-colors">
-                                <BookOpen className="w-3 h-3" aria-hidden="true" />
+                              <span className="text-[11px] font-medium text-slate-500 dark:text-slate-400 flex items-center gap-1 group-hover:text-emerald-600 transition-colors">
+                                <BookOpen className="w-3.5 h-3.5" aria-hidden="true" />
                                 Открыть
                               </span>
                             )}
-                            <ChevronRight className="w-3.5 h-3.5 text-slate-400 group-hover:text-emerald-600 group-hover:translate-x-0.5 transition-all" aria-hidden="true" />
+                            <ChevronRight className="w-3.5 h-3.5 text-slate-400 group-hover:text-emerald-600 group-hover:translate-x-0.5 transition-all shrink-0" aria-hidden="true" />
                           </div>
                         </div>
                       </button>
