@@ -193,7 +193,7 @@
 }
 
 .dark .pattern-dots {
-  background-image: radial-gradient(circle, rgba(52, 211, 153, 0.1) var(--dot-radius), transparent calc(var(--dot-radius) + 0.5px));
+  background-image: radial-gradient(circle, rgba(58, 173, 139, 0.16) var(--dot-radius), transparent calc(var(--dot-radius) + 0.6px));
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */
@@ -285,23 +285,23 @@ html.scale-arabic-150 {
 
 /* Tajweed highlighting classes */
 .tajweed-ghunnah {
-  color: #10b981;
+  color: #178F6F;
 }
 
 .tajweed-madd {
-  color: #ef4444;
+  color: #C2410C;
 }
 
 .tajweed-qalqalah {
-  color: #3b82f6;
+  color: #1D6FA5;
 }
 
 .tajweed-ikhfa {
-  color: #f59e0b;
+  color: #C79538;
 }
 
 .tajweed-idgham {
-  color: #8b5cf6;
+  color: #7C3AED;
 }
 
 /* Subtle entry reveal (opt-in when reduced motion is not preferred) */
@@ -335,8 +335,8 @@ html.scale-arabic-150 {
 
 /* Custom scrollbars */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 10px;
+  height: 10px;
 }
 ::-webkit-scrollbar-track {
   background: transparent;
@@ -344,6 +344,8 @@ html.scale-arabic-150 {
 ::-webkit-scrollbar-thumb {
   background: rgba(148, 163, 184, 0.42);
   border-radius: 9999px;
+  border: 2px solid transparent;
+  background-clip: content-box;
 }
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(100, 116, 139, 0.65);
