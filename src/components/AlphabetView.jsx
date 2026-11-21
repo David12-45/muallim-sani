@@ -93,20 +93,21 @@ export default function AlphabetView() {
   return (
     <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-7 pb-28 md:pb-12 space-y-6">
       {/* 1. TOP HERO HEADER */}
-      <header className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-emerald-900 via-teal-900 to-slate-950 text-white p-5 sm:p-7 shadow-xl shadow-emerald-950/20 border border-emerald-800/40">
+      <header className="relative overflow-hidden rounded-[2rem] hero-mesh-gradient text-white p-5 sm:p-8 border border-white/15">
+        <div className="absolute inset-0 hero-lattice pointer-events-none" aria-hidden="true" />
         <div className="relative z-10 flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-5">
           <div className="space-y-2.5 max-w-2xl">
             {/* Badges */}
-            <div className="flex flex-wrap items-center gap-2 text-xs font-bold text-emerald-200">
+            <div className="flex flex-wrap items-center gap-2 text-xs font-bold text-emerald-100">
               <span className="px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/15 flex items-center gap-1.5">
-                <BookOpen className="w-3.5 h-3.5 text-amber-300" />
+                <BookOpen className="w-3.5 h-3.5 text-amber-300" aria-hidden="true" />
                 Метод «Му'аллим Сани»
               </span>
-              <span className="text-emerald-300">• 29 букв Алифбы</span>
+              <span className="text-emerald-200/90">• 29 букв Алифбы</span>
               <span className="text-amber-300">• Студийные MP3</span>
             </div>
 
-            <h1 className="text-2xl sm:text-4xl font-black tracking-tight leading-tight">
+            <h1 className="heading-fluid font-black tracking-tight leading-tight">
               Арабский алфавит <span className="font-arabic font-normal text-amber-300 text-3xl sm:text-4xl ml-2" dir="rtl">الحروف الهجائية</span>
             </h1>
 

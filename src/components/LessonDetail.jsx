@@ -217,15 +217,15 @@ export default function LessonDetail({ lesson, onBack, onPrevLesson, onNextLesso
       </div>
 
       {/* 2. LESSON HERO SHOWCASE CARD */}
-      <div className="relative overflow-hidden bg-white dark:bg-slate-900 rounded-3xl p-5 sm:p-7 border border-slate-200/90 dark:border-slate-800 premium-card space-y-4">
+      <div className="relative overflow-hidden surface-card rounded-[1.75rem] p-5 sm:p-7 space-y-4">
         {/* Top Accent Strip */}
-        <div className="absolute top-0 inset-x-0 h-1.5 bg-gradient-to-r from-emerald-500 via-teal-500 to-amber-400" />
+        <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-emerald-600 via-teal-500 to-amber-400" aria-hidden="true" />
 
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-5">
           <div className="space-y-2">
-            <div className="flex flex-wrap items-center gap-2.5">
+            <div className="flex flex-wrap items-center gap-3">
               {lesson.letter && (
-                <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-emerald-600 to-teal-600 text-white flex items-center justify-center shadow-md shadow-emerald-600/20 shrink-0">
+                <div className="w-12 h-12 rounded-2xl squircle bg-gradient-to-br from-emerald-700 to-teal-600 text-white flex items-center justify-center shadow-md shadow-emerald-900/20 ring-1 ring-amber-300/40 shrink-0">
                   <span className="font-arabic text-3xl font-bold leading-none">{lesson.letter}</span>
                 </div>
               )}
@@ -538,10 +538,10 @@ export default function LessonDetail({ lesson, onBack, onPrevLesson, onNextLesso
                           return (
                             <div
                               key={wIdx}
-                              className={`group relative p-4 sm:p-5 rounded-2xl border border-b-4 transition-all flex flex-col items-center justify-between min-w-[115px] sm:min-w-[135px] select-none ${
+                              className={`group relative p-4 sm:p-5 rounded-2xl border transition-all flex flex-col items-center justify-between min-w-[115px] sm:min-w-[135px] select-none interactive-lift ${
                                 isActive
-                                  ? 'bg-emerald-50 dark:bg-emerald-950/70 border-emerald-600 shadow-lg ring-2 ring-emerald-500/25 scale-105'
-                                  : 'bg-white dark:bg-slate-900 border-stone-200/90 dark:border-slate-800 hover:border-emerald-400 dark:hover:border-emerald-600 hover:-translate-y-0.5 shadow-xs'
+                                  ? 'bg-emerald-50 dark:bg-emerald-950/70 border-emerald-600 shadow-lg ring-2 ring-emerald-500/25'
+                                  : 'bg-white dark:bg-slate-900 border-stone-200/90 dark:border-slate-800 hover:border-emerald-400 dark:hover:border-emerald-600 shadow-xs'
                               }`}
                             >
                               {/* Top mini row: word counter and quick sound */}

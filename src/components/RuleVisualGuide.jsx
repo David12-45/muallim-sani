@@ -11,10 +11,10 @@ function ClickableExample({ arabic, label, sub, highlight = false }) {
     <button
       type="button"
       onClick={() => audioService.speakArabic(clean)}
-      className={`px-3.5 py-2.5 rounded-2xl border text-center transition-all active:scale-95 cursor-pointer flex flex-col items-center justify-center min-w-[92px] group ${
+      className={`px-4 py-3 rounded-2xl border text-center interactive-lift cursor-pointer flex flex-col items-center justify-center min-w-[96px] group ${
         highlight
-          ? 'bg-emerald-50 dark:bg-emerald-950/60 border-emerald-400 dark:border-emerald-700 shadow-sm'
-          : 'bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-700 hover:border-emerald-400 shadow-xs'
+          ? 'bg-emerald-50/90 dark:bg-emerald-950/60 border-emerald-400/90 dark:border-emerald-700 shadow-xs'
+          : 'bg-[#FAF8F3] dark:bg-slate-900 border-stone-200/90 dark:border-slate-700 hover:border-emerald-400'
       }`}
       title="Нажмите, чтобы послушать"
     >
@@ -274,11 +274,12 @@ export default function RuleVisualGuide({ lessonId }) {
   const guide = GUIDE_CONFIGS[key];
 
   return (
-    <div className="rounded-3xl bg-gradient-to-br from-amber-50/90 via-white to-emerald-50/70 dark:from-slate-900 dark:via-slate-900 dark:to-emerald-950/30 border-2 border-amber-300/70 dark:border-amber-700/50 p-4 sm:p-6 shadow-md space-y-4">
+    <div className="relative overflow-hidden surface-card rounded-[1.75rem] border-amber-300/80 dark:border-amber-700/50 p-5 sm:p-6 space-y-4">
+      <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-amber-400 via-amber-500 to-emerald-500" aria-hidden="true" />
       {/* Header */}
       <div className="flex items-start gap-3">
-        <div className="w-10 h-10 rounded-2xl bg-amber-400/20 text-amber-700 dark:text-amber-300 border border-amber-400/40 flex items-center justify-center shrink-0">
-          <Lightbulb className="w-5 h-5" />
+        <div className="w-10 h-10 rounded-2xl squircle bg-amber-100/80 dark:bg-amber-950/60 text-amber-700 dark:text-amber-300 border border-amber-300/70 dark:border-amber-700/60 flex items-center justify-center shrink-0">
+          <Lightbulb className="w-5 h-5" aria-hidden="true" />
         </div>
         <div className="flex-1 min-w-0">
           <span className="inline-block text-[10px] font-black uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-amber-400/25 text-amber-800 dark:text-amber-200 mb-1">
